@@ -1,0 +1,414 @@
+<div id="print" style="width: 790px; margin: auto;">
+    <div class="cover" style="display: none;">
+        <img src="/img/cover.png">
+        <table class="info">
+            <tr>
+                <td>
+                    상품명: 
+                </td>
+                <td style="width: 400px" class="tour-name">
+                    <%=tourName%>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    여행일: 
+                </td>
+                <td class="travel-start-date">
+                    <%=travelStartDate%>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    기획자: 
+                </td>
+                <td class="planner">
+                    <%=planner%>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="customer-info">
+        <img src="/img/logo-tour-info.png" style="display: none;">
+        <h3 class="customer-name"> <%=customerName%></h3>
+        <table class="print-package table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width: 90px;" class="title-td">
+                        항 공 사
+                    </td>
+                    <td colspan="2" class="airline">
+                        <%=airline%>
+                    </td>
+                    <td class="title-td">
+                        여행일
+                    </td>
+                    <td colspan="7" class="travel-date">
+                        <%=travelDate%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        성 인 요 금
+                    </td>
+                    <td colspan="2" class="adult-charge">
+                        <%=adultCharge%>
+                    </td>
+                    <td class="title-td">
+                        인원
+                    </td>
+                    <td class="adult-member">
+                        <%=adultMember%>
+                    </td>
+                    <td colspan="2" class="total-adult-charge">
+                        <%=totalAdultCharge%>
+                    </td>
+                    <td colspan="4" class="title-td">
+                        여행 총 경비
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        아 동 요 금
+                    </td>
+                    <td colspan="2" class="child-charge">
+                        <%=childCharge%>
+                    </td>
+                    <td class="title-td">
+                        인원
+                    </td>
+                    <td class="child-member">
+                        <%=childMember%>
+                    </td>
+                    <td colspan="2" class="total-child-charge">
+                        <%=totalChildCharge%>
+                    </td>
+                    <td colspan="4" rowspan="2" class="total-tour-expenses">
+                        <%=totalTourExpenses%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        기타추가금액
+                    </td>
+                    <td colspan="2" class="extra-charge">
+                        <%=extraCharge%>
+                    </td>
+                    <td colspan="4" class="extra-charge-info">
+                        <%=extraChargeInfo%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        포함사항
+                    </td>
+                    <td colspan="10" class="inclusion">
+                        <%=inclusion%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        불포함사항
+                    </td>
+                    <td colspan="10" class="exclusion">
+                        <%=exclusion%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        특별사항
+                    </td>
+                    <td colspan="10" class="specialty">
+                        <%=specialty%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        차 량
+                    </td>
+                    <td colspan="2">
+                        <%=carMember%> 인승
+                    </td>
+                    <td colspan="2" class="title-td">
+                        담당 기사
+                    </td>
+                    <td colspan="6">
+                        <%=driver%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        기획자
+                    </td>
+                    <td colspan="2" class="planner">
+                        <%=planner%>
+                    </td>
+                    <td colspan="8" class="plannerInfo">
+                        <%=plannerInfo%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        일자
+                    </td>
+                    <td class="title-td">
+                        지역
+                    </td>
+                    <td class="title-td">
+                        교통편
+                    </td>
+                    <td class="title-td">
+                       시간
+                    </td>
+                    <td colspan="5" class="title-td">
+                        상세 일정
+                    </td>
+                    <td colspan="2" class="title-td">
+                        식사
+                    </td>
+                </tr>
+                
+                <% 
+                    if(scInfos.length == 1) { 
+                        var scInfo = scInfos[0];
+                %>
+                <tr>
+                    <td rowspan="2" class="title-td">
+                        <%=scInfo.date %>
+                        <label class="days"> 1 일차</label>
+                    </td>
+                    <td class="area">
+                        <div>
+                        <%=scInfo.area %>
+                        </div>
+                        
+                        <div style="bottom: 0px; position: absolute;">
+                            <%=scInfo.returnArea %><br><br><br>
+                        </div>                        
+                    </td>
+                    <td class="traffic">
+                        <div>
+                        <%=scInfo.airline %> </br>
+                        (<%=scInfo.flightNumber %>)
+                        </div>
+                        
+                        <div style="bottom: 0px; position: absolute;">
+                        <%=scInfo.returnAirline %> </br>
+                        (<%=scInfo.returnFlightNumber %>)
+                        </div>
+                    </td>
+                    <td class="time">
+                        <div>
+                            <label class="dep-msg">출발1시간전</label></br>
+                            <label class="dep-time"> <%=scInfo.depTime%> </label></br>
+                            <label class="arrive-time"><%=scInfo.arrTime%></label></br>
+                       </div>
+                       
+                       <div style="bottom: 0px; left: 10px; position: absolute;">
+                           <label class="return-dep-msg">출발1시간전</label></br>
+                           <label class="return-start-time"> <%=scInfo.returnDepTime%> </label></br>
+                           <label class="return-arrive-time"><%=scInfo.returnArrTime%></label></br>                       
+                        </div>
+                    </td>
+                    <td colspan="5" class="schedule" style="text-align: left;">
+                        <label class="start-msg"><%=scInfo.area %>공항 도작 및 수속(신분증 필수 지참)</label></br>
+                        <label class="start-sc"><%=scInfo.area %>공항 출발</label></br>
+                        <label class="arrive-sc"><%=scInfo.returnArea %>공항 도착</label>
+                        <%
+                            var schedules = scInfo.schedules;
+                            _.each(schedules, function(schedule) { %>
+                        <div class="item">
+                            <div class="title">
+                                <%=schedule.name %>
+                            </div>
+                            <div class="explain">
+                                <%=schedule.explain %>
+                            </div>
+                        </div>
+                        <% }) 
+                        
+                        for (var i = 0, len = scInfo.emptySchedules;  i < len; i++) { %>
+                        <div class="item">
+                            <div class="title">
+                            </div>
+                            <div class="explain">
+                            </div>
+                        </div>
+                        <%}%>
+                        
+                        <label class="start-msg">제주 공항 도작 및 수속(신분증 필수 지참)</label></br>
+                        <label class="start-sc"><%=scInfo.returnArea %> 공항 출발</label></br>
+                        <label class="arrive-sc"><%=scInfo.area %> 공항 도착</label>
+                    </td>
+                    <td colspan="2" class="meal" style="text-align: left;">
+                        <% var meal = scInfo.meal; %>
+                        조 : <%=meal.breakfast.name%></br>
+                        중 : <%=meal.lunch.name%></br>
+                        식 : <%=meal.dinner.name%></br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="text-align: left">
+                        숙소 : <label class="hotel"><%=scInfo.accInfo.name%></label>
+                    </td>
+                    <td colspan="3">
+                        TEL : <%=scInfo.accInfo.phone%>
+                    </td>
+                </tr>                
+                
+                <%} else {
+                    var scLen = scInfos.length;
+                    _.each(scInfos, function(scInfo, idx) { %>
+                <tr>
+                    <td rowspan="2" class="title-td">
+                        <%=scInfo.date %>
+                        <label class="days"> <%=idx+1%> 일차</label>
+                    </td>
+                    <td class="area">
+                        <% if (idx == 0 ) {%>
+                            <%=scInfo.area %>
+                        <%} %>
+                        <% if (idx == (scLen-1) ) {%>
+                        <div style="bottom: 0px; position: absolute;">
+                            <%=scInfo.area %><br><br><br>
+                        </div>
+                        <%} %>
+                    </td>
+                    <td class="traffic">
+                        <% if (idx == 0 ) {%>
+                        <div>
+                            <%=scInfo.airline %> </br>
+                            (<%=scInfo.flightNumber %>)
+                        </div>
+                        <%} %>
+                        <% if (idx == (scLen-1) ) {%>
+                        <div style="bottom: 0px; position: absolute;">
+                            <%=scInfo.airline %> </br>
+                            (<%=scInfo.flightNumber %>)
+                        </div>
+                        <%} %>
+                    </td>
+                    <td class="time">
+                        <% if (idx == 0 ) {%>
+                        <div>
+                            <label class="dep-msg">출발1시간전</label></br>
+                            <label class="dep-time"> <%=scInfo.depTime%> </label></br>
+                            <label class="arrive-time"><%=scInfo.arrTime%></label></br>
+                       </div>
+                       <%} %>
+                       
+                        <% if (idx == (scLen-1) ) {%>
+                        <div style="bottom: 0px; left: 10px; position: absolute;">
+                            <label class="dep-msg">출발1시간전</label></br>
+                            <label class="dep-time"> <%=scInfo.depTime%> </label></br>
+                            <label class="arrive-time"><%=scInfo.arrTime%></label></br>
+                       </div>
+                       <%} %>
+                    </td>
+                    <td colspan="5" class="schedule" style="text-align: left; position:relative;">
+                        <div>
+                        <% if (idx == 0) {%>
+                            <label class="start-msg">김포공항 도작 및 수속(신분증 필수 지참)</label></br>
+                            <label class="start-sc">김포공항 출발</label></br>
+                            <label class="arrive-sc">제주공항 도착</label>
+                        <%} %>
+                        </div>
+                        
+                        <%
+                            var schedules = scInfo.schedules;
+                            _.each(schedules, function(schedule) { %>
+                        <div class="item">
+                            <div class="title">
+                                <%=schedule.name %>
+                            </div>
+                            <div class="explain">
+                                <%=schedule.explain %>
+                            </div>
+                        </div>
+                        <% }) 
+                        
+                        for (var i = 0, len = scInfo.emptySchedules;  i < len; i++) { %>
+                        <div class="item">
+                            <div class="title">
+                            </div>
+                            <div class="explain">
+                            </div>
+                        </div>
+                        <%}%>                        
+                        
+                        
+                        <% if (idx == (scLen-1)) { %>
+                        <div style="bottom: 0px; position: absolute;">
+                            <label class="start-msg">제주 공항 도작 및 수속(신분증 필수 지참)</label></br>
+                            <label class="start-sc">제주 공항 출발</label></br>
+                            <label class="arrive-sc">김포 공항 도착</label>
+                        </div>
+                        <%} %>
+                    </td>
+                    <td colspan="2" class="meal" style="text-align: left;">
+                        <% var meals = scInfo.meals; %>
+                        조 : <%=meals.breakfast.name%></br>
+                        중 : <%=meals.lunch.name%></br>
+                        식 : <%=meals.dinner.name%></br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="text-align: left">
+                        숙소 : <label class="hotel"><%=scInfo.accInfo.name%></label>
+                    </td>
+                    <td colspan="3">
+                        TEL : <%=scInfo.accInfo.phone%>
+                    </td>
+                </tr>
+                    <%})
+                }%>                
+                
+                
+                <tr>
+                    <td colspan="11" style="text-align: left;">
+                        * 보성블루투어 / 국민은행 472901-01-055465
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="background-color: red !important; color: white !important; ">
+                        * 계약금
+                    </td>
+                    <td colspan="3">
+                        <%=deposit%>
+                    </td>
+                    <td style="background-color: red !important; color: white !important; ">
+                        잔금
+                    </td>
+                    <td colspan="3">
+                        <%=balance%>
+                    </td>
+                    <td style="background-color: red !important; color: white !important; ">
+                        납기일
+                    </td>
+                    <td colspan="3">
+                        <%=paymentDate%>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="11" style="text-align: left;">
+                    * 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.</br>
+                    * 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%,  전일 -50%, 당일 -80%</br>
+                    * 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

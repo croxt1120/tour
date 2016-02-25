@@ -1,12 +1,13 @@
 {
-  "name": "chat-example",
+  "name": "Tour",
   "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "description": "Tour",
   "main": "server.js",
   "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "author": "",
   "dependencies": {
     "async": "~0.2.8",
+    "body-parser": "^1.15.0",
     "express": "4.13.4",
     "socket.io": "~0.9.14"
   }

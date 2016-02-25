@@ -219,7 +219,7 @@ define([
 		        },
 		        
 		        onPrintClick: function(evt) {
-		            var $print = this.$('#print');
+		            var $print = this.$('.print-tour');
 		            
 		            $("#appView").hide();
 		            $('#printArea').show().append($print);

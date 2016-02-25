@@ -29,11 +29,11 @@ define([
 		        		$('#foodTable').css('display','block');
 		        		
 		        		// TODO : get data
-		        		$("#foodTable tbody").append("<tr>"+
-		        		"<td><button name='edit'/><button name='delete'/></td>" +
-		        		"<td>name</td>"+
-		        		"<td>price</td>"+
-		        		"<td>expain</td>"+"</tr>");
+		        		// $("#foodTable tbody").append("<tr>"+
+		        		// "<td><button name='edit'/><button name='delete'/></td>" +
+		        		// "<td>name</td>"+
+		        		// "<td>price</td>"+
+		        		// "<td>expain</td>"+"</tr>");
 		        	}
 		        },
 		        onClick: function(evt) {

@@ -20,6 +20,32 @@ input{
    /* padding: 2px !important; */
 }
 
+/* print common*/
+.print-tour table > thead > tr > th,
+.print-tour table > tbody > tr > th,
+.print-tour table > tfoot > tr > th,
+.print-tour table > thead > tr > td,
+.print-tour table > tbody > tr > td,
+.print-tour table > tfoot > tr > td {
+   border: 1px solid #000000 !important;
+}
+
+.print-tour table>tbody>tr>th {
+    padding: 4px;
+}
+.print-tour table>tbody>tr>td {
+    padding: 4px;
+    text-align: center;
+}
+
+
+.print-tour {
+    -webkit-print-color-adjust:exact;
+    font-size: 12px;
+    font-family: GulimChe;
+    font-weight: bold;
+}
+
 /* package */
 .package-info-table th {
     width: 110px;
@@ -102,19 +128,7 @@ input{
     width: 85px;
 }
 
-/* print*/
-
-#print {
-    -webkit-print-color-adjust:exact;
-    font-size: 12px;
-    font-family: GulimChe;
-    font-weight: bold;
-}
-
-#print label {
-    margin-bottom: 0px;
-}
-
+/* print-package*/
 #print .cover {
     width: 100%;
     height: 1147px;
@@ -138,23 +152,6 @@ input{
     text-align: center;
 }
 
-
-#print .customer-info table > thead > tr > th,
-#print .customer-info table > tbody > tr > th,
-#print .customer-info table > tfoot > tr > th,
-#print .customer-info table > thead > tr > td,
-#print .customer-info table > tbody > tr > td,
-#print .customer-info table > tfoot > tr > td {
-   border: 1px solid #000000;
-}
-
-#print .customer-info table>tbody>tr>th {
-    padding: 4px;
-}
-#print .customer-info table>tbody>tr>td {
-    padding: 4px;
-    text-align: center;
-}
 
 #print .logo-tour-info {
     width: 100%;
@@ -225,10 +222,36 @@ input{
     text-align: left;
 }
 
+
+/* print free tour*/
+#printFree table .title-td {
+    width: 120px;
+    vertical-align: middle;
+}
+
+#printFree .title{
+    background-color: #ccc !important;
+    color: #000;
+    border: none;
+}
+
+
 /* code management */
 .code-table {
     border: 1px solid #ddd;
     text-align: left;
     border-collapse: collapse;
     width: 100%;
+}
+
+.code-table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 15px;
+}
+
+.code-table th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 15px;
 }

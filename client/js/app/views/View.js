@@ -12,11 +12,12 @@ define([
 		    
 		    var View = Backbone.View.extend({
 		        initialize: function() {
+		        	this.setElement(this.el);
 		            this.render();
 		        },
 		        render: function() {
 		            var tpl = _.template(viewTpl, {} );
-		            this.$el.html(tpl);
+		            this.setElement(tpl);
 		            return this;
 		        },
 		        events: {

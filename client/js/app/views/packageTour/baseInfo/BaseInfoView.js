@@ -39,6 +39,7 @@ define([
 		    
 		    var BaseInfoView = View.extend({
 		        initialize: function() {
+		        	this.setElement(this.el);
 					this._accommodationView = null;
 		            this.$travelStartDate = null;
 		            this.$travelEndDate = null;

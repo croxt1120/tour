@@ -8,6 +8,8 @@ require([
 	    'common/Utils',
 	    'views/packageTour/PackageTourView',
 	    'views/print/PrintTourInfoView',
+	    'views/freeTour/FreeTourView',
+	    'views/print/PrintFreeInfoView',
 	    'views/codeManager/CodeManagerView'
 	    ], function (
 	        $,
@@ -16,6 +18,8 @@ require([
 	        Utils,
 	        PackageTourView,
 	        PrintTourInfoView,
+	        FreeTourView,
+	        PrintFreeInfoView,
 	        CodeManagerView
 	        ) {
 			////////////////////////////////////
@@ -54,6 +58,13 @@ require([
 
 			var printTourInfoView = new PrintTourInfoView();
 			$('#viewBox').append(printTourInfoView.el);
+			
+			var freeTourView = new FreeTourView();
+			$('#viewBox').append(freeTourView.el);
+			
+			var printFreeInfoView = new PrintFreeInfoView();
+			$('#viewBox').append(printFreeInfoView.el);
+
 
 			var codeManagerView = new CodeManagerView();
 			$('#viewBox').append(codeManagerView.el);
@@ -63,20 +74,38 @@ require([
 			var Router = Backbone.Router.extend({
 				routes:{
 					"":"onShowPackageTourView",
-			     	"print-base":"onShowPrintBase", // Backbone은 첫번째 router를 match시켜볼것이다.about
+			     	"print-base": "onShowPrintBase", // Backbone은 첫번째 router를 match시켜볼것이다.about
+			     	"free-tour": "onShowFreeTour",
+			     	"print-free-tour": "onShowPrintFreeTour",
 			     	"code-mgr": "onShowCodeManager"
 			     	},
-			     	onShowPackageTourView:function(id) {
+			     	
+			     	onShowPackageTourView:function() {
 			     		$('.sub-view').hide();
 			     		packageTourView.$el.show();
 			     	},
-			     	onShowPrintBase:function(actions) {
+			     	
+			     	onShowPrintBase:function() {
 			     		$('.sub-view').hide();
 			     		var data = packageTourView.getData();
 			     		console.log(data);
 			     		printTourInfoView.setData(data);
 			     		printTourInfoView.$el.show();
 			     	},
+			     	
+			     	onShowFreeTour: function() {
+			     		$('.sub-view').hide();
+			     		freeTourView.$el.show();
+			     	},
+			     	
+			     	onShowPrintFreeTour: function() {
+			     		$('.sub-view').hide();
+			     		var data = freeTourView.getData();
+			     		console.log(data);
+			     		printFreeInfoView.setData(data);
+			     		printFreeInfoView.$el.show();
+			     	},
+			     	
 			     	onShowCodeManager: function() {
 			     		$('.sub-view').hide();
 			     		codeManagerView.$el.show();

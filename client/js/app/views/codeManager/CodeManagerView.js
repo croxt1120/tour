@@ -61,10 +61,11 @@ define([
 		        	return $(_.template(tpl)( {} ));	
 		        },
 		        loadData: function() {
+		        	var _this = this;
 		        	if(_.isUndefined($('#category')))
 		        		return;
 		        	
-		        	$("table").css('display','none');	// all table set visible false
+		        	_this.$("table").css('display','none');	// all table set visible false
 		        	
 		        	var view = this;
 		        	var fileName = this.$('#category').val();	// get category item
@@ -78,7 +79,7 @@ define([
 			        			console.log("loadData file -> " + fileName + ", result -> " + result.isSuccess);
 			        			
 			        			if(result.isSuccess) {
-			        				$("#"+fileName + " > tbody").empty();	// init table row
+			        				_this.$("#"+fileName + " > tbody").empty();	// init table row
 			        				
 									$.each(result.data, function(key, val) {
 										var row = view.getRowTpl();
@@ -88,11 +89,11 @@ define([
 				        					row.find('td:eq('+i+')').html(colValues[i]);
 				        				}
 				        				
-				        				$("#"+fileName+" tbody").append(row);
+				        				_this.$("#"+fileName+" tbody").append(row);
 			        				});			        				
 			        			}
 
-			        			$("#"+fileName).css('display','block');
+			        			_this.$("#"+fileName).css('display','block');
 			        		}
 		        		});
 		        	}
@@ -112,9 +113,10 @@ define([
 		        		});
 		        },
 		        tableToJson: function(table) { 
+		        	var _this = this;
 		  			var tableData = [];
 		  			
-		  			$("#"+table+" tr").each(function (row, tr) {
+		  			_this.$("#"+table+" tr").each(function (row, tr) {
 	  					console.log("row index"+row);	
 	  					
 	  					if(row > 0) {

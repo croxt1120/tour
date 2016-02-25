@@ -5,7 +5,7 @@ var path = require('path');
 
 var PATH_DATAS_DIR = '../../datas/';
 
-router.get('/test.do', function(req, res, next) {
+router.get('/test/:fileName', function(req, res, next) {
 
     var filePath = path.resolve(__dirname, PATH_DATAS_DIR + 'test.json');
     var data = {};

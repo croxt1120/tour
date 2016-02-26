@@ -5,7 +5,7 @@ define([
         'datepicker',
         'moment',
         'common/Utils',
-        'views/accommodation/AccommodationView',
+        'components/accommodation/AccommodationView',
         'text!views/freeTour/tpls/freeTourTpl.html'
 ], function ( 
 		$,

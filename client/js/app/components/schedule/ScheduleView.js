@@ -6,9 +6,9 @@ define([
         'datas/Events',
         'common/Utils',
         'datas/Schedules',
-        'text!views/schedule/tpls/scheduleTpl.html',
-        'text!views/schedule/tpls/rowTpl.html',
-        'text!views/schedule/tpls/scheduleSelectTpl.html'
+        'text!components/schedule/tpls/scheduleTpl.html',
+        'text!components/schedule/tpls/rowTpl.html',
+        'text!components/schedule/tpls/scheduleSelectTpl.html'
 ], function ( 
 		$,
 		_,

@@ -4,8 +4,8 @@ define([
         'backbone',
         'custom/View',
         'datas/Hotels',
-        'text!views/accommodation/tpls/rowTpl.html',
-        'text!views/accommodation/tpls/accommodationTpl.html'
+        'text!components/accommodation/tpls/rowTpl.html',
+        'text!components/accommodation/tpls/accommodationTpl.html'
 ], function ( 
 		$,
 		_,

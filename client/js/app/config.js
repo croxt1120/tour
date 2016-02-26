@@ -13,9 +13,9 @@ require.config({
             datepicker : '../libs/bootstrap-datepicker',
             select2    : '../libs/select2.min',
             html2canvas : '../libs/html2canvas',
-            
             localekr   : '../locales/bootstrap-datepicker.kr.min',
             
+            components: './components/'
         },
 
         // 의존 파일 설정

@@ -5,7 +5,7 @@ define([
         'datepicker',
         'common/Utils',
         'custom/View',
-        'text!views/expense/tpls/expenseViewTpl.html'
+        'text!views/packageTour/expense/tpls/expenseViewTpl.html'
 ], function ( 
 		$,
 		_,

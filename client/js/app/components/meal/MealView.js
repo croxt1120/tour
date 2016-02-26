@@ -6,9 +6,9 @@ define([
         'datas/Foods',
         'datas/Events',
         'common/Utils',
-        'text!views/meal/tpls/mealTpl.html',
-        'text!views/meal/tpls/rowTpl.html',
-        'text!views/meal/tpls/foodSelectTpl.html'
+        'text!components/meal/tpls/mealTpl.html',
+        'text!components/meal/tpls/rowTpl.html',
+        'text!components/meal/tpls/foodSelectTpl.html'
 ], function ( 
 		$,
 		_,

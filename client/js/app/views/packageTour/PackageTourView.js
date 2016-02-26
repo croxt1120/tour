@@ -5,10 +5,10 @@ define([
 	    'datas/Events',
 	    'common/Utils',
 	    'views/packageTour/baseInfo/BaseInfoView',
-	    'views/accommodation/AccommodationView',
-	    'views/meal/MealView',
-	    'views/schedule/ScheduleView',
-	    'views/expense/ExpenseView',
+	    'views/packageTour/expense/ExpenseView',
+	    'components/accommodation/AccommodationView',
+	    'components/meal/MealView',
+	    'components/schedule/ScheduleView',
         'text!views/packageTour/tpls/packageTourTpl.html'
 ], function ( 
 		$,
@@ -17,10 +17,10 @@ define([
         Events,
         Utils,
         BaseInfoView,
+        ExpenseView,
         AccommodationView,
         MealView,
         ScheduleView,
-        ExpenseView,
 		packageTourTpl
 		) {
 			var eventBus = Events.eventBus;

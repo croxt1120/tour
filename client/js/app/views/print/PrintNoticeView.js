@@ -6,7 +6,7 @@ define([
         'moment',
         'common/Utils',
         'text!views/print/tpls/printViewTpl.html',
-        'text!views/print/tpls/freeTourTpl.html'
+        'text!views/print/tpls/noticeTpl.html'
 ], function ( 
 		$,
 		_,
@@ -15,14 +15,13 @@ define([
 		moment,
 		Utils,
 		printViewTpl,
-		freeTourTpl
+		noticeTpl
 		) {
-		    var PrintTourInfoView = Backbone.View.extend({
+		    var PrintNoticeView = Backbone.View.extend({
 		        initialize: function() {
 		            this.render();
 		        },
 		        render: function() {
-		            var tpl = _.template(printViewTpl, {} );
 		            this.setElement(printViewTpl);
 		            return this;
 		        },
@@ -32,7 +31,7 @@ define([
 		        
 		        setData: function(data) {
 		        	console.log(data);
-		        	var tpl = _.template(freeTourTpl)(data);
+		        	var tpl = _.template(noticeTpl)(data);
 		        	this.$('.content').empty().append(tpl);
 		        },
 		        
@@ -47,5 +46,5 @@ define([
 		            this.$('.content').append($print);
 		        }
 		    });
-		    return PrintTourInfoView;
+		    return PrintNoticeView;
 } );

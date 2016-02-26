@@ -10,6 +10,7 @@ require([
 	    'views/print/PrintTourInfoView',
 	    'views/freeTour/FreeTourView',
 	    'views/print/PrintFreeInfoView',
+	    'views/print/PrintNoticeView',
 	    'views/codeManager/CodeManagerView'
 	    ], function (
 	        $,
@@ -20,9 +21,10 @@ require([
 	        PrintTourInfoView,
 	        FreeTourView,
 	        PrintFreeInfoView,
+	        PrintNoticeView,
 	        CodeManagerView
 	        ) {
-			////////////////////////////////////
+
 			$('body').on('change', '.input-money', function(evt) {
 				var money = $(evt.currentTarget).val();
 		        money = Utils.numberWithoutCommas(money);
@@ -64,7 +66,9 @@ require([
 			
 			var printFreeInfoView = new PrintFreeInfoView();
 			$('#viewBox').append(printFreeInfoView.el);
-
+			
+			var printNoticeView = new PrintNoticeView();
+			$('#viewBox').append(printNoticeView.el);
 
 			var codeManagerView = new CodeManagerView();
 			$('#viewBox').append(codeManagerView.el);
@@ -74,9 +78,11 @@ require([
 			var Router = Backbone.Router.extend({
 				routes:{
 					"":"onShowPackageTourView",
-			     	"print-base": "onShowPrintBase", // Backbone은 첫번째 router를 match시켜볼것이다.about
+			     	"print-package": "onShowPrintPackage",
+			     	"print-package-notice": "onShowPrintPackageNotice",
 			     	"free-tour": "onShowFreeTour",
 			     	"print-free-tour": "onShowPrintFreeTour",
+			     	"print-free-notice": "onShowPrintFreeNotice",
 			     	"code-mgr": "onShowCodeManager"
 			     	},
 			     	
@@ -85,12 +91,20 @@ require([
 			     		packageTourView.$el.show();
 			     	},
 			     	
-			     	onShowPrintBase:function() {
+			     	onShowPrintPackage:function() {
 			     		$('.sub-view').hide();
 			     		var data = packageTourView.getData();
 			     		console.log(data);
 			     		printTourInfoView.setData(data);
 			     		printTourInfoView.$el.show();
+			     	},
+			     	
+			     	onShowPrintPackageNotice: function() {
+			     		$('.sub-view').hide();
+			     		var data = packageTourView.getData();
+			     		console.log(data);
+			     		printNoticeView.setData(data);
+			     		printNoticeView.$el.show();			     		
 			     	},
 			     	
 			     	onShowFreeTour: function() {
@@ -106,6 +120,14 @@ require([
 			     		printFreeInfoView.$el.show();
 			     	},
 			     	
+			     	onShowPrintFreeNotice: function() {
+			     		$('.sub-view').hide();
+			     		var data = freeTourView.getData();
+			     		console.log(data);
+			     		printNoticeView.setData(data);
+			     		printNoticeView.$el.show();
+			     	},
+			     	
 			     	onShowCodeManager: function() {
 			     		$('.sub-view').hide();
 			     		codeManagerView.$el.show();
@@ -113,5 +135,6 @@ require([
 			});
 			new Router();
 			Backbone.history.start();
+
 	} );
 } );

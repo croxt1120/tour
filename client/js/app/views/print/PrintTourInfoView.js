@@ -19,7 +19,7 @@ define([
 		) {
 			
 			//var DEFAULT_SCHEDULE_ITEM_COUNT = 14;
-			var DEFAULT_SCHEDULE_ITEM_COUNT = 10;
+			var DEFAULT_SCHEDULE_ITEM_COUNT = 2;
 			
 			var _getADaySchedule = function(data) {
 	        	var baseInfo = data.baseInfo;

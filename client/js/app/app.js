@@ -84,54 +84,62 @@ require([
 			     	"print-free-tour": "onShowPrintFreeTour",
 			     	"print-free-notice": "onShowPrintFreeNotice",
 			     	"code-mgr": "onShowCodeManager"
-			     	},
+			    },
+			    route: function(route, name, callback) {
+		     		var router = this;
+		     		if (!callback) callback = this[name];
+		     		var f = function() {
+		     			$('.sub-view').hide();
+		     			
+		     			//$('').parent().addClass('active');
+		     			
+		     			console.log('route before', route);
+		     			callback.apply(router, arguments);
+		     			console.log('route after', route);
+		     		};
+		     			
+		     		return Backbone.Router.prototype.route.call(this, route, name, f);
+		     	},			     	
 			     	
-			     	onShowPackageTourView:function() {
-			     		$('.sub-view').hide();
-			     		packageTourView.$el.show();
-			     	},
-			     	
-			     	onShowPrintPackage:function() {
-			     		$('.sub-view').hide();
-			     		var data = packageTourView.getData();
-			     		console.log(data);
-			     		printTourInfoView.setData(data);
-			     		printTourInfoView.$el.show();
-			     	},
-			     	
-			     	onShowPrintPackageNotice: function() {
-			     		$('.sub-view').hide();
-			     		var data = packageTourView.getData();
-			     		console.log(data);
-			     		printNoticeView.setData(data);
-			     		printNoticeView.$el.show();			     		
-			     	},
-			     	
-			     	onShowFreeTour: function() {
-			     		$('.sub-view').hide();
-			     		freeTourView.$el.show();
-			     	},
-			     	
-			     	onShowPrintFreeTour: function() {
-			     		$('.sub-view').hide();
-			     		var data = freeTourView.getData();
-			     		console.log(data);
-			     		printFreeInfoView.setData(data);
-			     		printFreeInfoView.$el.show();
-			     	},
-			     	
-			     	onShowPrintFreeNotice: function() {
-			     		$('.sub-view').hide();
-			     		var data = freeTourView.getData();
-			     		console.log(data);
-			     		printNoticeView.setData(data);
-			     		printNoticeView.$el.show();
-			     	},
-			     	
-			     	onShowCodeManager: function() {
-			     		$('.sub-view').hide();
-			     		codeManagerView.$el.show();
-			     	},
+		     	onShowPackageTourView:function() {
+		     		packageTourView.$el.show();
+		     	},
+		     	
+		     	onShowPrintPackage:function() {
+		     		var data = packageTourView.getData();
+		     		console.log(data);
+		     		printTourInfoView.setData(data);
+		     		printTourInfoView.$el.show();
+		     	},
+		     	
+		     	onShowPrintPackageNotice: function() {
+		     		var data = packageTourView.getData();
+		     		console.log(data);
+		     		printNoticeView.setData(data);
+		     		printNoticeView.$el.show();			     		
+		     	},
+		     	
+		     	onShowFreeTour: function() {
+		     		freeTourView.$el.show();
+		     	},
+		     	
+		     	onShowPrintFreeTour: function() {
+		     		var data = freeTourView.getData();
+		     		console.log(data);
+		     		printFreeInfoView.setData(data);
+		     		printFreeInfoView.$el.show();
+		     	},
+		     	
+		     	onShowPrintFreeNotice: function() {
+		     		var data = freeTourView.getData();
+		     		console.log(data);
+		     		printNoticeView.setData(data);
+		     		printNoticeView.$el.show();
+		     	},
+		     	
+		     	onShowCodeManager: function() {
+		     		codeManagerView.$el.show();
+		     	}
 			});
 			new Router();
 			Backbone.history.start();

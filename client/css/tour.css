@@ -239,6 +239,11 @@ input{
     border: none;
 }
 
+/* print notice */
+#printNotice blockquote {
+    font-size: 12px;
+}
+
 
 /* code management */
 .code-table {

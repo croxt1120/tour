@@ -1,6 +1,6 @@
 <div id="printFree" class="print-tour" style="width: 790px; margin: auto; ">
     <div class="customer-info">
-        <img src="/img/logo-tour-info.png">
+        <img src="/img/logo-tour-info.png" style="display: none;">
         <h3 class="customer-name"><%=baseInfo.customerName%></h3>
         
         <div class="baseInfo">
@@ -84,18 +84,6 @@
             <table class="table table-bordered" style="">
                 <tbody>
                     <tr>
-                        <td class="title-td">이 름</td>
-                        <td><%=rentCarInfo.rentCarName%></td>
-                        <td class="title-td">번 호</td>
-                        <td><%=rentCarInfo.rentCarPhone%></td>
-                    </tr>
-                    <tr>
-                        <td class="title-td">위치</td>
-                        <td colspan="3" style="text-align: left;">
-                            <%=rentCarInfo.rentCarLocation%>
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="title-td">차 종</td>
                         <td ><%=rentCarInfo.rentCarType%></td>
                         <td class="title-td">차량 요금</td>
@@ -110,6 +98,12 @@
                     <tr>
                         <td class="title-td" colspan="3">차량 총 요금</td>
                         <td ><%=expenseInfo.totalRentCarCharge%></td>
+                    </tr>
+                    <tr>
+                        <td class="title-td">비고</td>
+                        <td colspan="3" style="text-align: left;">
+                            
+                        </td>
                     </tr>
                 </tbody>
             </table>

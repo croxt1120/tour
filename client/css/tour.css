@@ -246,21 +246,20 @@ input{
 
 
 /* code management */
-.code-table {
-    border: 1px solid #ddd;
-    text-align: left;
-    border-collapse: collapse;
-    width: 100%;
+.code-form {
+    padding: 10px 50px 10px 50px;    
 }
 
-.code-table td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 15px;
+.code-table-container {
+    padding: 10px 50px 10px 50px;    
 }
 
-.code-table th {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 15px;
+.code-row {
+    vertical-align: middle;
 }
+
+.code-td {
+    text-align: center;
+    vertical-align: middle;
+}
+

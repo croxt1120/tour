@@ -1,8 +1,8 @@
 <div class="sub-view">
-    <div class="panel panel-default">
-        <div class="panel-heading">CODE</div>
-        <div class="panel-body">
-            <form>
+    <!--div class="panel panel-default"-->
+        <!--div class="panel-heading">CODE</div-->
+        <div>
+            <form class="code-form">
                 <label for="category">카테고리 선택 : </label>
                 <select id="category">
                     <option value="food" selected="selected">음식</option>
@@ -11,8 +11,8 @@
                 </select>    
                 <button id="save" style="float: right;">저장</button>
             </form>
-            <div class="table-container">
-                <table id="food" class="code-table" style="display:none;">
+            <div class="code-table-container">
+                <table id="food" class="table table-bordered" style="display:none; table-layout:fixed;">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -23,18 +23,18 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <table id="hotel" class="code-table" style="display:none;">
+                <table id="hotel" class="table table-bordered" style="display:none; table-layout:fixed;">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Explain</th>
+                            <th>Address</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
-                <table id="schedule" class="code-table" style="display:none;">
+                <table id="schedule" class="table table-bordered" style="display:none; table-layout:fixed;">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -47,5 +47,5 @@
                 </table>
             </div> 
         </div>
-    </div>
+    <!--/div-->
 </div>

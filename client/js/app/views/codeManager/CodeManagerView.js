@@ -45,7 +45,7 @@ define([
 		        	$(evt.currentTarget).parent().parent().remove();	
 		        },
 		        getRowTpl: function() {
-		        	if(_.isUndefined($('#category')))
+		        	if(_.isUndefined(this.$('#category')))
 		        		return;
 		        		
 		        	var tpl;
@@ -62,7 +62,7 @@ define([
 		        },
 		        loadData: function() {
 		        	var _this = this;
-		        	if(_.isUndefined($('#category')))
+		        	if(_.isUndefined(_this.$('#category')))
 		        		return;
 		        	
 		        	_this.$("table").css('display','none');	// all table set visible false
@@ -76,13 +76,11 @@ define([
 			        		dataType: "json",
 			        		type: "GET",
 			            	success: function(result) {
-			        			console.log("loadData file -> " + fileName + ", result -> " + result.isSuccess);
-			        			
 			        			if(result.isSuccess) {
 			        				_this.$("#"+fileName + " > tbody").empty();	// init table row
 			        				
 									$.each(result.data, function(key, val) {
-										var row = view.getRowTpl();
+										var row = view.getRowTpl();		// create row template
 				        				var colValues = _.values(val);
 				        				
 				        				for(var i=0; i<colValues.length; i++) {
@@ -91,9 +89,11 @@ define([
 				        				
 				        				_this.$("#"+fileName+" tbody").append(row);
 			        				});			        				
+			        			} else {
+			        				alert('파일 조회에 실패하였습니다.');
 			        			}
 
-			        			_this.$("#"+fileName).css('display','block');
+			        			_this.$("#"+fileName).css('display','table');
 			        		}
 		        		});
 		        	}
@@ -102,37 +102,57 @@ define([
 		        	var view = this;
 		        	var fileName = this.$('#category').val();
 		        	
+		        	// console.log(this.$("#"+fileName+" tbody tr").length);
+		        	
 		        	$.ajax({
 			        		url: "/code/"+fileName,
 			        		dataType: "json",
 			        		type: "POST",
 			        		data: {saveData: view.tableToJson(fileName)},
 			            	success: function(result) {
-			      				view.loadData();
+			            		if(result.isSuccess) {
+			      					view.loadData();
+			      				} else {
+			      					alert('파일 저장에 실패하였습니다.');
+			      				}
 			        		}
 		        		});
 		        },
 		        tableToJson: function(table) { 
 		        	var _this = this;
 		  			var tableData = [];
+		  			var rowObj = {};
+		  			var headerName = "";
+		  			var columnValue = "";
+
+					console.log(_this.$("#"+table+" th").length);
+
+					if(_this.$("#"+table+" tbody tr").length == 0) {
+						for(var j=0; j<_this.$("#"+table+" th").length-1; j++)	{
+							headerName = _this.$("#"+table+" th").eq(j).text();
+							columnValue = "";
+							console.log(headerName+"/"+columnValue);
+							rowObj[headerName.toLowerCase()] = columnValue;
+						}
+						
+						tableData.push(rowObj);
+					}	
+					else {
+						_this.$("#"+table+" tbody tr").each(function (row, tr) {
+		  					rowObj = {};
+		  				
+		  					var colCount = _this.$(tr).find("td").length;
+		  					for(var i=0; i<colCount-1; i++) {	// ignore last column
+		  						headerName = _this.$("#"+table+" th").eq(i).text();
+		  						columnValue = _this.$(tr).find("td:eq("+i+")").html();
+		  					
+		  						rowObj[headerName.toLowerCase()] = columnValue;
+		  					}
+		  				
+		  					tableData.push(rowObj);	
+		  				});
+					}
 		  			
-		  			_this.$("#"+table+" tr").each(function (row, tr) {
-	  					console.log("row index"+row);	
-	  					
-	  					if(row > 0) {
-			  				var rowObj = {};
-			  				
-			  				var colCount = $(tr).find("td").length;
-			  				for(var i=0; i<colCount-1; i++) {	// ignore last column
-			  					var headerName = $("#"+table+" th").eq(i).text();
-			  					var columnValue = $(tr).find("td:eq("+i+")").html();
-			  					
-			  					rowObj[headerName.toLowerCase()] = columnValue;
-			  				}
-			  				
-			  				tableData.push(rowObj);	
-	  					}
-		  			});
 		  			
 		  			return JSON.stringify(tableData);
 				}

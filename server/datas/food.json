@@ -1,22 +1,7 @@
 [
-	{
-    	"name" : "aaa",
-    	"price" : "9000",
-    	"explain" : ""	
-	},
-	{
-        "name" : "bbb",
-    	"price" : "9000",
-    	"explain" : ""	
-	},
-	{
-	    "name" : "ddd",
-    	"price" : "8000",
-    	"explain": ""
-	},
-	{
-    	"name" : "eee",
-    	"price" : "25000",
-    	"explain" : ""	
-	}
+  {
+    "name": "음식1",
+    "price": "5,000",
+    "explain": "good!"
+  }
 ]

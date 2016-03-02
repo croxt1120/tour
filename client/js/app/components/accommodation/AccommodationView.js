@@ -50,10 +50,25 @@ define([
 		        },
 		        
 		        getData: function() {
+		        	var hotels = Tour.getHotels();
+		        	var hotelName = this.$('.select-acc option:selected').text();
+		        	var hotelObj = _.findWhere(hotels, {name: hotelName});
 		        	var data = {};
-		        	data['day'] = this._day;
-		        	data['name'] = this.$('.select-acc option:selected').text();
-		        	data['phone'] = this.$('.select-acc option:selected').val();
+		        	
+		        	if (!_.isUndefined(hotelObj)) {
+			        	data = hotelObj;
+			        	data['day'] = this._day;
+		        	} else {
+		        		data['name'] = '';
+		        		data['phone'] = '';
+		        		data['address'] = '';
+		        		data['day'] = 0;
+		        	}
+		        	
+
+		        	//data['name'] = ;
+		        	//data['phone'] = this.$('.select-acc option:selected').val();
+		        	//data['address'] = _.findWhere(hotels, {name: data['name']});
 		        	
 		        	return data;
 		        },

@@ -5,7 +5,7 @@ define([
         'custom/View',
         'datas/Events',
         'common/Utils',
-        'datas/Schedules',
+        'datas/Tour',
         'text!components/schedule/tpls/scheduleTpl.html',
         'text!components/schedule/tpls/rowTpl.html',
         'text!components/schedule/tpls/scheduleSelectTpl.html'
@@ -16,7 +16,7 @@ define([
 		View,
 		Events,
 		Utils,
-		Schedules,
+		Tour,
 		scheduleTpl,
 		rowTpl,
 		scheduleSelectTpl
@@ -28,6 +28,7 @@ define([
 			var _createScheduleSelector = function() {
 				var $tpl = $(_.template(scheduleSelectTpl)( {} ));
 				var data = [];
+				var Schedules = Tour.getSchedules();
         		_.each(Schedules, function(schedule) {
         			data.push({
         				id: schedule.price,
@@ -106,6 +107,7 @@ define([
 		        },
 		        
 		        getData: function() {
+		        	var Schedules = Tour.getSchedules();
 		        	var scheduleItems = [];
 		        	var items = this.$('.schedule-item');
 		        	var $item;

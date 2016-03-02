@@ -60,7 +60,7 @@ define([
 		        	
 		        	return $(_.template(tpl)( {} ));	
 		        },
-		        loadData: function() {
+		        loadData: function(loadFileName) {
 		        	var _this = this;
 		        	if(_.isUndefined(_this.$('#category')))
 		        		return;
@@ -68,7 +68,11 @@ define([
 		        	_this.$("table").css('display','none');	// all table set visible false
 		        	
 		        	var view = this;
-		        	var fileName = this.$('#category').val();	// get category item
+		        	var fileName = loadFileName;
+		        	
+		        	// var fileName = this.$('#category').val();	// get category item
+		        	if(_.isUndefined(fileName))
+		        		fileName = this.$('#category').val();	// get category item
 		        	
 		        	if(!_.isUndefined(fileName)) {		
 		        		$.ajax({
@@ -84,7 +88,7 @@ define([
 				        				var colValues = _.values(val);
 				        				
 				        				for(var i=0; i<colValues.length; i++) {
-				        					row.find('td:eq('+i+')').html(colValues[i]);
+				        					row.find('td:eq('+i+')').find('input').val(colValues[i]);
 				        				}
 				        				
 				        				_this.$("#"+fileName+" tbody").append(row);
@@ -102,8 +106,6 @@ define([
 		        	var view = this;
 		        	var fileName = this.$('#category').val();
 		        	
-		        	// console.log(this.$("#"+fileName+" tbody tr").length);
-		        	
 		        	$.ajax({
 			        		url: "/code/"+fileName,
 			        		dataType: "json",
@@ -111,7 +113,7 @@ define([
 			        		data: {saveData: view.tableToJson(fileName)},
 			            	success: function(result) {
 			            		if(result.isSuccess) {
-			      					view.loadData();
+			      					view.loadData(fileName);
 			      				} else {
 			      					alert('파일 저장에 실패하였습니다.');
 			      				}
@@ -125,9 +127,7 @@ define([
 		  			var headerName = "";
 		  			var columnValue = "";
 
-					console.log(_this.$("#"+table+" th").length);
-
-					if(_this.$("#"+table+" tbody tr").length == 0) {
+					if(_this.$("#"+table+" tbody tr").length == 0) {	// table row count is 0, add empty row.
 						for(var j=0; j<_this.$("#"+table+" th").length-1; j++)	{
 							headerName = _this.$("#"+table+" th").eq(j).text();
 							columnValue = "";
@@ -144,7 +144,7 @@ define([
 		  					var colCount = _this.$(tr).find("td").length;
 		  					for(var i=0; i<colCount-1; i++) {	// ignore last column
 		  						headerName = _this.$("#"+table+" th").eq(i).text();
-		  						columnValue = _this.$(tr).find("td:eq("+i+")").html();
+		  						columnValue = _this.$(tr).find("td:eq("+i+")").find("input").val();
 		  					
 		  						rowObj[headerName.toLowerCase()] = columnValue;
 		  					}
@@ -153,8 +153,7 @@ define([
 		  				});
 					}
 		  			
-		  			
-		  			return JSON.stringify(tableData);
+		  			return JSON.stringify(tableData, null, 2);
 				}
 		        
 		    });

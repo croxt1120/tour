@@ -254,12 +254,8 @@ input{
     padding: 10px 50px 10px 50px;    
 }
 
-.code-row {
-    vertical-align: middle;
-}
-
 .code-td {
     text-align: center;
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 

@@ -42,6 +42,13 @@ define([
 		        	}
 		        },
 		        _onRemoveRow: function(evt) {
+		        	var _this = this;
+		        	var table = this.$('#category').val();
+		        	if(_this.$("#"+table+" tbody tr").length == 1) {
+		        		alert('1개 이상은 등록되어 있어야 합니다.');
+		        		return;
+		        	}
+		        	
 		        	$(evt.currentTarget).parent().parent().remove();	
 		        },
 		        getRowTpl: function() {

@@ -244,6 +244,11 @@ input{
     font-size: 12px;
 }
 
+#printNotice table .title-td {
+    width: 120px;
+    vertical-align: middle;
+}
+
 
 /* code management */
 .code-form {

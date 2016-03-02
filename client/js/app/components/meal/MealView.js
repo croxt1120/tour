@@ -3,7 +3,7 @@ define([
         'underscore',
         'backbone',
         'custom/View',
-        'datas/Foods',
+        'datas/Tour',
         'datas/Events',
         'common/Utils',
         'text!components/meal/tpls/mealTpl.html',
@@ -14,7 +14,7 @@ define([
 		_,
 		Backbone,
 		View,
-		Foods,
+		Tour,
 		Events,
 		Utils,
 		mealTpl,
@@ -28,6 +28,7 @@ define([
 			var _createFoodSelector = function() {
 				var $tpl = $(_.template(foodSelectTpl)( {} ));
 				var data = [];
+				var Foods = Tour.getFoods();
         		_.each(Foods, function(food) {
         			data.push({
         				id: food.price,

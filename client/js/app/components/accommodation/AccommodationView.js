@@ -3,7 +3,7 @@ define([
         'underscore',
         'backbone',
         'custom/View',
-        'datas/Hotels',
+        'datas/Tour',
         'text!components/accommodation/tpls/rowTpl.html',
         'text!components/accommodation/tpls/accommodationTpl.html'
 ], function ( 
@@ -11,30 +11,10 @@ define([
 		_,
 		Backbone,
 		View,
-		Hotels,
+		Tour,
 		rowTpl,
 		accommodationTpl
 		) {
-//////////////////////////////////////////////////////////////
-			// 숙소 selector
-			var _createAccSelector = function($target) {
-				var data = [];
-        		_.each(Hotels, function(food) {
-        			data.push({
-        				id: food.phone,
-        				text: food.name
-        			});
-        		});				
-				
-	        	$target.select2({
-	        		data: data
-	        	});
-	        	
-	        	$target.on("select2:select", function (e) {
-	        		$target.val( this.value );
-	        	});
-				return $target;
-			};
 
 /////////////////////////////////////////////////////////////////////////			
 			var RowView = View.extend({
@@ -49,11 +29,12 @@ define([
 		        	var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
 		        	this.setElement(tpl);
 		        	
+		        	var hotels = Tour.getHotels();
 					var data = [];
-	        		_.each(Hotels, function(food) {
+	        		_.each(hotels, function(hotel) {
 	        			data.push({
-	        				id: food.phone,
-	        				text: food.name
+	        				id: hotel.phone,
+	        				text: hotel.name
 	        			});
 	        		});				
 					
@@ -64,8 +45,6 @@ define([
 		        	this.$('.select-acc').on("select2:select", function (e) {
 		        		_this.$('.input-acc-phone').val( this.value );
 		        	});
-
-
 
 		            return this;
 		        },

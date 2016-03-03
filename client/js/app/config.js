@@ -15,6 +15,7 @@ require.config({
             html2canvas : '../libs/html2canvas',
             localekr   : '../locales/bootstrap-datepicker.kr.min',
             
+            // path
             components: './components/',
             router: 'router'
         },

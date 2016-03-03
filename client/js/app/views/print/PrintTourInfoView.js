@@ -135,9 +135,9 @@ define([
 		        
 		        setData: function(data) {
 		        	var viewData = {};
-		        	var baseInfo = data.baseInfo;
-		        	var accInfos = data.accommodationInfos;
-		        	var expenseInfo = data.expenseInfo;
+		        	var baseInfo = data.packageInfo.baseInfo;
+		        	var accInfos = data.packageInfo.accommodationInfos;
+		        	var expenseInfo = data.packageInfo.expenseInfo;
 
 		        	// cover
 		        	viewData['tourName'] = baseInfo.tourName;
@@ -193,10 +193,10 @@ define([
 		        	var scInfos = [];
 		        	
 		        	if (days == 1) { // 하루 여행
-		        		var scInfo = _getADaySchedule(data);
+		        		var scInfo = _getADaySchedule(data.packageInfo);
 		        		scInfos.push(scInfo);
 		        	} else {
-		        		scInfos = _getSchedules(data);
+		        		scInfos = _getSchedules(data.packageInfo);
 		        	}
 		        	
 		        	viewData['scInfos'] = scInfos;
@@ -209,6 +209,8 @@ define([
 		        	
 		        	// 납기일
 		        	viewData['paymentDate'] = expenseInfo.paymentDate;
+		        	
+		        	viewData['adminInfo'] = data.adminInfo;
 
 		        	console.log(viewData);
 		        

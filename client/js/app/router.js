@@ -10,7 +10,8 @@ define([
     'views/freeTour/FreeTourView',
     'views/print/PrintFreeInfoView',
     'views/print/PrintNoticeView',
-    'views/codeManager/CodeManagerView'
+    'views/codeManager/CodeManagerView',
+    'views/admin/AdminInfoView'
     ], function (
         $,
         Backbone,
@@ -23,7 +24,8 @@ define([
         FreeTourView,
         PrintFreeInfoView,
         PrintNoticeView,
-        CodeManagerView
+        CodeManagerView,
+        AdminInfoView
         ) {
         	
         	var _start = function() {
@@ -50,16 +52,22 @@ define([
 				var codeManagerView = new CodeManagerView();
 				$('#viewBox').append(codeManagerView.el);
 				
+				var adminInfoView = new AdminInfoView();
+				$('#viewBox').append(adminInfoView.el);
+				
+				
 				///////////////////////////////////////
 				var Router = Backbone.Router.extend({
 					routes:{
 						"":"onShowPackageTourView",
+						"package-tour":"onShowPackageTourView",
 				     	"print-package": "onShowPrintPackage",
 				     	"print-package-notice": "onShowPrintPackageNotice",
 				     	"free-tour": "onShowFreeTour",
 				     	"print-free-tour": "onShowPrintFreeTour",
 				     	"print-free-notice": "onShowPrintFreeNotice",
-				     	"code-mgr": "onShowCodeManager"
+				     	"code-mgr": "onShowCodeManager",
+						"admin":"onShowAdminView"
 				    },
 				    route: function(route, name, callback) {
 			     		var router = this;
@@ -79,8 +87,13 @@ define([
 			     	},
 			     	
 			     	onShowPrintPackage:function() {
-			     		var data = packageTourView.getData();
+			     		var data = {
+			     			packageInfo: packageTourView.getData(),
+			     			adminInfo: adminInfoView.getData()
+			     		};
+			     		
 			     		console.log(data);
+			     		
 			     		printTourInfoView.setData(data);
 			     		printTourInfoView.$el.show();
 			     	},
@@ -112,6 +125,10 @@ define([
 			     	
 			     	onShowCodeManager: function() {
 			     		codeManagerView.$el.show();
+			     	},
+			     	
+			     	onShowAdminView: function() {
+			     		adminInfoView.$el.show();
 			     	}
 				});
 				new Router();

@@ -3,6 +3,7 @@ define([
         'underscore',
         'bootstrap',
         'backbone',
+        'datas/Events',
         'custom/View',
         'text!popup/tourList/tpls/tourListPopupTpl.html'
 ], function ( 
@@ -10,6 +11,7 @@ define([
 		_,
 		bootstrap,
 		Backbone,
+		Events,
 		View,
 		tourListPopupTpl
 		) {
@@ -57,7 +59,8 @@ define([
 		        },
 		        
 		        // 팝업창 보이지 않게
-		        close: function() {
+		        close: function(tourInfo) {
+		        	this.trigger(Events.CLOSE_POPUP, tourInfo);
 		        	this.$('#tourListPopup').modal('hide');
 		        },
 		        
@@ -89,8 +92,8 @@ define([
 		        		$.get(url, function(data){
 		        			
 		        			if (data.isSuccess) {
-		        				console.log(data);
-		        				_this.close();
+		        				alert('데이터를 조회 하였습니다.');
+		        				_this.close(data.tourInfo);
 		        			} else {
 		        				alert('데이터 조회에 실패 했습니다. ' + data.msg);
 		        			}

@@ -3,20 +3,33 @@ require([
 ], function () {
 	require([
 	    'jquery',
-	    'views/baseInfo/BaseInfoView'
+	    'datas/Events',
+	    'views/packageTour/baseInfo/BaseInfoView',
+	    'popup/tourList/TourListPopupView',
+	    'popup/tourSave/TourSavePopupView'
 	    ], function (
 	        $,
-	        PackageInfoView
+	        Events,
+	        PackageInfoView,
+	        TourListPopupView,
+	        TourSavePopupView
 	        ) {
 
 		var baseInfoView = new PackageInfoView();
 		$('#baseInfoBox').append(baseInfoView.el);
 		
 		$('#loadBtn').click(function(evt) {
-			var data = $('#dataArea').val();
-			data = JSON.parse(data);
-			//flexRowView.setData(data);
-			baseInfoView.setData(data);
+
+			var tourListPopupView = new TourListPopupView();
+			// 기타 요금 변경
+			tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
+				console.log('close_popup');
+				console.log(tourInfo.packageTour.baseInfo);
+				baseInfoView.setData(tourInfo.packageTour.baseInfo);
+			});				
+			
+			tourListPopupView.open();
+			
 		});
 		
 		$('#saveBtn').click(function(evt) {

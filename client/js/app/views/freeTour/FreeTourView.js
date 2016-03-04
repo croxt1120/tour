@@ -242,6 +242,10 @@ define([
 		        	data['expenseInfo'] = expenseInfo;
 
 		        	return data;
+		        },
+		        
+		        setData: function(data) {
+		        	
 		        }
 		        
 		    });

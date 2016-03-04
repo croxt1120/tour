@@ -92,13 +92,15 @@ define([
 		        getData: function() {
 		        	var data = {};
 		        	data['baseInfo'] = this._baseInfoView.getData();
-		        	data['accommodationInfos'] = this._accommodationView.getData();
+		        	data['accInfos'] = this._accommodationView.getData();
 		        	data['mealInfo'] = this._mealView.getData();
 		        	data['scheduleInfo'] = this._scheduleView.getData();
 		        	data['expenseInfo'] = this._expenseView.getData();
 		        	return data;
 		        },
 		        setData: function(data) {
+		        	this._baseInfoView.setData(data.baseInfo);
+		        	this._accommodationView.setData(data.baseInfo);
 		        }
 		    });
 		    return TourView;

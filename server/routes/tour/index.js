@@ -52,7 +52,7 @@ router
         var file = fs.readFileSync(filePath,'utf8');
         file = JSON.parse(file);
         
-        data['tour'] = file;
+        data['tourInfo'] = file;
         data['isSuccess'] = true;        
     } else {
         console.log("File not found :" + tourName);

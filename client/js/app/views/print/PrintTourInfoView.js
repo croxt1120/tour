@@ -23,7 +23,7 @@ define([
 			
 			var _getADaySchedule = function(data) {
 	        	var baseInfo = data.baseInfo;
-	        	var accInfos = data.accommodationInfos;
+	        	var accInfos = data.accInfos;
 	        	var mealInfo = data.mealInfo;
 	        	var scheduleInfo = data.scheduleInfo;
 	        	var startDate = baseInfo.travelStartDate;
@@ -57,7 +57,7 @@ define([
 			
 			var _getSchedules = function(data){
 	        	var baseInfo = data.baseInfo;
-	        	var accInfos = data.accommodationInfos;
+	        	var accInfos = data.accInfos;
 	        	var mealInfo = data.mealInfo;
 	        	var scheduleInfo = data.scheduleInfo;
 	        	var startDate = baseInfo.travelStartDate;
@@ -136,7 +136,7 @@ define([
 		        setData: function(data) {
 		        	var viewData = {};
 		        	var baseInfo = data.packageInfo.baseInfo;
-		        	var accInfos = data.packageInfo.accommodationInfos;
+		        	var accInfos = data.packageInfo.accInfos;
 		        	var expenseInfo = data.packageInfo.expenseInfo;
 
 		        	// cover

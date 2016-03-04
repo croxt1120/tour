@@ -148,7 +148,42 @@ define([
 		        },
 		        
 		        setData: function(data) {
+		        	this.$('#customerName').val(data.customerName);
+		        	this.$('#adultMember').val(data.adultMember);
+		        	this.$('#childMember').val(data.childMember);
 		        	
+		        	this.$('#tourName').val(data.tourName);
+		        	
+		        	var travelStartDate = moment(data.travelStartDate).format('YYYY-MM-DD');
+		        	this.$travelStartDate.datepicker("setDate",travelStartDate);
+		        	
+		        	var travelEndDate = moment(data.travelEndDate).format('YYYY-MM-DD');
+		        	this.$travelEndDate.datepicker("setDate",travelEndDate);
+		        	
+		        	this.$('#planner').val(data.planner);
+		        	this.$('#plannerInfo').val(data.plannerInfo);
+		        	
+		        	this.$('#inclusion').val(data.inclusion.replace(/\<br\s*\>/gi, '\n'));
+		        	this.$('#exclusion').val(data.exclusion.replace(/\<br\s*\>/gi, '\n'));
+		        	this.$('#specialty').val(data.specialty.replace(/\<br\s*\>/gi, '\n'));
+		        	
+		        	this.$('#extraCharge').val(data.extraCharge);
+		        	this.$('#extraChargeInfo').val(data.extraChargeInfo);
+		        	
+		        	this.$('#airline').val(data.airline);
+		        	this.$('#depTime').val(data.depTime);
+		        	this.$('#arrTime').val(data.arrTime);
+		        	this.$('#flightNumber').val(data.flightNumber);
+		        	this.$('#area').val(data.area);
+		        	
+		        	this.$('#returnAirline').val(data.returnAirline);
+		        	this.$('#returnDepTime').val(data.returnDepTime);
+		        	this.$('#returnArrTime').val(data.returnArrTime);
+		        	this.$('#returnFlightNumber').val(data.returnFlightNumber);
+		        	this.$('#returnArea').val(data.returnArea);
+		        	
+		        	this.$('#carMember').val(data.carMember);
+		        	this.$('#driver').val(data.driver);
 		        },
 		        
 			    destroy: function(){

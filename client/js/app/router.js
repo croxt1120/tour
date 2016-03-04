@@ -4,6 +4,7 @@ define([
     'select2',
     'common/Utils',
     'datas/Tour',
+    'datas/Events',
     'views/mainNav/MainNavView',
     'views/packageTour/PackageTourView',
     'views/print/PrintTourInfoView',
@@ -20,6 +21,7 @@ define([
         select2,
         Utils,
         Tour,
+        Events,
         MainNavView,
         PackageTourView,
         PrintTourInfoView,
@@ -153,6 +155,11 @@ define([
 			     	
 			     	_onLoadTour: function() {
 			     		var tourListPopupView = new TourListPopupView();
+			     		tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
+			     			packageTourView.setData(tourInfo.packageTour);
+			     			freeTourView.setData(tourInfo.freeTour);
+			     		});				     		
+
 			     		tourListPopupView.open();
 			     	}
 				});

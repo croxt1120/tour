@@ -11,7 +11,9 @@ define([
     'views/print/PrintFreeInfoView',
     'views/print/PrintNoticeView',
     'views/codeManager/CodeManagerView',
-    'views/admin/AdminInfoView'
+    'views/admin/AdminInfoView',
+    'popup/tourList/TourListPopupView',
+	'popup/tourSave/TourSavePopupView'
     ], function (
         $,
         Backbone,
@@ -25,7 +27,9 @@ define([
         PrintFreeInfoView,
         PrintNoticeView,
         CodeManagerView,
-        AdminInfoView
+        AdminInfoView,
+        TourListPopupView,
+	    TourSavePopupView
         ) {
         	
         	var _start = function() {
@@ -59,15 +63,17 @@ define([
 				///////////////////////////////////////
 				var Router = Backbone.Router.extend({
 					routes:{
-						"":"onShowPackageTourView",
-						"package-tour":"onShowPackageTourView",
-				     	"print-package": "onShowPrintPackage",
-				     	"print-package-notice": "onShowPrintPackageNotice",
-				     	"free-tour": "onShowFreeTour",
-				     	"print-free-tour": "onShowPrintFreeTour",
-				     	"print-free-notice": "onShowPrintFreeNotice",
-				     	"code-mgr": "onShowCodeManager",
-						"admin":"onShowAdminView"
+						"" : "_onShowPackageTourView",
+						"package-tour" : "_onShowPackageTourView",
+				     	"print-package" : "_onShowPrintPackage",
+				     	"print-package-notice" : "_onShowPrintPackageNotice",
+				     	"free-tour" : "_onShowFreeTour",
+				     	"print-free-tour" : "_onShowPrintFreeTour",
+				     	"print-free-notice" : "_onShowPrintFreeNotice",
+				     	"code-mgr" : "_onShowCodeManager",
+						"admin" : "_onShowAdminView",
+						"save" : "_onSaveTour",
+						"load" : "_onLoadTour"
 				    },
 				    route: function(route, name, callback) {
 			     		var router = this;
@@ -82,11 +88,11 @@ define([
 			     		return Backbone.Router.prototype.route.call(this, route, name, f);
 			     	},			     	
 				     	
-			     	onShowPackageTourView:function() {
+			     	_onShowPackageTourView:function() {
 			     		packageTourView.$el.show();
 			     	},
 			     	
-			     	onShowPrintPackage:function() {
+			     	_onShowPrintPackage:function() {
 			     		var data = {
 			     			packageInfo: packageTourView.getData(),
 			     			adminInfo: adminInfoView.getData()
@@ -98,37 +104,56 @@ define([
 			     		printTourInfoView.$el.show();
 			     	},
 			     	
-			     	onShowPrintPackageNotice: function() {
+			     	_onShowPrintPackageNotice: function() {
 			     		var data = packageTourView.getData();
 			     		console.log(data);
 			     		printNoticeView.setData(data);
 			     		printNoticeView.$el.show();			     		
 			     	},
 			     	
-			     	onShowFreeTour: function() {
+			     	_onShowFreeTour: function() {
 			     		freeTourView.$el.show();
 			     	},
 			     	
-			     	onShowPrintFreeTour: function() {
+			     	_onShowPrintFreeTour: function() {
 			     		var data = freeTourView.getData();
 			     		console.log(data);
 			     		printFreeInfoView.setData(data);
 			     		printFreeInfoView.$el.show();
 			     	},
 			     	
-			     	onShowPrintFreeNotice: function() {
+			     	_onShowPrintFreeNotice: function() {
 			     		var data = freeTourView.getData();
 			     		console.log(data);
 			     		printNoticeView.setData(data);
 			     		printNoticeView.$el.show();
 			     	},
 			     	
-			     	onShowCodeManager: function() {
+			     	_onShowCodeManager: function() {
 			     		codeManagerView.$el.show();
 			     	},
 			     	
-			     	onShowAdminView: function() {
+			     	_onShowAdminView: function() {
 			     		adminInfoView.$el.show();
+			     	},
+			     	
+			     	_onSaveTour: function() {
+			     		var tourSavePopupView = new TourSavePopupView();
+			     		
+			     		var freeTour = freeTourView.getData();
+			     		var packageTour = packageTourView.getData();
+			     		
+			     		var saveData = {
+			     			freeTour: freeTour,
+			     			packageTour: packageTour
+			     		};
+			     		
+			     		tourSavePopupView.open({saveData: saveData});
+			     	},
+			     	
+			     	_onLoadTour: function() {
+			     		var tourListPopupView = new TourListPopupView();
+			     		tourListPopupView.open();
 			     	}
 				});
 				new Router();

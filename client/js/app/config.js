@@ -17,6 +17,7 @@ require.config({
             
             // path
             components: './components/',
+            popup: './views/popup/',
             router: 'router'
         },
 

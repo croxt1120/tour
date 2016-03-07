@@ -4,25 +4,57 @@ require([
 	require([
 	    'jquery',
 	    'select2',
-	    'views/accommodation/AccommodationView'
+	    'datas/Events',
+	    'datas/Tour',
+	    'components/accommodation/AccommodationView',
+	    'popup/tourList/TourListPopupView',
+	    'popup/tourSave/TourSavePopupView'
 	    ], function (
 	        $,
 	        select2,
-	        AccommodationView
+	        Events,
+	        Tour,
+	        AccommodationView,
+	        TourListPopupView,
+	        TourSavePopupView
 	        ) {
 
-		var appView = new AccommodationView();
-		$('#appBox').append(appView.el);
+
+
+				var appView;
+				/////////////////////////////
+				Tour.loadCode().then(function() {
+					
+					appView= new AccommodationView();
+					$('#appBox').append(appView.el);
+					
+					$('#day').change(function(e) {
+						appView.changeDay(this.value);
+					});					
+
+				}).fail(function() {
+					alert('데이터 조회에 실패했습니다.');
+				});
+
+
+
 		
-		$('#day').change(function(e) {
-			appView.changeDay(this.value);
-		});
+		
+
 		
 		
-		$('#loadBtn').click(function(evt) {
-			var data = $('#dataArea').val();
-			data = JSON.parse(data);
-			appView.setData(data);
+			$('#loadBtn').click(function(evt) {
+
+			var tourListPopupView = new TourListPopupView();
+			// 기타 요금 변경
+			tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
+				console.log('close_popup');
+				console.log(tourInfo.packageTour.accInfos);
+				appView.setData(tourInfo.packageTour.accInfos);
+			});				
+			
+			tourListPopupView.open();
+			
 		});
 		
 		$('#saveBtn').click(function(evt) {
@@ -34,6 +66,6 @@ require([
 
 		$('#destroyBtn').click(function(evt) {
 			appView.destroy();
-		});		
+		});	
 	} );
 } );

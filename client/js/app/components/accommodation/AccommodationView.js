@@ -56,24 +56,19 @@ define([
 		        	var data = {};
 		        	
 		        	if (!_.isUndefined(hotelObj)) {
-			        	data = hotelObj;
-			        	data['day'] = this._day;
+			        	data = _.clone(hotelObj);
 		        	} else {
 		        		data['name'] = '';
 		        		data['phone'] = '';
 		        		data['address'] = '';
-		        		data['day'] = 0;
 		        	}
-		        	
-
-		        	//data['name'] = ;
-		        	//data['phone'] = this.$('.select-acc option:selected').val();
-		        	//data['address'] = _.findWhere(hotels, {name: data['name']});
-		        	
+		        	data['day'] = this._day;
 		        	return data;
 		        },
 		        
-		        setData: function() {
+		        setData: function(data) {
+		        	this.$('.select-acc option:selected').text(data.name);
+		        	this.$('.input-acc-phone').val( data.phone );
 		        },
 		        
 			    destroy: function(){
@@ -86,6 +81,12 @@ define([
 			var ROW_ID_SUFFIX = 'acc';
 			var ROW = '.accommodation-table tbody tr';
 			var ROWS = '.accommodation-table tbody';
+			
+			var _createChild = function(tDay) {
+				var tViewID = ROW_ID_SUFFIX + tDay;
+				var rowView = new RowView({viewID: tViewID, day: tDay});
+				return rowView;
+			};
 
 		    var AccommodationView = View.extend({
 		        initialize: function() {
@@ -109,25 +110,17 @@ define([
 		        		data.push(child.getData());
 		        	});				  
 				  
-				  /*
-				  var accLen = this.$(ROW).length;
-				  var tViewID = "";
-				  
-				  for (var i = 1; i <= accLen; i++) {
-				  	tViewID = "#"+ ROW_ID_SUFFIX + i;
-				  	
-				  	data.push({
-				  		day: i,
-				  		name: this.$(tViewID + ' .input-acc-name' ).val(),
-				  		phone: this.$(tViewID + ' .input-acc-phone' ).val(),
-				  	});
-				  }
-				*/
-
 				  return data;
 		        },
 		        
-		        setData: function(data) {
+		        setData: function(accInfos) {
+		        	console.log(accInfos);
+		        	var _this = this;
+		        	_.each(accInfos, function(accInfo) {
+						var rowView = _createChild(accInfo.day);
+						rowView.setData(accInfo);
+				        _this.addChild(ROWS, rowView);		        		
+		        	});
 		        },
 		        
 		        changeDay: function(days) {
@@ -142,9 +135,7 @@ define([
 		        		var tDay = "";
 		        		for (var i = 1; i <= diffDays; i++) {
 		        			tDay = accLen + i;
-		        			tViewID = ROW_ID_SUFFIX + tDay;
-		        			
-				        	var rowView = new RowView({viewID: tViewID,day: tDay});
+				        	var rowView = _createChild(tDay);
 				        	this.addChild(ROWS, rowView);
 		        		}
 		        	} else if (diffDays < 0) { // 삭제

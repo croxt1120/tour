@@ -44,7 +44,7 @@ define([
 		        			var list = data.list;
 		        			_this.$('.count').text(list.length);
 		        			_.each(list, function(item) {
-		        				var tpl = '<a href="#' +item+ '" class="list-group-item">' + item + '</a>';
+		        				var tpl = '<a class="list-group-item">' + item + '</a>';
 		        				$group.append(tpl);
 		        			});
 		        		} else {

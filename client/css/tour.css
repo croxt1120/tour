@@ -50,6 +50,16 @@ input{
     font-weight: bold;
 }
 
+/* nav */
+.divider-vertical {
+    height: 30px;
+    margin: 0 9px;
+    margin-top: 10px;
+    border-left: 1px solid #F2F2F2;
+    border-right: 1px solid #FFF;
+}
+
+
 /* package */
 .package-info-table th {
     width: 110px;

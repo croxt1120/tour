@@ -3,7 +3,6 @@ define([
         'underscore',
         'backbone',
         'custom/View',
-        'datas/Tour',
         'text!components/accommodation/tpls/rowTpl.html',
         'text!components/accommodation/tpls/accommodationTpl.html'
 ], function ( 
@@ -11,7 +10,6 @@ define([
 		_,
 		Backbone,
 		View,
-		Tour,
 		rowTpl,
 		accommodationTpl
 		) {
@@ -22,25 +20,43 @@ define([
 		        	this.viewID = param.viewID;
 		        	this._day = param.day;
 		            this.render(param.day);
+		            this._hotels = [];
 		        },
 		        
 		        render: function(day) {
 		        	var _this = this;
 		        	var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
 		        	this.setElement(tpl);
-		        	
-		        	var hotels = Tour.getHotels();
-					var data = [];
-	        		_.each(hotels, function(hotel) {
-	        			data.push({
-	        				id: hotel.phone,
-	        				text: hotel.name
-	        			});
-	        		});				
-					
-		        	this.$('.select-acc').select2({
-		        		data: data
-		        	});
+					this.$('.select-acc').select2({
+						ajax: {
+							url: "/code/hotel",
+							cache: false,
+							processResults: function (result) {
+								_this._hotels = [];
+								if (result.isSuccess) {
+									_this._hotels = result.data;
+								}
+								
+								_this._hotels.unshift({
+									name: '-',
+									phone: '-',
+									address: '-',
+								})
+								
+								var items = [];
+								_.each(_this._hotels, function(hotel) {
+	        						items.push({
+	        							id: hotel.phone,
+	        							text: hotel.name
+	        						});
+	        					});
+
+								return {
+									results: items
+								};
+							}							
+						}
+					});		        	
 		        	
 		        	this.$('.select-acc').on("select2:select", function (e) {
 		        		_this.$('.input-acc-phone').val( this.value );
@@ -50,9 +66,8 @@ define([
 		        },
 		        
 		        getData: function() {
-		        	var hotels = Tour.getHotels();
 		        	var hotelName = this.$('.select-acc option:selected').text();
-		        	var hotelObj = _.findWhere(hotels, {name: hotelName});
+		        	var hotelObj = _.findWhere(this._hotels, {name: hotelName});
 		        	var data = {};
 		        	
 		        	if (!_.isUndefined(hotelObj)) {

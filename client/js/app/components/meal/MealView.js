@@ -3,7 +3,6 @@ define([
         'underscore',
         'backbone',
         'custom/View',
-        'datas/Tour',
         'datas/Events',
         'common/Utils',
         'text!components/meal/tpls/mealTpl.html',
@@ -14,81 +13,101 @@ define([
 		_,
 		Backbone,
 		View,
-		Tour,
 		Events,
 		Utils,
 		mealTpl,
 		rowTpl,
 		foodSelectTpl
 		) {
-
-			var eventBus = Events.eventBus;
-
-			// 음식 선택 selector
-			var _createFoodSelector = function() {
-				var $tpl = $(_.template(foodSelectTpl)( {} ));
-				var data = [];
-				var Foods = Tour.getFoods();
-        		_.each(Foods, function(food) {
-        			data.push({
-        				id: food.price,
-        				text: food.name
-        			});
-        		});				
-				
-	        	$tpl.find('.select-food').select2({
-	        		data: data
-	        	});
-	        	
-	        	$tpl.find('.select-food').on("select2:select", function (e) {
-	        		$tpl.find('.input-food-price').val(Utils.numberWithCommas(this.value));
-	        	});
-				return $tpl;
-			};
 			
+			var eventBus = Events.eventBus;
 			////////////////////////////////////////////////////////////////////
 			
 			var FoodRowView = View.extend({
-		        initialize: function(param) {
-		        	this.viewID = param.viewID;
-		        	this._day = param.day;
-		            this.render(param.day);
-		        },
-		        
-		        render: function(day) {
-		        	var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
-		        	this.setElement(tpl);
-
-		        	var $breakfast = _createFoodSelector();
-		        	this.$('.breakfast').append($breakfast);
-		        	
-		        	var $lunch = _createFoodSelector();
-		        	this.$('.lunch').append($lunch);
-		        	
-		        	var $dinner = _createFoodSelector();
-		        	this.$('.dinner').append($dinner);
-		            return this;
-		        },
-		        
-		        events: {
-		        	'select2:select .select-food': '_onChangePrice'
-		        },
-		        
-		        _onChangePrice: function(e) {
-		        	var total = 0;
-		        	var price = "";
-		        	this.$('.input-food-price').each(function() {
-		        		price = Utils.numberWithoutCommas(this.value);
-		        		total += price;
-		        	});
-		        	total = Utils.numberWithCommas(total);
-		        	this.$('.total-a-day').text(total);
-		        	
-		        	// 가격 변경 이벤트
-		        	this.trigger(Events.CHANGE_PRICE);
-		        },
-		        
-		        getData: function() {
+				initialize: function(param) {
+					this.viewID = param.viewID;
+					this._day = param.day;
+					this.render(param.day);
+					this._meals = [];
+				},
+				
+				render: function(day) {
+					var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
+					this.setElement(tpl);
+					
+					var $breakfast = this._createFoodSelector();
+					this.$('.breakfast').append($breakfast);
+					
+					var $lunch = this._createFoodSelector();
+					this.$('.lunch').append($lunch);
+					
+					var $dinner = this._createFoodSelector();
+					this.$('.dinner').append($dinner);
+					
+					return this;
+				},
+				
+				events: {
+					'select2:select .select-food': '_onChangePrice'
+				},
+				_onChangePrice: function(e) {
+					var total = 0;
+					var price = "";
+					
+					this.$('.input-food-price').each(function() {
+						price = Utils.numberWithoutCommas(this.value);
+						total += price;
+					});
+					
+					total = Utils.numberWithCommas(total);
+					this.$('.total-a-day').text(total);
+					
+					// 가격 변경 이벤트
+					this.trigger(Events.CHANGE_PRICE);
+				},
+				
+				// 음식 선택 selector
+				_createFoodSelector: function() {
+					var _this = this;
+					var $tpl = $(_.template(foodSelectTpl)( {} ));
+					$tpl.find('.select-food').select2({
+						ajax: {
+							url: "/code/food",
+							cache: false,
+							processResults: function (result) {
+								_this._meals = [];
+								if (result.isSuccess) {
+									_this._meals = result.data;
+								}
+								
+								_this._meals.unshift({
+									name: '-',
+									price: 0,
+									explain: '-',
+								});
+								
+								var items = [];
+								_.each(_this._meals, function(meal) {
+									items.push({
+										id: meal.price,
+										text: meal.name
+									});
+								});
+								
+								return {
+									results: items
+								};
+							}							
+						}
+					});
+					
+					$tpl.find('.select-food').on("select2:select", function (e) {
+						$tpl.find('.input-food-price').val(Utils.numberWithCommas(this.value));
+					});
+					return $tpl;
+				},
+				
+				getData: function() {
 		        	var data = {
 		        		'day': this._day,
 		        		'breakfast': {
@@ -205,7 +224,7 @@ define([
 		        
 			    destroy: function(){
 			    }
-		    });	
+		    });
 	
 		    return MealView;
 } );

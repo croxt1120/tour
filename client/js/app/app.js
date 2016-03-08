@@ -6,14 +6,12 @@ require([
 	    'backbone',
 	    'select2',
 	    'common/Utils',
-	    'datas/Tour',
 	    'router'
 	    ], function (
 	        $,
 	        Backbone,
 	        select2,
 	        Utils,
-	        Tour,
 	        Router
 	        ) {
 
@@ -45,10 +43,11 @@ require([
 				});
 				
 				/////////////////////////////
-				Tour.loadCode().then(function() {
-					Router.start();
-				}).fail(function() {
-					alert('데이터 조회에 실패했습니다.');
-				});
+				Router.start();
+				// Tour.loadCode().then(function() {
+					
+				// }).fail(function() {
+				// 	alert('데이터 조회에 실패했습니다.');
+				// });
 	} );
 } );

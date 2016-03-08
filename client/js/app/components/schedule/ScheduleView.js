@@ -5,7 +5,6 @@ define([
         'custom/View',
         'datas/Events',
         'common/Utils',
-        'datas/Tour',
         'text!components/schedule/tpls/scheduleTpl.html',
         'text!components/schedule/tpls/rowTpl.html',
         'text!components/schedule/tpls/scheduleSelectTpl.html'
@@ -16,34 +15,12 @@ define([
 		View,
 		Events,
 		Utils,
-		Tour,
 		scheduleTpl,
 		rowTpl,
 		scheduleSelectTpl
 		) {
 		   
 		   	var eventBus = Events.eventBus;
-		   
-			// 음식 선택 selector
-			var _createScheduleSelector = function() {
-				var $tpl = $(_.template(scheduleSelectTpl)( {} ));
-				var data = [];
-				var Schedules = Tour.getSchedules();
-        		_.each(Schedules, function(schedule) {
-        			data.push({
-        				id: schedule.price,
-        				text: schedule.name
-        			});
-        		});	
-	        	$tpl.find('.select-schedule').select2({
-	        		data:data
-	        	});
-	        	
-	        	$tpl.find('.select-schedule').on("select2:select", function (e) {
-	        		$tpl.find('.input-price').val(Utils.numberWithCommas(this.value));
-	        	});
-				return $tpl;
-			};		   
 		   
 		   /**
 		    * 일일 스케줄
@@ -53,6 +30,8 @@ define([
 		        	this.viewID = param.viewID;
 		        	this._day = param.day;
 		            this.render(param.day);
+		            
+		            this._schedules = [];
 		        },
 		        
 		        render: function(day) {
@@ -84,7 +63,7 @@ define([
 		        
 		        _onAddSchedule: function(evt) {
 		        	var len = this.$('.schedule-item').length;
-		        	var $selector = _createScheduleSelector();
+		        	var $selector = this._createScheduleSelector();
 		        	
 		        	if (len === 0) {
 		        		this.$('.schedule-items').append($selector);
@@ -106,18 +85,74 @@ define([
 		        	this._onChangePrice();
 		        },
 		        
+				// 음식 선택 selector
+				_createScheduleSelector:  function() {
+					var _this = this;
+					var $tpl = $(_.template(scheduleSelectTpl)( {} ));
+					
+					$tpl.find('.select-schedule').select2({
+						ajax: {
+							url: "/code/schedule",
+							cache: false,
+							processResults: function (result) {
+								_this._schedules = [];
+								if (result.isSuccess) {
+									_this._schedules = result.data;
+								}
+								
+								_this._schedules.unshift({
+									name: '-',
+									price: 0,
+									explain: '-',
+								});
+								
+								var items = [];
+								_.each(_this._schedules, function(schedule) {
+									items.push({
+										id: schedule.price,
+										text: schedule.name
+									});
+								});								
+								
+								// var data = result.data;
+								// _this._schedules = [];
+								// _this._schedules.push({
+								// 	id: '0',
+								// 	text: '-',
+								// 	explain: ''
+								// });
+								// _.each(data, function(hotel) {
+	       // 						_this._meals.push({
+	       // 							id: hotel.price,
+	       // 							text: hotel.name
+	       // 						});
+	       // 					});
+	        					
+								return {
+									results: items
+								};
+							}							
+						}
+					});		   			
+		   			
+		        	$tpl.find('.select-schedule').on("select2:select", function (e) {
+		        		$tpl.find('.input-price').val(Utils.numberWithCommas(this.value));
+		        	});
+					return $tpl;
+				},
+		        
 		        getData: function() {
-		        	var Schedules = Tour.getSchedules();
+		        	var _this = this;
 		        	var scheduleItems = [];
 		        	var items = this.$('.schedule-item');
 		        	var $item;
 		        	
 		        	var tSchedule, tObj, tExplain;
 		        	_.each(items, function(item) {
-		        		$item = $(item);
 		        		
+		        		$item = $(item);
 			        	tSchedule = $item.find('.select-schedule option:selected').text();
-			        	tObj = _.findWhere(Schedules, {name: tSchedule});
+			        	tObj = _.findWhere(_this._schedules, {name: tSchedule});
 			        	tExplain = (_.isUndefined(tObj))? "": tObj.explain;		        		
 		        		
 		        		scheduleItems.push({

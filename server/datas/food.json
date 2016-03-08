@@ -1,12 +1,7 @@
 [
   {
-    "name": "food1",
-    "price": "9,000",
-    "explain": "sadsa"
-  },
-  {
-    "name": "ㅇㅇㅇ",
-    "price": "6,666",
-    "explain": "ㅎㅎㅎㅎ"
+    "name": "음식2",
+    "price": "2,000",
+    "explain": "맛있다?"
   }
 ]

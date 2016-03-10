@@ -6,13 +6,15 @@ require([
 	    'backbone',
 	    'select2',
 	    'common/Utils',
-	    'router'
+	    'router',
+	    'datas/Tour'
 	    ], function (
 	        $,
 	        Backbone,
 	        select2,
 	        Utils,
-	        Router
+	        Router,
+	        Tour
 	        ) {
 
 	        	/////////////////////////////

@@ -29,37 +29,46 @@ define([
 		        	this.setElement(tpl);
 					this.$('.select-acc').select2({
 						ajax: {
-							url: "/code/hotel",
-							cache: false,
-							processResults: function (result) {
-								_this._hotels = [];
-								if (result.isSuccess) {
-									_this._hotels = result.data;
-								}
+							transport: function (params, success, failure) {
+								var q = params.data.q;
+								q = _.isUndefined(q)?"":q;
 								
-								_this._hotels.unshift({
-									name: '-',
-									phone: '-',
-									address: '-',
-								})
-								
-								var items = [];
-								_.each(_this._hotels, function(hotel) {
-	        						items.push({
-	        							id: hotel.phone,
-	        							text: hotel.name
-	        						});
-	        					});
+								$.get('/code/hotel', function(res) {
+									if (res.isSuccess) {
+										_this._hotels = res.data;
+										_this._hotels.unshift({
+											name: '-',
+											phone: '-',
+											address: '-',
+										});
 
-								return {
-									results: items
-								};
-							}							
+										var result = [];
+										_.each(_this._hotels, function(item) {
+											if (item.name.indexOf(q) > -1) {
+												result.push({
+													id: item.name,
+													text: item.name
+												});
+											}
+										});
+										success({results: result});
+									} else {
+										alert("숙소 데이터 검색에 실패했습니다.");
+									}
+								}).fail(function(res) {
+									alert("숙소 데이터 검색에 실패했습니다.");
+								});
+							}
 						}
-					});		        	
+					});
 		        	
 		        	this.$('.select-acc').on("select2:select", function (e) {
-		        		_this.$('.input-acc-phone').val( this.value );
+		        		var scObj = _.findWhere(_this._hotels, {name: this.value});
+		        		var phone = 0;
+		        		if (!_.isUndefined(scObj)) {
+		        			phone = scObj.phone;
+		        		}		        		
+		        		_this.$('.input-acc-phone').val( phone );
 		        	});
 
 		            return this;

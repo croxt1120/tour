@@ -89,54 +89,50 @@ define([
 				_createScheduleSelector:  function() {
 					var _this = this;
 					var $tpl = $(_.template(scheduleSelectTpl)( {} ));
-					
+
 					$tpl.find('.select-schedule').select2({
 						ajax: {
-							url: "/code/schedule",
-							cache: false,
-							processResults: function (result) {
-								_this._schedules = [];
-								if (result.isSuccess) {
-									_this._schedules = result.data;
-								}
+							transport: function (params, success, failure) {
+								var q = params.data.q;
+								q = _.isUndefined(q)?"":q;
 								
-								_this._schedules.unshift({
-									name: '-',
-									price: 0,
-									explain: '-',
+								$.get('/code/schedule', function(res) {
+									if (res.isSuccess) {
+										_this._schedules = res.data;
+										_this._schedules.unshift({
+											name: '-',
+											price: 0,
+											explain: '-',
+										});
+
+										var result = [];
+										_.each(_this._schedules, function(item) {
+											if (item.name.indexOf(q) > -1) {
+												result.push({
+													id: item.name,
+													text: item.name
+												});
+											}
+										});
+										success({results: result});
+									} else {
+										alert("숙소 데이터 검색에 실패했습니다.");
+									}
+								}).fail(function(res) {
+									alert("숙소 데이터 검색에 실패했습니다.");
 								});
-								
-								var items = [];
-								_.each(_this._schedules, function(schedule) {
-									items.push({
-										id: schedule.price,
-										text: schedule.name
-									});
-								});								
-								
-								// var data = result.data;
-								// _this._schedules = [];
-								// _this._schedules.push({
-								// 	id: '0',
-								// 	text: '-',
-								// 	explain: ''
-								// });
-								// _.each(data, function(hotel) {
-	       // 						_this._meals.push({
-	       // 							id: hotel.price,
-	       // 							text: hotel.name
-	       // 						});
-	       // 					});
-	        					
-								return {
-									results: items
-								};
-							}							
+							}
 						}
-					});		   			
-		   			
+					});
+						
 		        	$tpl.find('.select-schedule').on("select2:select", function (e) {
-		        		$tpl.find('.input-price').val(Utils.numberWithCommas(this.value));
+		        		var scObj = _.findWhere(_this._schedules, {name: this.value});
+		        		var price = 0;
+		        		if (!_.isUndefined(scObj)) {
+		        			price = scObj.price;
+		        		}
+
+		        		$tpl.find('.input-price').val(Utils.numberWithCommas(price));
 		        	});
 					return $tpl;
 				},

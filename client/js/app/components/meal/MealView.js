@@ -4,6 +4,7 @@ define([
         'backbone',
         'custom/View',
         'datas/Events',
+        'datas/Tour',
         'common/Utils',
         'text!components/meal/tpls/mealTpl.html',
         'text!components/meal/tpls/rowTpl.html',
@@ -14,11 +15,52 @@ define([
 		Backbone,
 		View,
 		Events,
+		Tour,
 		Utils,
 		mealTpl,
 		rowTpl,
 		foodSelectTpl
 		) {
+			
+			var sample =  [
+		{
+        	name: '-',
+        	price: '0',
+        	explain: ''
+		},
+		{
+        	name: '해물전골',
+        	price: ' 9000',
+        	explain: ''
+		},
+		{
+        	name: '전복죽',
+        	price: '9000',
+        	explain: ''
+    	},
+    	{
+    	    name: '옥돔구이',
+        	price: '8000',
+        	explain: ''
+    	},
+		{
+        	name: '회정식(기본)',
+        	price: ' 25000',
+        	explain: ''
+		},
+		{
+        	name: '회정식(품격)',
+        	price: '25000',
+        	explain: ''
+    	},
+    	{
+    	    name: '회정식(고품격)',
+        	price: '45000',
+        	explain: ''
+    	}
+    ];
+			
+			
 			
 			var eventBus = Events.eventBus;
 			////////////////////////////////////////////////////////////////////
@@ -70,40 +112,51 @@ define([
 				_createFoodSelector: function() {
 					var _this = this;
 					var $tpl = $(_.template(foodSelectTpl)( {} ));
+					
 					$tpl.find('.select-food').select2({
 						ajax: {
-							url: "/code/food",
-							cache: false,
-							processResults: function (result) {
-								_this._meals = [];
-								if (result.isSuccess) {
-									_this._meals = result.data;
-								}
+							transport: function (params, success, failure) {
+								var q = params.data.q;
+								q = _.isUndefined(q)?"":q;
 								
-								_this._meals.unshift({
-									name: '-',
-									price: 0,
-									explain: '-',
+								$.get('/code/food', function(res) {
+									if (res.isSuccess) {
+										_this._meals = res.data;
+										_this._meals.unshift({
+											name: '-',
+											price: 0,
+											explain: '-',
+										});
+										
+										var result = [];
+										_.each(_this._meals, function(item) {
+											if (item.name.indexOf(q) > -1) {
+												result.push({
+													id: item.name,
+													text: item.name
+												});
+											}
+										});
+										success({results: result});
+									} else {
+										alert("음식 데이터 검색에 실패했습니다.");
+									}
+								}).fail(function(res) {
+									alert("음식 데이터 검색에 실패했습니다.");
 								});
-								
-								var items = [];
-								_.each(_this._meals, function(meal) {
-									items.push({
-										id: meal.price,
-										text: meal.name
-									});
-								});
-								
-								return {
-									results: items
-								};
-							}							
+							}
 						}
 					});
 					
 					$tpl.find('.select-food').on("select2:select", function (e) {
-						$tpl.find('.input-food-price').val(Utils.numberWithCommas(this.value));
+		        		var scObj = _.findWhere(_this._meals, {name: this.value});
+		        		var price = 0;
+		        		if (!_.isUndefined(scObj)) {
+		        			price = scObj.price;
+		        		}						
+						$tpl.find('.input-food-price').val(Utils.numberWithCommas(price));
 					});
+
 					return $tpl;
 				},
 				

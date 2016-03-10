@@ -3,5 +3,20 @@
     "name": "음식2",
     "price": "2,000",
     "explain": "맛있다?"
+  },
+  {
+    "name": "음식",
+    "price": "",
+    "explain": "ㄹㅇㄴㄹㅇㄴ"
+  },
+  {
+    "name": "짜장면",
+    "price": "5,000",
+    "explain": ""
+  },
+  {
+    "name": "",
+    "price": "",
+    "explain": ""
   }
 ]

@@ -8,5 +8,10 @@
     "name": "테스트",
     "phone": "202020",
     "address": "222222222222"
+  },
+  {
+    "name": "gdfgdfg",
+    "phone": "",
+    "address": ""
   }
 ]

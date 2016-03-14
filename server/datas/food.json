@@ -1,21 +1,96 @@
 [
   {
-    "name": "음식2",
-    "price": "2,000",
-    "explain": "맛있다?"
+    "name": "해물전골",
+    "price": "12,000",
+    "explain": "테스트"
   },
   {
-    "name": "음식",
-    "price": "",
-    "explain": "ㄹㅇㄴㄹㅇㄴ"
-  },
-  {
-    "name": "짜장면",
-    "price": "5,000",
+    "name": "전복죽",
+    "price": "10,000",
     "explain": ""
   },
   {
-    "name": "",
+    "name": "옥돔구이",
+    "price": "10,000",
+    "explain": ""
+  },
+  {
+    "name": "회정식(기본)",
+    "price": "30,000",
+    "explain": ""
+  },
+  {
+    "name": "회정식(품격)",
+    "price": "40,000",
+    "explain": ""
+  },
+  {
+    "name": "회정식(고품격)",
+    "price": "50,000",
+    "explain": ""
+  },
+  {
+    "name": "펜션식",
+    "price": "8,000",
+    "explain": ""
+  },
+  {
+    "name": "갈치조림",
+    "price": "15,000",
+    "explain": ""
+  },
+  {
+    "name": "고등어조림",
+    "price": "9,000",
+    "explain": ""
+  },
+  {
+    "name": "혹돼지불고기",
+    "price": "8,000",
+    "explain": ""
+  },
+  {
+    "name": "한식뷔페",
+    "price": "8,000",
+    "explain": ""
+  },
+  {
+    "name": "흑돼지구이",
+    "price": "15,000",
+    "explain": ""
+  },
+  {
+    "name": "해물뚝배기",
+    "price": "9,000",
+    "explain": ""
+  },
+  {
+    "name": "오분작뚝배기",
+    "price": "15,000",
+    "explain": ""
+  },
+  {
+    "name": "전복뚝배기",
+    "price": "12,000",
+    "explain": ""
+  },
+  {
+    "name": "바비큐",
+    "price": "25,000",
+    "explain": ""
+  },
+  {
+    "name": "구이+갈치조림",
+    "price": "14,000",
+    "explain": ""
+  },
+  {
+    "name": "불포함",
+    "price": "",
+    "explain": ""
+  },
+  {
+    "name": "펜션식",
     "price": "",
     "explain": ""
   }

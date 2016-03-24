@@ -221,14 +221,26 @@ define([
 		        },
 		        
 		        onPrintClick: function(evt) {
-		            var $print = this.$('.print-tour');
+		            // var $print = this.$('.print-tour');
 		            
-		            $("#appView").hide();
-		            $('#printArea').show().append($print);
+		            // $("#appView").hide();
+		            // $('#printArea').show().append($print);
 		            
-		            window.print();
-		            $("#appView").show();
-		            this.$('.content').append($print);
+		            // window.print();
+		            // $("#appView").show();
+		            // this.$('.content').append($print);
+		            
+		     		var w = 900;
+		     		var h = 1000;
+		     		var top = 10;
+		     		var left = 10;
+		     		var popup = null;
+		     		
+		     		window['printTourData'] = this.$('.content').html();
+		     		popup = window.open("package_popup.html", "", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+				    popup.focus();
+		            
+		            
 		        }
 		    });
 		    return PrintTourInfoView;

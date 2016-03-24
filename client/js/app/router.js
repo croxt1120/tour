@@ -93,6 +93,7 @@ define([
 			     	},
 			     	
 			     	_onShowPrintPackage:function() {
+			     		
 			     		var data = {
 			     			packageInfo: packageTourView.getData(),
 			     			adminInfo: adminInfoView.getData()
@@ -102,6 +103,28 @@ define([
 			     		
 			     		printTourInfoView.setData(data);
 			     		printTourInfoView.$el.show();
+			     	// 	var w = 900;
+			     	// 	var h = 1000;
+			     	// 	var top = 10;
+			     	// 	var left = 10;
+			     	// 	var popup = null;
+			     		
+			     	// 	window['printTourData'] = printTourInfoView.$el.find('.content').html();
+			     	// 	popup = window.open("package_popup.html", "", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+					    // popup.focus();
+					    
+					    
+					    // $(popup).load(function() {
+					    // 	var html = printTourInfoView.$el.html();
+					    //     popup.appendHTML(html);
+					    // })
+
+					    
+					    // popup.onbeforeunload  = function(){
+
+					    // };
+						
+			     		
 			     	},
 			     	
 			     	_onShowPrintPackageNotice: function() {

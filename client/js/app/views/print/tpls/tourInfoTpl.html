@@ -39,13 +39,13 @@
                     <td style="width: 90px;" class="title-td">
                         항 공 사
                     </td>
-                    <td colspan="2" class="airline">
+                    <td class="airline" style="width: 160px;">
                         <%=airline%>
                     </td>
-                    <td class="title-td">
+                    <td class="title-td" style="width: 90px;">
                         여행일
                     </td>
-                    <td colspan="7" class="travel-date">
+                    <td colspan="3" class="travel-date" style="width: 449px;">
                         <%=travelDate%>
                     </td>
                 </tr>
@@ -54,7 +54,7 @@
                     <td class="title-td">
                         성 인 요 금
                     </td>
-                    <td colspan="2" class="adult-charge">
+                    <td class="adult-charge">
                         <%=adultCharge%>
                     </td>
                     <td class="title-td">
@@ -63,10 +63,10 @@
                     <td class="adult-member">
                         <%=adultMember%>
                     </td>
-                    <td colspan="2" class="total-adult-charge">
+                    <td class="total-adult-charge">
                         <%=totalAdultCharge%>
                     </td>
-                    <td colspan="4" class="title-td">
+                    <td  class="title-td">
                         여행 총 경비
                     </td>
                 </tr>
@@ -75,19 +75,19 @@
                     <td class="title-td">
                         아 동 요 금
                     </td>
-                    <td colspan="2" class="child-charge">
+                    <td class="child-charge">
                         <%=childCharge%>
                     </td>
                     <td class="title-td">
                         인원
                     </td>
-                    <td class="child-member">
+                    <td class="child-member" style="width: 78px;">
                         <%=childMember%>
                     </td>
-                    <td colspan="2" class="total-child-charge">
+                    <td class="total-child-charge" style="width: 148px;">
                         <%=totalChildCharge%>
                     </td>
-                    <td colspan="4" rowspan="2" class="total-tour-expenses">
+                    <td rowspan="2" class="total-tour-expenses">
                         <%=totalTourExpenses%>
                     </td>
                 </tr>
@@ -96,10 +96,10 @@
                     <td class="title-td">
                         기타추가금액
                     </td>
-                    <td colspan="2" class="extra-charge">
+                    <td class="extra-charge">
                         <%=extraCharge%>
                     </td>
-                    <td colspan="4" class="extra-charge-info">
+                    <td class="extra-charge-info" colspan="3">
                         <%=extraChargeInfo%>
                     </td>
                 </tr>
@@ -108,7 +108,7 @@
                     <td class="title-td">
                         포함사항
                     </td>
-                    <td colspan="10" class="inclusion">
+                    <td colspan="5" class="inclusion">
                         <%=inclusion%>
                     </td>
                 </tr>
@@ -117,7 +117,7 @@
                     <td class="title-td">
                         불포함사항
                     </td>
-                    <td colspan="10" class="exclusion">
+                    <td colspan="5" class="exclusion">
                         <%=exclusion%>
                     </td>
                 </tr>
@@ -126,7 +126,7 @@
                     <td class="title-td">
                         특별사항
                     </td>
-                    <td colspan="10" class="specialty">
+                    <td colspan="5" class="specialty">
                         <%=specialty%>
                     </td>
                 </tr>
@@ -135,13 +135,13 @@
                     <td class="title-td">
                         차 량
                     </td>
-                    <td colspan="2">
+                    <td>
                         <%=carMember%> 인승
                     </td>
                     <td colspan="2" class="title-td">
                         담당 기사
                     </td>
-                    <td colspan="6">
+                    <td colspan="2">
                         <%=driver%>
                     </td>
                 </tr>
@@ -150,34 +150,49 @@
                     <td class="title-td">
                         기획자
                     </td>
-                    <td colspan="2" class="planner">
+                    <td class="planner">
                         <%=planner%>
                     </td>
-                    <td colspan="8" class="plannerInfo">
+                    <td colspan="4" class="plannerInfo">
                         <%=plannerInfo%>
                     </td>
                 </tr>
+			</tbody>
+		</table>
+
+        <!--스케줄 -->
+		<table class="print-package schedule-table table table-bordered">
+			<tbody style="border-top-style: hidden;">
+				<tr class="title">
+					<td class="title-td">일자</td>
+					<td class="title-td" style="width: 80px;">지역</td>
+					<td class="title-td" style="width: 80px;">교통편</td>
+					<td class="title-td">시간</td>
+					<td class="title-td" style="width: 323px;" colspan="2">상세 일정</td>
+					<td class="title-td">식사</td>
+				</tr>
+
                 
-                <tr>
-                    <td class="title-td">
-                        일자
-                    </td>
-                    <td class="title-td">
-                        지역
-                    </td>
-                    <td class="title-td">
-                        교통편
-                    </td>
-                    <td class="title-td">
-                       시간
-                    </td>
-                    <td colspan="5" class="title-td">
-                        상세 일정
-                    </td>
-                    <td colspan="2" class="title-td">
-                        식사
-                    </td>
-                </tr>
+                <!--<tr>-->
+                <!--    <td class="title-td">-->
+                <!--        일자-->
+                <!--    </td>-->
+                <!--    <td class="title-td">-->
+                <!--        지역-->
+                <!--    </td>-->
+                <!--    <td class="title-td">-->
+                <!--        교통편-->
+                <!--    </td>-->
+                <!--    <td class="title-td">-->
+                <!--       시간-->
+                <!--    </td>-->
+                <!--    <td colspan="5" class="title-td">-->
+                <!--        상세 일정-->
+                <!--    </td>-->
+                <!--    <td colspan="2" class="title-td">-->
+                <!--        식사-->
+                <!--    </td>-->
+                <!--</tr>-->
                 
                 <% 
                     if(scInfos.length == 1) { 
@@ -197,7 +212,7 @@
                             <%=scInfo.returnArea %><br><br><br>
                         </div>                        
                     </td>
-                    <td class="traffic">
+                    <td class="traffic-aday">
                         <div>
                         <%=scInfo.airline %> </br>
                         (<%=scInfo.flightNumber %>)
@@ -208,7 +223,7 @@
                         (<%=scInfo.returnFlightNumber %>)
                         </div>
                     </td>
-                    <td class="time">
+                    <td class="time-aday">
                         <div>
                             <label class="dep-msg">출발1시간전</label></br>
                             <label class="dep-time"> <%=scInfo.depTime%> </label></br>
@@ -221,7 +236,7 @@
                            <label class="return-arrive-time"><%=scInfo.returnArrTime%></label></br>                       
                         </div>
                     </td>
-                    <td colspan="5" class="schedule" style="text-align: left;">
+                    <td colspan="2" class="schedule" style="text-align: left;">
                         <label class="start-msg"><%=scInfo.area %>공항 도작 및 수속(신분증 필수 지참)</label></br>
                         <label class="start-sc"><%=scInfo.area %>공항 출발</label></br>
                         <label class="arrive-sc"><%=scInfo.returnArea %>공항 도착</label>
@@ -251,7 +266,7 @@
                         <label class="start-sc"><%=scInfo.returnArea %> 공항 출발</label></br>
                         <label class="arrive-sc"><%=scInfo.area %> 공항 도착</label>
                     </td>
-                    <td colspan="2" class="meal" style="text-align: left;">
+                    <td class="meal" style="text-align: left;">
                         <% var meal = scInfo.meal; %>
                         조 : <%=meal.breakfast.name%></br>
                         중 : <%=meal.lunch.name%></br>
@@ -259,10 +274,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="7" style="text-align: left">
+                    <td colspan="4" style="text-align: left">
                         숙소 : <label class="hotel"><%=scInfo.accInfo.name%></label>
                     </td>
-                    <td colspan="3">
+                    <td colspan="2">
                         TEL : <%=scInfo.accInfo.phone%>
                     </td>
                 </tr>                
@@ -285,38 +300,22 @@
                         </div>
                         <%} %>
                     </td>
-                    <td class="traffic">
-                        <% if (idx == 0 ) {%>
-                        <div>
-                            <%=scInfo.airline %> </br>
-                            (<%=scInfo.flightNumber %>)
-                        </div>
-                        <%} %>
-                        <% if (idx == (scLen-1) ) {%>
-                        <div style="bottom: 0px; position: absolute;">
-                            <%=scInfo.airline %> </br>
-                            (<%=scInfo.flightNumber %>)
-                        </div>
+                    <td class="traffic" <% if (idx == 0 ) {%> style="vertical-align: top;"  <%} %> >
+                        <% if (idx == 0 || idx == (scLen-1) ) {%>
+                        
+                            <label><%=scInfo.airline %></label><br>
+                            <label>(<%=scInfo.flightNumber %>)</label>
+                        
                         <%} %>
                     </td>
-                    <td class="time">
-                        <% if (idx == 0 ) {%>
-                        <div>
+                    <td class="time" <% if (idx == 0 ) {%> style="vertical-align: top;"  <%} %> >
+                        <% if (idx == 0 || idx == (scLen-1) ) {%>
                             <label class="dep-msg">출발1시간전</label></br>
                             <label class="dep-time"> <%=scInfo.depTime%> </label></br>
                             <label class="arrive-time"><%=scInfo.arrTime%></label></br>
-                       </div>
-                       <%} %>
-                       
-                        <% if (idx == (scLen-1) ) {%>
-                        <div style="bottom: 0px; left: 10px; position: absolute;">
-                            <label class="dep-msg">출발1시간전</label></br>
-                            <label class="dep-time"> <%=scInfo.depTime%> </label></br>
-                            <label class="arrive-time"><%=scInfo.arrTime%></label></br>
-                       </div>
                        <%} %>
                     </td>
-                    <td colspan="5" class="schedule" style="text-align: left; position:relative;">
+                    <td colspan="2" class="schedule" style="text-align: left; position:relative;">
                         <div>
                         <% if (idx == 0) {%>
                             <label class="start-msg">김포공항 도작 및 수속(신분증 필수 지참)</label></br>
@@ -356,7 +355,7 @@
                         </div>
                         <%} %>
                     </td>
-                    <td colspan="2" class="meal" style="text-align: left;">
+                    <td class="meal" style="text-align: left;">
                         <% var meals = scInfo.meals; %>
                         조 : <%=meals.breakfast.name%></br>
                         중 : <%=meals.lunch.name%></br>
@@ -364,19 +363,24 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="7" style="text-align: left">
+                    <td colspan="4" style="text-align: left">
                         숙소 : <label class="hotel"><%=scInfo.accInfo.name%></label>
                     </td>
-                    <td colspan="3">
+                    <td colspan="2">
                         TEL : <%=scInfo.accInfo.phone%>
                     </td>
                 </tr>
                     <%})
                 }%>                
-                
-                
+			</tobdy>
+		</table>
+		
+		<!-- 하단 -->
+		<table class="print-package schedule-table table table-bordered"
+		 style="width: 790px;">
+			<tbody style="border-top-style: hidden;">
                 <tr>
-                    <td colspan="11" style="text-align: left;">
+                    <td colspan="6" style="text-align: left;">
                         * <%=adminInfo.depositor%> / <%=adminInfo.bankName%> <%=adminInfo.accountNumber%>
                     </td>
                 </tr>
@@ -385,24 +389,24 @@
                     <td style="background-color: red !important; color: white !important; ">
                         * 계약금
                     </td>
-                    <td colspan="3">
+                    <td>
                         <%=deposit%>
                     </td>
                     <td style="background-color: red !important; color: white !important; ">
                         잔금
                     </td>
-                    <td colspan="3">
+                    <td>
                         <%=balance%>
                     </td>
                     <td style="background-color: red !important; color: white !important; ">
                         납기일
                     </td>
-                    <td colspan="3">
+                    <td>
                         <%=paymentDate%>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="11" style="text-align: left;"><%=adminInfo.packagePrintMsg%>
+                    <td colspan="6" style="text-align: left;"><%=adminInfo.packagePrintMsg%>
                     </td>
                 </tr>
             </tbody>

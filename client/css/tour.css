@@ -42,7 +42,6 @@ input{
     text-align: center;
 }
 
-
 .print-tour {
     -webkit-print-color-adjust:exact;
     font-size: 12px;
@@ -187,7 +186,8 @@ input{
 }
 
 #print .print-package .days  {
-    margin-top: 100px;
+     margin-top: 50%;
+    /*margin-top: 100px;*/
 }
 
 #print .print-package .area  {
@@ -195,9 +195,16 @@ input{
     position: relative;
 }
 
-#print .print-package .traffic  {
+#print .print-package .traffic-aday  {
     width: 80px;
     position: relative;
+    /*vertical-align: bottom;*/
+}
+
+#print .print-package .traffic  {
+    width: 80px;
+    /*position: relative;*/
+    vertical-align: bottom;
 }
 #print .print-package .total-tour-expenses  {
     font-size: 20px;
@@ -205,9 +212,15 @@ input{
     vertical-align: middle;
 }
 
-#print .print-package .time  {
+#print .print-package .time-aday  {
     width: 90px;
     position:relative;
+}
+
+#print .print-package .time  {
+    width: 90px;
+    /*position:relative;*/
+    vertical-align: bottom;
 }
 
 #print .print-package .schedule{
@@ -236,6 +249,9 @@ input{
     text-align: left;
 }
 
+#print .schedule-table .title td {
+    width: 90px;
+}
 
 /* print free tour*/
 #printFree table .title-td {
@@ -273,4 +289,3 @@ input{
     text-align: center;
     vertical-align: middle !important;
 }
-

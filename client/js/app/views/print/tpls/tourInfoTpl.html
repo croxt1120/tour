@@ -1,6 +1,6 @@
 <div id="print" class="print-tour" style="width: 790px; margin: auto;">
     <div class="cover">
-        <img src="/img/cover.png">
+        <img src="/img/cover.jpg" style="width: 735px;">
         <table class="info">
             <tr>
                 <td>
@@ -31,7 +31,7 @@
         </table>
     </div>
     <div class="customer-info">
-        <img src="/img/logo-tour-info.png">
+        <img src="/img/logo-tour-info.jpg" style="width: 790px;">
         <h3 class="customer-name"> <%=customerName%></h3>
         <table class="print-package table table-bordered">
             <tbody>
@@ -225,13 +225,15 @@
                     </td>
                     <td class="time-aday">
                         <div>
-                            <label class="dep-msg">출발1시간전</label></br>
+                            <!--<label class="dep-msg">출발1시간전</label></br>-->
+                            <label class="dep-msg"><%=scInfo.depTimeBeforeAHour%></label></br>
                             <label class="dep-time"> <%=scInfo.depTime%> </label></br>
                             <label class="arrive-time"><%=scInfo.arrTime%></label></br>
                        </div>
                        
                        <div style="bottom: 0px; left: 10px; position: absolute;">
-                           <label class="return-dep-msg">출발1시간전</label></br>
+                           <!--<label class="return-dep-msg">출발1시간전</label></br>-->
+                           <label class="return-start-time"> <%=scInfo.returnDepTimeBeforeAHour%> </label></br>
                            <label class="return-start-time"> <%=scInfo.returnDepTime%> </label></br>
                            <label class="return-arrive-time"><%=scInfo.returnArrTime%></label></br>                       
                         </div>
@@ -310,7 +312,8 @@
                     </td>
                     <td class="time" <% if (idx == 0 ) {%> style="vertical-align: top;"  <%} %> >
                         <% if (idx == 0 || idx == (scLen-1) ) {%>
-                            <label class="dep-msg">출발1시간전</label></br>
+                            <!--<label class="dep-msg">출발1시간전</label></br>-->
+                            <label class="dep-time"> <%=scInfo.depTimeBeforeAHour%> </label></br>
                             <label class="dep-time"> <%=scInfo.depTime%> </label></br>
                             <label class="arrive-time"><%=scInfo.arrTime%></label></br>
                        <%} %>

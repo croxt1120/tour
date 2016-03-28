@@ -112,6 +112,17 @@ define([
 		        	var tTime = moment({ hour:hour, minute:min }).add(1, 'h').add(5, 'm').format("HH:mm");
 		        	this.$('#returnArrTime').val(tTime);
 		        },
+		        
+		        _getBeforeAHour: function(timeStr) {
+		        	var resultTime = "00:00";
+		        	if (!_.isUndefined(timeStr)) {
+			        	var times = timeStr.split(":");
+			        	var hour = times[0];
+			        	var min = times[1];
+			        	resultTime = moment({ hour:hour, minute:min }).add(-1, 'h').format("HH:mm");
+		        	}
+		        	return resultTime;
+		        },
 
 		        changeDate: function(startDate, endDate) {
 		        	startDate = moment(startDate).format('YYYY-MM-DD');
@@ -143,7 +154,11 @@ define([
 				  
 				  data['travelStartDate'] = this._travelStartDate;
 				  data['travelEndDate'] = this._travelEndDate;
-
+				  
+				  // 출발, 한시간전 시간
+				  data['depTimeBeforeAHour'] = this._getBeforeAHour( data['depTime'] );
+				  data['returnDepTimeBeforeAHour'] = this._getBeforeAHour( data['returnDepTime'] );
+				  
 				  return data;
 		        },
 		        

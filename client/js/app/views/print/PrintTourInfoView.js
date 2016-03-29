@@ -80,6 +80,8 @@ define([
 		        		//scInfo['arrTime'] = baseInfo.arrTime;
 		        		scInfo['airline'] = baseInfo.airline;
 		        		scInfo['flightNumber'] = baseInfo.flightNumber;
+		        		
+		        		scInfo['depTimeBeforeAHour'] = baseInfo.depTimeBeforeAHour;
 		        		scInfo['depTime'] = baseInfo.depTime;
 		        		scInfo['arrTime'] = baseInfo.arrTime;
 		        		scInfo['area'] = baseInfo.area;
@@ -92,6 +94,8 @@ define([
 
 			        		scInfo['airline'] = baseInfo.returnAirline;
 			        		scInfo['flightNumber'] = baseInfo.returnFlightNumber;
+			        		
+			        		scInfo['depTimeBeforeAHour'] = baseInfo.returnDepTimeBeforeAHour;
 			        		scInfo['depTime'] = baseInfo.returnDepTime;
 			        		scInfo['arrTime'] = baseInfo.returnArrTime;
 			        		scInfo['area'] = baseInfo.returnArea;

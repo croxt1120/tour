@@ -22,47 +22,8 @@ define([
 		foodSelectTpl
 		) {
 			
-			var sample =  [
-		{
-        	name: '-',
-        	price: '0',
-        	explain: ''
-		},
-		{
-        	name: '해물전골',
-        	price: ' 9000',
-        	explain: ''
-		},
-		{
-        	name: '전복죽',
-        	price: '9000',
-        	explain: ''
-    	},
-    	{
-    	    name: '옥돔구이',
-        	price: '8000',
-        	explain: ''
-    	},
-		{
-        	name: '회정식(기본)',
-        	price: ' 25000',
-        	explain: ''
-		},
-		{
-        	name: '회정식(품격)',
-        	price: '25000',
-        	explain: ''
-    	},
-    	{
-    	    name: '회정식(고품격)',
-        	price: '45000',
-        	explain: ''
-    	}
-    ];
-			
-			
-			
 			var eventBus = Events.eventBus;
+			var _allMeals = [];
 			////////////////////////////////////////////////////////////////////
 			
 			var FoodRowView = View.extend({
@@ -76,15 +37,15 @@ define([
 				render: function(day) {
 					var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
 					this.setElement(tpl);
+
+					this.$('.breakfast').append(foodSelectTpl);
+					this._createFoodSelector('.breakfast');
 					
-					var $breakfast = this._createFoodSelector();
-					this.$('.breakfast').append($breakfast);
+					this.$('.lunch').append(foodSelectTpl);
+					this._createFoodSelector('.lunch');
 					
-					var $lunch = this._createFoodSelector();
-					this.$('.lunch').append($lunch);
-					
-					var $dinner = this._createFoodSelector();
-					this.$('.dinner').append($dinner);
+					this.$('.dinner').append(foodSelectTpl);
+					this._createFoodSelector('.dinner');
 					
 					return this;
 				},
@@ -109,11 +70,9 @@ define([
 				},
 				
 				// 음식 선택 selector
-				_createFoodSelector: function() {
+				_createFoodSelector: function(target) {
 					var _this = this;
-					var $tpl = $(_.template(foodSelectTpl)( {} ));
-					
-					$tpl.find('.select-food').select2({
+					this.$(target + ' .select-food').select2({
 						ajax: {
 							transport: function (params, success, failure) {
 								var q = params.data.q;
@@ -148,16 +107,16 @@ define([
 						}
 					});
 					
-					$tpl.find('.select-food').on("select2:select", function (e) {
+					this.$(target + ' .select-food').on("select2:select", function (e) {
 		        		var scObj = _.findWhere(_this._meals, {name: this.value});
 		        		var price = 0;
 		        		if (!_.isUndefined(scObj)) {
 		        			price = scObj.price;
 		        		}						
-						$tpl.find('.input-food-price').val(Utils.numberWithCommas(price));
+						_this.$(target + ' .input-food-price').val(Utils.numberWithCommas(price));
 					});
 
-					return $tpl;
+					//return $tpl;
 				},
 				
 				getData: function() {
@@ -165,24 +124,58 @@ define([
 		        		'day': this._day,
 		        		'breakfast': {
 		        			name: this.$('.breakfast .select-food option:selected').text(),
-		        			price: this.$('.breakfast .select-food option:selected').val()
+		        			price: this.$('.breakfast .input-food-price').val()
 		        		} ,
 		        		'lunch': {
 		        			name: this.$('.lunch .select-food option:selected').text(),
-		        			price: this.$('.lunch .select-food option:selected').val()
+		        			price: this.$('.lunch .input-food-price').val()
 		        			
 		        		},
 		        		'dinner': {
 		        			name: this.$('.dinner .select-food option:selected').text(),
-		        			price: this.$('.dinner .select-food option:selected').val()
+		        			price: this.$('.dinner .input-food-price').val()
 		        		},
-		        		total: this.$('.total').text()
+		        		total: this.$('.total-a-day').text()
 		        	};
 		        
 		        	return data;
 		        },
 		        
-		        setData: function() {
+		        setData: function(data) {
+		        	var _this = this;
+		        	this._meals = _allMeals;
+		        	setSelector('.breakfast', data.breakfast);
+		        	setSelector('.lunch', data.lunch);
+		        	setSelector('.dinner', data.dinner);
+		        	this.$('.total-a-day').text(data.total);
+		        	
+		        	// 각 식사별 셋팅 
+		        	function setSelector(target, data) {
+						_this.$(target + ' .select-food').select2({
+							data: [{
+								id: data.name,
+								text: data.name
+							}]
+						});
+						
+						_this._createFoodSelector(target);
+			        	
+						var mealName = "-";
+						var price = 0;
+						
+						// 조회된 음식 목록에서 저장된 음식이 삭제됐는지 체크 
+						var mealObj = _.findWhere(_this._meals, {name: data.name});
+						if (!_.isUndefined(mealObj)) {
+							mealName = data.name;
+							price = data.price;
+						}
+						
+			        	_this.$(target + ' .select-food option:selected').text(mealName);
+			        	_this.$(target + ' .select2-selection__rendered').text(mealName);
+			        	_this.$(target + ' .select2-selection__rendered').attr('title', mealName);
+			        	_this.$(target + ' .input-food-price').val( price );      		
+		        	}
+		        	
 		        },
 		        
 			    destroy: function(){
@@ -272,7 +265,45 @@ define([
 				  return data;
 		        },
 		        
-		        setData: function(data) {
+		        setData: function(mealInfos) {
+		        	var _this = this;
+		        	var meals = mealInfos.meals;
+		        	var len = this.$(ROW).length;
+		        	var tViewID = "";
+	        		for (var i = 1; i <= len; i++) {
+	        			tViewID = ROW_ID_SUFFIX +(i); 
+	        			this.removeChild(tViewID);
+	        		}		        
+
+					$.get('/code/food', function(res) {
+						if (res.isSuccess) {
+							_allMeals = res.data;
+							_allMeals.unshift({
+								name: '-',
+								phone: '-',
+								address: '-',
+							});
+							
+				        	_.each(meals, function(meal) {
+			        			tViewID = ROW_ID_SUFFIX + meal.day;
+			        			
+					        	var foodRow = new FoodRowView({viewID: tViewID, day: meal.day});
+					        	// 가격 변경 이벤트 수신
+					        	foodRow.on(Events.CHANGE_PRICE, _this._onChangePrice, _this);
+					        	_this.addChild(ROWS, foodRow);
+						        foodRow.setData(meal);
+				        	});
+							
+							// 전체 가격 설정
+							_this._onChangePrice();
+
+						} else {
+							alert("숙소 데이터 검색에 실패했습니다.");
+						}
+					}).fail(function(res) {
+						alert("숙소 데이터 검색에 실패했습니다.");
+					});		        	
+		        	
 		        },
 		        
 			    destroy: function(){
@@ -281,6 +312,3 @@ define([
 	
 		    return MealView;
 } );
-
-
-

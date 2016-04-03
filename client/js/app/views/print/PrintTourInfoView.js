@@ -24,7 +24,7 @@ define([
 			var _getADaySchedule = function(data) {
 	        	var baseInfo = data.baseInfo;
 	        	var accInfos = data.accInfos;
-	        	var mealInfo = data.mealInfo;
+	        	var mealInfos = data.mealInfos;
 	        	var scheduleInfo = data.scheduleInfo;
 	        	var startDate = baseInfo.travelStartDate;
         		
@@ -47,7 +47,7 @@ define([
         		scInfo['returnArea'] = baseInfo.returnArea;
 
 
-        		scInfo['meal'] = mealInfo.meals[0];
+        		scInfo['meal'] = mealInfos.meals[0];
         		scInfo['schedules'] = scheduleInfo.schedules[0].scheduleItems;
         		
         		var diff = DEFAULT_SCHEDULE_ITEM_COUNT - scInfo['schedules'].length;
@@ -61,7 +61,7 @@ define([
 			var _getSchedules = function(data){
 	        	var baseInfo = data.baseInfo;
 	        	var accInfos = data.accInfos;
-	        	var mealInfo = data.mealInfo;
+	        	var mealInfos = data.mealInfos;
 	        	var scheduleInfo = data.scheduleInfo;
 	        	var startDate = baseInfo.travelStartDate;
 	        	
@@ -113,7 +113,7 @@ define([
 	        			}
 	        		}
 	        		
-	        		scInfo['meals'] = mealInfo.meals[i];
+	        		scInfo['meals'] = mealInfos.meals[i];
 	        		scInfo['schedules'] = scheduleInfo.schedules[i].scheduleItems;
 	        		var diff = DEFAULT_SCHEDULE_ITEM_COUNT - scInfo['schedules'].length;
 	        		scInfo['emptySchedules'] = (diff > 0)?diff:0;	        		

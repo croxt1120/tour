@@ -14,6 +14,8 @@ define([
 		        initialize: function() {
 		        	this.setElement(this.el);
 		            this.render();
+		            
+		            this.$('.dropdown-toggle').dropdown();
 		        },
 		        
 		        render: function() {

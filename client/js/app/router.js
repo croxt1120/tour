@@ -79,8 +79,12 @@ define([
 			     		var router = this;
 			     		if (!callback) callback = this[name];
 			     		var f = function() {
-			     			$('.sub-view').hide();
+			     			
 			     			console.log('route before', route);
+			     			if (route !== 'save' && route !== 'load'){
+			     				$('.sub-view').hide();
+			     			}
+
 			     			callback.apply(router, arguments);
 			     			console.log('route after', route);
 			     		};

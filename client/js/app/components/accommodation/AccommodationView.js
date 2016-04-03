@@ -13,8 +13,9 @@ define([
 		rowTpl,
 		accommodationTpl
 		) {
-
-/////////////////////////////////////////////////////////////////////////			
+			var _allHotels = [];
+/////////////////////////////////////////////////////////////////////////
+			
 			var RowView = View.extend({
 		        initialize: function(param) {
 		        	this.viewID = param.viewID;
@@ -27,6 +28,12 @@ define([
 		        	var _this = this;
 		        	var tpl = _.template(rowTpl)( {viewID: this.viewID, day: this._day} );
 		        	this.setElement(tpl);
+		        	this._createSelect();
+		            return this;
+		        },
+		        
+		        _createSelect: function() {
+		        	var _this = this;
 					this.$('.select-acc').select2({
 						ajax: {
 							transport: function (params, success, failure) {
@@ -71,7 +78,6 @@ define([
 		        		_this.$('.input-acc-phone').val( phone );
 		        	});
 
-		            return this;
 		        },
 		        
 		        getData: function() {
@@ -82,17 +88,38 @@ define([
 		        	if (!_.isUndefined(hotelObj)) {
 			        	data = _.clone(hotelObj);
 		        	} else {
-		        		data['name'] = '';
-		        		data['phone'] = '';
-		        		data['address'] = '';
+		        		data['name'] = '-';
+		        		data['phone'] = '-';
+		        		data['address'] = '-';
 		        	}
 		        	data['day'] = this._day;
 		        	return data;
 		        },
 		        
 		        setData: function(data) {
-		        	this.$('.select-acc option:selected').text(data.name);
-		        	this.$('.input-acc-phone').val( data.phone );
+		        	this._hotels = _allHotels;
+					this.$('.select-acc').select2({
+						data: [{
+							id: data.name,
+							text: data.name							
+						}]
+					});
+					this._createSelect();
+					
+					var accName = "-";
+					var phone = "-";
+					
+					// 조회된 숙소 목록에서 저장된 숙소가 삭제됐는지 체크 
+					var hotelObj = _.findWhere(this._hotels, {name: data.name});
+					if (!_.isUndefined(hotelObj)) {
+						accName = data.name;
+						phone = data.phone;
+					}
+					
+		        	this.$('.select-acc option:selected').text(accName);
+		        	this.$('.select2-selection__rendered').text(accName);
+		        	this.$('.select2-selection__rendered').attr('title', accName);
+		        	this.$('.input-acc-phone').val( phone );
 		        },
 		        
 			    destroy: function(){
@@ -138,13 +165,36 @@ define([
 		        },
 		        
 		        setData: function(accInfos) {
-		        	console.log(accInfos);
-		        	var _this = this;
-		        	_.each(accInfos, function(accInfo) {
-						var rowView = _createChild(accInfo.day);
-						rowView.setData(accInfo);
-				        _this.addChild(ROWS, rowView);		        		
-		        	});
+		        	var _this = this;		        	
+		        	var accLen = this.$(ROW).length;
+		        	var tViewID = "";
+	        		for (var i = 1; i <= accLen; i++) {
+	        			tViewID = ROW_ID_SUFFIX +(i); 
+	        			this.removeChild(tViewID);
+	        		}
+		        	
+					$.get('/code/hotel', function(res) {
+						if (res.isSuccess) {
+							_allHotels = res.data;
+							_allHotels.unshift({
+								name: '-',
+								phone: '-',
+								address: '-',
+							});
+							
+				        	_.each(accInfos, function(accInfo) {
+								var rowView = _createChild(accInfo.day);
+						        _this.addChild(ROWS, rowView);		        		
+						        rowView.setData(accInfo);
+				        	});
+							
+
+						} else {
+							alert("숙소 데이터 검색에 실패했습니다.");
+						}
+					}).fail(function(res) {
+						alert("숙소 데이터 검색에 실패했습니다.");
+					});
 		        },
 		        
 		        changeDay: function(days) {

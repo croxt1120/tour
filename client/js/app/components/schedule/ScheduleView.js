@@ -64,7 +64,6 @@ define([
 		        
 		        _onAddSchedule: function(evt) {
 		        	var len = this.$('.schedule-item').length;
-		        	//var $selector = this._createScheduleSelector();
 		        	var $selector =  $(scheduleSelectTpl);
 		        	this._createScheduleSelector($selector);
 		        	
@@ -91,8 +90,6 @@ define([
 				// 음식 선택 selector
 				_createScheduleSelector: function($tpl) {
 					var _this = this;
-					//var $tpl = $(_.template(scheduleSelectTpl)( {} ));
-
 					$tpl.find('.select-schedule').select2({
 						ajax: {
 							transport: function (params, success, failure) {

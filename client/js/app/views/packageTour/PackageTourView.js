@@ -102,6 +102,7 @@ define([
 		        	this._baseInfoView.setData(data.baseInfo);
 		        	this._accommodationView.setData(data.accInfos);
 		        	this._mealView.setData(data.mealInfos);
+		        	this._scheduleView.setData(data.scheduleInfo);
 		        }
 		    });
 		    return TourView;

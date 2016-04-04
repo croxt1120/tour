@@ -21,6 +21,7 @@ define([
 		) {
 		   
 		   	var eventBus = Events.eventBus;
+		   	var _allSchedules = [];
 		   
 		   /**
 		    * 일일 스케줄
@@ -63,7 +64,9 @@ define([
 		        
 		        _onAddSchedule: function(evt) {
 		        	var len = this.$('.schedule-item').length;
-		        	var $selector = this._createScheduleSelector();
+		        	//var $selector = this._createScheduleSelector();
+		        	var $selector =  $(scheduleSelectTpl);
+		        	this._createScheduleSelector($selector);
 		        	
 		        	if (len === 0) {
 		        		this.$('.schedule-items').append($selector);
@@ -86,9 +89,9 @@ define([
 		        },
 		        
 				// 음식 선택 selector
-				_createScheduleSelector:  function() {
+				_createScheduleSelector: function($tpl) {
 					var _this = this;
-					var $tpl = $(_.template(scheduleSelectTpl)( {} ));
+					//var $tpl = $(_.template(scheduleSelectTpl)( {} ));
 
 					$tpl.find('.select-schedule').select2({
 						ajax: {
@@ -116,10 +119,10 @@ define([
 										});
 										success({results: result});
 									} else {
-										alert("숙소 데이터 검색에 실패했습니다.");
+										alert("일정 데이터 검색에 실패했습니다.");
 									}
 								}).fail(function(res) {
-									alert("숙소 데이터 검색에 실패했습니다.");
+									alert("일정 데이터 검색에 실패했습니다.");
 								});
 							}
 						}
@@ -153,7 +156,7 @@ define([
 		        		
 		        		scheduleItems.push({
 		        			name: tSchedule,
-		        			price: $item.find('.select-schedule option:selected').val(),
+		        			price: $item.find('.input-price').val(),
 		        			explain: tExplain
 		        		});
 		        	});
@@ -167,7 +170,45 @@ define([
 		        	return data;
 		        },
 		        
-		        setData: function() {
+		        setData: function(schedule) {
+		        	var scheduleItems = schedule.scheduleItems;
+		        	var _this = this;
+		        	_this._schedules = _allSchedules;
+		        	
+		        	this.$('.schedule-items').empty();
+		        	
+		        	_.each(scheduleItems, function(item) {
+		        		//var $selector = _this._createScheduleSelector();
+		        		var $selector =  $(scheduleSelectTpl);
+		        		_this.$('.schedule-items').append($selector);
+
+		        		$selector.find('.select-schedule').select2({
+							data: [{
+								id: item.name,
+								text: item.name
+							}]
+		        		});
+		        		_this._createScheduleSelector($selector);
+		        		
+						var scheduleName = "-";
+						var price = 0;
+						
+						// 조회된 음식 목록에서 저장된 음식이 삭제됐는지 체크 
+						var obj = _.findWhere(_this._schedules, {name: item.name});
+						if (!_.isUndefined(obj)) {
+							scheduleName = item.name;
+							price = item.price;
+						}
+						
+			        	$selector.find('.select-schedule option:selected').text(scheduleName);
+			        	$selector.find('.select2-selection__rendered').text(scheduleName);
+			        	$selector.find('.select2-selection__rendered').attr('title', scheduleName);
+			        	$selector.find('.input-price').val( price );
+		        	});
+		        	
+		        	this.$('.total-a-day').text(schedule.total);
+		        	
+		        	console.log(schedule);
 		        },
 		        
 			    destroy: function(){
@@ -256,7 +297,45 @@ define([
 				  return data;
 		        },
 		        
-		        setData: function() {
+		        setData: function(scheduleInfo) {
+		        	var _this = this;
+		        	var schedules = scheduleInfo.schedules;
+		        	var len = this.$(ROW).length;
+		        	var tViewID = "";
+	        		for (var i = 1; i <= len; i++) {
+	        			tViewID = ROW_ID_SUFFIX +(i); 
+	        			this.removeChild(tViewID);
+	        		}
+	        		
+	        		//_allSchedules
+	        		
+					$.get('/code/schedule', function(res) {
+						if (res.isSuccess) {
+							_allSchedules = res.data;
+							_allSchedules.unshift({
+								name: '-',
+								price: 0,
+								explain: '-',
+							});
+
+				        	_.each(schedules, function(schedule) {
+			        			tViewID = ROW_ID_SUFFIX + schedule.day;
+			        			var rowView = new RowView({viewID: tViewID,day: schedule.day});
+			        			
+			        			// 가격 변경 이벤트 수신
+			        			rowView.on(Events.CHANGE_PRICE, _this._onChangePrice, _this);
+			        			_this.addChild(ROWS, rowView);			        			
+						        rowView.setData(schedule);
+				        	});
+				        	
+				        	_this.$('.total-schedule-price').text(scheduleInfo.total);
+						} else {
+							alert("숙소 데이터 검색에 실패했습니다.");
+						}
+					}).fail(function(res) {
+						alert("숙소 데이터 검색에 실패했습니다.");
+					});	        		
+		        	
 		        },
 		        
 			    destroy: function(){

@@ -3,6 +3,8 @@ define([
         'underscore',
         'backbone',
         'datepicker',
+        'localekr',
+        'moment',
         'common/Utils',
         'custom/View',
         'text!views/packageTour/expense/tpls/expenseViewTpl.html'
@@ -11,6 +13,8 @@ define([
 		_,
 		Backbone,
 		Datepicker,
+		localekr,
+		moment,
 		Utils,
 		View,
 		expenseViewTpl
@@ -161,7 +165,7 @@ define([
 		        	var childCharge = this.$('.child-charge').text();
 		        	childCharge = Utils.numberWithoutCommas(childCharge);
 		        	
-		        	var extraCharge = this.$('.extraCharge').text();
+		        	var extraCharge = this.$('.extra-charge').text();
 		        	extraCharge = Utils.numberWithoutCommas(extraCharge);
 		        	
 		        	var totalTourExpenses = (adultNumber * adultCharge) + (childNumber * childCharge);
@@ -191,7 +195,7 @@ define([
 		        changeExtraCharge: function(param){
 		        	var extraCharge = param.extraCharge;
 		        	extraCharge = Utils.numberWithCommas(extraCharge);
-		        	this.$('.extraCharge').text(extraCharge);
+		        	this.$('.extra-charge').text(extraCharge);
 		        	this._calculateExpenses();
 		        },
 		        
@@ -210,6 +214,13 @@ define([
 		        		data[this['id']] = this['value'];
 		        	});
 		        	
+		        	data['totalMember'] = this.$('.total-member').text();
+		        	data['adultMember'] = this.$('.adult-member').text();
+		        	data['childMember'] = this.$('.child-member').text();
+		        	
+		        	var paymentDate = this.$('#paymentDate').datepicker("getDate");
+		        	data['paymentDate'] = moment(paymentDate).format('YYYY-MM-DD');;
+		        	
 		        	data['totalTourExpenses'] = this.$('.total-tour-expenses').text();
 		        	data['balance'] = this.$('.balance').text();
 		        	data['carRentAPerson'] = this.$('.car-rent-a-person').text();
@@ -217,11 +228,65 @@ define([
 		        	data['localTourChargeAPerson'] = this.$('.local-tour-charge-a-person').text();
 		        	data['adultCharge'] = this.$('.adult-charge').text();
 		        	data['childCharge'] = this.$('.child-charge').text();
+		        	data['extraCharge'] = this.$('.extra-charge').text(); 
 		        	
 		        	return data;
 		        },
 		        
 		        setData: function(data) {
+		        	// 총인원
+		        	this.$('.total-member').text(data.totalMember);
+		        	this.$('.adult-member').text(data.adultMember);
+		        	this.$('.child-member').text(data.childMember);
+		        	
+		        	// 차량비
+		        	this.$('#carRent').val(data.carRent);
+		        	
+		        	// 숙박비
+		        	this.$('#roomCharge').val(data.roomCharge);
+		        	
+		        	// 계약금
+		        	this.$('#deposit').val(data.deposit);
+		        	
+		        	// 기타요금
+		        	this.$('.extra-charge').text(data.extraCharge);
+		        	
+		        	// 총판매가
+		        	this.$('.total-tour-expenses').text(data.totalTourExpenses);
+		        	
+		        	// 잔금
+		        	this.$('.balance').text(data.balance);
+		        	
+		        	// 납기일
+		        	//var paymentDate = moment(data.paymentDate).format('YYYY-MM-DD');
+		        	this.$('#paymentDate').datepicker("setDate",data.paymentDate);
+		        	
+		        	
+		        	// 항공료
+		        	this.$('#airSummary').val(data.airSummary);
+		        	this.$('#airOneAdult').val(data.airOneAdult);
+		        	this.$('#airOneChild').val(data.airOneChild);
+		        	
+		        	// 차량료
+		        	this.$('#carSummary').val(data.carSummary);
+		        	this.$('.car-rent-a-person').text(data.carRentAPerson);
+		        	
+		        	// 숙박료
+		        	this.$('#roomSummary').val(data.roomSummary);
+		        	this.$('.room-charge-a-person').text(data.roomChargeAPerson);
+		        	
+		        	// 지상비
+		        	this.$('#localTourSummary').val(data.localTourSummary);
+		        	this.$('.local-tour-charge-a-person').text(data.localTourChargeAPerson);
+		        	
+		        	// 보성비
+		        	this.$('#tourProfitSummary').val(data.tourProfitSummary);
+		        	this.$('#tourProfit').val(data.tourProfit);
+		        	
+		        	// 총계
+		        	this.$('.adult-charge').text(data.adultCharge);
+		        	this.$('.child-charge').text(data.childCharge);		        	
+		        	
 		        },
 
 			    destroy: function(){

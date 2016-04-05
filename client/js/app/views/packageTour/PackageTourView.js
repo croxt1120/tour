@@ -37,6 +37,7 @@ define([
 		            
 		            this._baseInfoView.trigger(Events.CHANGE_DATE, {days: 1});
 		        },
+		        
 		        render: function() {
 		        	var _this = this;
 		        	this.setElement(packageTourTpl);
@@ -89,6 +90,7 @@ define([
 					
 		            return this;
 		        },
+		        
 		        getData: function() {
 		        	var data = {};
 		        	data['baseInfo'] = this._baseInfoView.getData();
@@ -98,11 +100,13 @@ define([
 		        	data['expenseInfo'] = this._expenseView.getData();
 		        	return data;
 		        },
+		        
 		        setData: function(data) {
 		        	this._baseInfoView.setData(data.baseInfo);
 		        	this._accommodationView.setData(data.accInfos);
 		        	this._mealView.setData(data.mealInfos);
 		        	this._scheduleView.setData(data.scheduleInfo);
+		        	this._expenseView.setData(data.expenseInfo);
 		        }
 		    });
 		    return TourView;

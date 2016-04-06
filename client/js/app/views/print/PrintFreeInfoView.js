@@ -31,7 +31,9 @@ define([
 		        },
 		        
 		        setData: function(data) {
-		        	console.log(data);
+		        	data.baseInfo.travelStartDate = moment(data.baseInfo.travelStartDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	data.baseInfo.travelEndDate = moment(data.baseInfo.travelEndDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	
 		        	var tpl = _.template(freeTourTpl)(data);
 		        	this.$('.content').empty().append(tpl);
 		        },

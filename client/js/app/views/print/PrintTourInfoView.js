@@ -145,18 +145,21 @@ define([
 		        	var baseInfo = data.packageInfo.baseInfo;
 		        	var accInfos = data.packageInfo.accInfos;
 		        	var expenseInfo = data.packageInfo.expenseInfo;
-
+		        	
+		        	var travelStartDate = moment(baseInfo.travelStartDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	var travelEndDate = moment(baseInfo.travelEndDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	
 		        	// cover
 		        	viewData['tourName'] = baseInfo.tourName;
-		        	viewData['travelStartDate'] = baseInfo.travelStartDate
-		        	viewData['planner'] = baseInfo.planner
+		        	viewData['travelStartDate'] = travelStartDate;
+		        	viewData['planner'] = baseInfo.planner;
 		        	
 		        	
 		        	
 		        	// customer-info
 		        	viewData['customerName'] = baseInfo.customerName; 
 		        	viewData['airline'] = baseInfo.airline;
-		        	viewData['travelDate'] = baseInfo.travelStartDate + " ~ " + baseInfo.travelEndDate;
+		        	viewData['travelDate'] = travelStartDate + " ~ " + travelEndDate;
 		        	
 		        	
 		        	var totalAdult = Utils.numberWithoutCommas( expenseInfo.adultCharge ) * (baseInfo.adultMember * 1);
@@ -215,7 +218,7 @@ define([
 		        	viewData['balance'] = expenseInfo.balance;
 		        	
 		        	// 납기일
-		        	viewData['paymentDate'] = expenseInfo.paymentDate;
+		        	viewData['paymentDate'] = moment(expenseInfo.paymentDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
 		        	
 		        	viewData['adminInfo'] = data.adminInfo;
 

@@ -3,6 +3,7 @@ define([
         'underscore',
         'backbone',
         'datepicker',
+        'localekr',
         'moment',
         'common/Utils',
         'components/accommodation/AccommodationView',
@@ -12,6 +13,7 @@ define([
 		_,
 		Backbone,
 		Datepicker,
+		localekr,
 		moment,
 		Utils,
 		AccommodationView,
@@ -37,6 +39,9 @@ define([
 		        initialize: function() {
 		        	this._accommodationView = null;
 		            this.render();
+		            
+		            this._travelStartDate = moment(new Date()).format('YYYY-MM-DD');
+		            this._travelEndDate = moment(new Date()).format('YYYY-MM-DD');
 		        },
 		        render: function() {
 		        	var _this = this;
@@ -208,6 +213,8 @@ define([
 		        	$.each(baseInputs, function() {
 		        		baseInfo[this['id']] = this['value'];
 		        	});
+		        	baseInfo['travelStartDate'] = this._travelStartDate;
+		        	baseInfo['travelEndDate'] = this._travelEndDate;
 		        	baseInfo['totalAirAdultCharge'] = this.$('.total-air-adult-charge').text();
 		        	baseInfo['totalAirChildCharge'] = this.$('.total-air-child-charge').text();
 		        	data['baseInfo'] = baseInfo;
@@ -245,6 +252,67 @@ define([
 		        },
 		        
 		        setData: function(data) {
+		        	console.log(data);
+		        	var baseInfo = data.baseInfo;
+		        	var accInfos = data.accInfos;
+		        	var rentCarInfo = data.rentCarInfo;
+		        	var busInfo = data.busInfo;
+		        	var expenseInfo = data.expenseInfo;
+		        	
+		        	// 기본 정보
+		        	this.$('#customerName').val(baseInfo.customerName);
+		        	
+		        	// 출발
+		        	this.$('#airline').val(baseInfo.airline);
+		        	this.$('#flightNumber').val(baseInfo.flightNumber);
+		        	
+		        	var travelStartDate = moment(baseInfo.travelStartDate).format('YYYY-MM-DD');
+		        	this.$('#travelStartDate').datepicker("setDate",travelStartDate);		        	
+		        	
+		        	this.$('#depTime').val(baseInfo.depTime);
+		        	
+		        	// 리턴
+		        	this.$('#returnAirline').val(baseInfo.airline);
+		        	this.$('#returnFlightNumber').val(baseInfo.flightNumber);
+
+		        	var travelEndDate = moment(baseInfo.travelEndDate).format('YYYY-MM-DD');
+		        	this.$('#travelEndDate').datepicker("setDate",travelEndDate);		        	
+
+		        	this.$('#returnDepTime').val(baseInfo.depTime);
+		        	
+		        	// 성인 항공 요금
+		        	this.$('#airOneAdult').val(baseInfo.airOneAdult);
+		        	this.$('#adultMember').val(baseInfo.adultMember);	        	
+		        	this.$('.total-air-adult-charge').text(baseInfo.totalAirAdultCharge);
+		        	
+		        	// 아동 항공 요금
+		        	this.$('#airOneChild').val(baseInfo.airOneChild);
+		        	this.$('#childMember').val(baseInfo.childMember);	        	
+		        	this.$('.total-air-child-charge').text(baseInfo.totalAirChildCharge);
+		        	
+		        	// 숙박
+		        	this._accommodationView.setData(accInfos);
+		        	
+		        	// 렌터카
+		        	this.$('#rentCarName').val(rentCarInfo.rentCarName);
+		        	this.$('#rentCarPhone').val(rentCarInfo.rentCarPhone);
+		        	this.$('#rentCarLocation').val(rentCarInfo.rentCarLocation);
+		        	this.$('#rentCarType').val(rentCarInfo.rentCarType);
+		        	this.$('#rentCarCharge').val(rentCarInfo.rentCarCharge);
+		        	this.$('#rentCarUsingTime').val(rentCarInfo.rentCarUsingTime);
+		        	this.$('#rentCarInsu').val(rentCarInfo.rentCarInsu);
+		        	
+		        	// 차량 대절
+		        	this.$('#busMember').val(busInfo.busMember);
+		        	this.$('#busRentCharge').val(busInfo.busRentCharge);
+		        	
+		        	// 총 요금
+		        	this.$('.total-air-charge').text(expenseInfo.totalAirCharge);
+		        	this.$('#totalRoomCharge').val(expenseInfo.totalRoomCharge);
+		        	this.$('.total-rent-car-charge').text(expenseInfo.totalRentCarCharge);
+		        	this.$('.toal-bus-rent-charge').text(expenseInfo.totalBusRentCharge);
+		        	this.$('.total-charge').text(expenseInfo.totalCharge);
+		        	this.$('.total-charge-card').text(expenseInfo.totalChargeCard);		        	
 		        	
 		        }
 		        

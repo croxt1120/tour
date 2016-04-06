@@ -5,6 +5,7 @@ require([
 	    'jquery',
 	    'backbone',
 	    'select2',
+	    'moment',
 	    'common/Utils',
 	    'router',
 	    'datas/Tour'
@@ -12,10 +13,13 @@ require([
 	        $,
 	        Backbone,
 	        select2,
+	        moment,
 	        Utils,
 	        Router,
 	        Tour
 	        ) {
+	        	//
+	        	moment.locale('ko');
 
 	        	/////////////////////////////
 				$('body').on('change', '.input-money', function(evt) {

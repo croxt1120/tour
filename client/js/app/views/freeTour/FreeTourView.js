@@ -215,6 +215,7 @@ define([
 		        	});
 		        	baseInfo['travelStartDate'] = this._travelStartDate;
 		        	baseInfo['travelEndDate'] = this._travelEndDate;
+		        	
 		        	baseInfo['totalAirAdultCharge'] = this.$('.total-air-adult-charge').text();
 		        	baseInfo['totalAirChildCharge'] = this.$('.total-air-child-charge').text();
 		        	data['baseInfo'] = baseInfo;

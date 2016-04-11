@@ -183,9 +183,17 @@ define([
 			     		tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
 			     			packageTourView.setData(tourInfo.packageTour);
 			     			freeTourView.setData(tourInfo.freeTour);
-			     		});				     		
+			     		});
+			     		
+			     		var freeTour = freeTourView.getData();
+			     		var packageTour = packageTourView.getData();
+			     		var saveData = {
+			     			freeTour: freeTour,
+			     			packageTour: packageTour
+			     		};
 
-			     		tourListPopupView.open();
+
+			     		tourListPopupView.open({saveData: saveData});
 			     	}
 				});
 				new Router();

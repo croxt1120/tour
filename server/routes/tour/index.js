@@ -63,28 +63,25 @@ router
     return res.json(data);
 })
 .post(function(req, res, next) {
-
-    // console.log('============================');
-    // console.log('post');
-    // console.log(req.params);
-    // console.log(req.body);
-    // console.log(req.body.saveData);
-    // console.log('-----------------');
-
     var tourName = req.params.tourName;
+    var isOverWrite = req.body.isOverWrite;
+    var saveData = req.body.saveData;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    // console.log(filePath);
-    
     var data = {};
+    
+    console.log(new Date() + "========================================================");
+    console.log("tour save : " + tourName);
+    // console.log(saveData);
+    console.log("=====================================================================");    
+    
+    
     if (fs.existsSync(PATH_TOUR_DIR)) {
-        
-        var isOverWrite = req.body.isOverWrite;
         var isExisted = fs.existsSync(filePath);
         
         // console.log(isOverWrite + "/" + isExisted);
         
         if ( !isExisted || (isExisted && isOverWrite === 'true') ) {
-            fs.writeFile(filePath, req.body.saveData, 'utf-8');
+            fs.writeFile(filePath, saveData, 'utf-8');
             data['isSuccess'] = true;
         } else {
             data['isExisted'] = true;

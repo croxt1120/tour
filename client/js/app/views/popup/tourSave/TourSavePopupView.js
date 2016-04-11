@@ -66,7 +66,7 @@ define([
 		        	
 	        		$.post(url, data, function(res){
 	        			if(res.isSuccess) {
-	        				alert('성공');
+	        				alert('데이터를 저장하였습니다.');
 	        				_this.close();
 		      			} else {
 		      				if (res.isExisted) {

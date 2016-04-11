@@ -62,8 +62,8 @@ router.post('/:fileName', function(req, res, next) {
     var saveData = req.body.saveData;
     var fileName = req.params.fileName;
     console.log(new Date() + "========================================================");
-    console.log("code: " + fileName);
-    console.log(saveData);
+    console.log("code save : " + fileName);
+    // console.log(saveData);
     console.log("=====================================================================");    
     
     var filePath = path.resolve(__dirname, PATH_DATAS_DIR + fileName + '.json');

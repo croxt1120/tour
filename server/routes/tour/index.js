@@ -37,15 +37,15 @@ router
 .route('/:tourName')
 .get(function(req, res, next){
 
-    console.log('============================');
-    console.log('post');
-    console.log(req.params);
-    console.log(req.body);
-    console.log('-----------------');
+    // console.log('============================');
+    // console.log('post');
+    // console.log(req.params);
+    // console.log(req.body);
+    // console.log('-----------------');
 
     var tourName = req.params.tourName;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    console.log(filePath);
+    // console.log(filePath);
     
     var data = {};
     if (fs.existsSync(filePath)) {
@@ -64,16 +64,16 @@ router
 })
 .post(function(req, res, next) {
 
-    console.log('============================');
-    console.log('post');
-    console.log(req.params);
-    console.log(req.body);
-    console.log(req.body.saveData);
-    console.log('-----------------');
+    // console.log('============================');
+    // console.log('post');
+    // console.log(req.params);
+    // console.log(req.body);
+    // console.log(req.body.saveData);
+    // console.log('-----------------');
 
     var tourName = req.params.tourName;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    console.log(filePath);
+    // console.log(filePath);
     
     var data = {};
     if (fs.existsSync(PATH_TOUR_DIR)) {
@@ -102,15 +102,15 @@ router
 })
 .delete(function(req, res, next) {
 
-    console.log('============================');
-    console.log('delete');
-    console.log(req.params);
-    console.log(req.body);
-    console.log('-----------------');
+    // console.log('============================');
+    // console.log('delete');
+    // console.log(req.params);
+    // console.log(req.body);
+    // console.log('-----------------');
 
     var tourName = req.params.tourName;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    console.log(filePath);
+    // console.log(filePath);
     
     var data = {};
     if (fs.existsSync(PATH_TOUR_DIR)) {

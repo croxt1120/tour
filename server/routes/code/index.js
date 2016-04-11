@@ -59,12 +59,8 @@ router.get('/:fileName', function(req, res, next) {
 });
     
 router.post('/:fileName', function(req, res, next) {
-    console.log(req.body);
-    
     var filePath = path.resolve(__dirname, PATH_DATAS_DIR + req.params.fileName + '.json');
-    
     var data = {};
-   
     fs.writeFile(filePath, req.body.saveData, 'utf-8');
     data['isSuccess'] = true;
     return res.json(data);

@@ -120,10 +120,14 @@ define([
 			        		data: {saveData: view.tableToJson(fileName)},
 			            	success: function(result) {
 			            		if(result.isSuccess) {
+			            			alert('파일 저장에 성공하였습니다.');
 			      					view.loadData(fileName);
 			      				} else {
 			      					alert('파일 저장에 실패하였습니다.');
 			      				}
+			        		},
+			        		fail: function(result) {
+			        			alert('파일 저장에 실패하였습니다.');
 			        		}
 		        		});
 		        },
@@ -160,7 +164,8 @@ define([
 		  				});
 					}
 		  			
-		  			return JSON.stringify(tableData, null, 2);
+		  			//return JSON.stringify(tableData, null, 2);
+		  			return JSON.stringify(tableData);
 				}
 		        
 		    });

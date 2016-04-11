@@ -14,4 +14,12 @@ module.exports = function(app, config) {
     
     // router 등록
     require('./routes')(app);
+    
+    // error handler - 제일 마지막에 추가 할것
+    app.use( function(err, req, res, next) {
+        console.log(new Date() + "========================================================");
+        console.error(err.stack);
+        console.log("=====================================================================");
+        next(err);
+    });
 };

@@ -59,12 +59,18 @@ router.get('/:fileName', function(req, res, next) {
 });
     
 router.post('/:fileName', function(req, res, next) {
-    var filePath = path.resolve(__dirname, PATH_DATAS_DIR + req.params.fileName + '.json');
+    var saveData = req.body.saveData;
+    var fileName = req.params.fileName;
+    console.log(new Date() + "========================================================");
+    console.log("code: " + fileName);
+    console.log(saveData);
+    console.log("=====================================================================");    
+    
+    var filePath = path.resolve(__dirname, PATH_DATAS_DIR + fileName + '.json');
     var data = {};
-    fs.writeFile(filePath, req.body.saveData, 'utf-8');
+    fs.writeFile(filePath, saveData, 'utf-8');
     data['isSuccess'] = true;
     return res.json(data);
 });
-    
 
 module.exports = router;

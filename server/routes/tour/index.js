@@ -14,7 +14,7 @@ router.get('/', function(req, res, next){
             file = "";
         for (var idx in files) {
             file = files[idx].replace('.json', '');
-            console.log(file);
+            // console.log(file);
             list.push( file );
         }
         
@@ -28,7 +28,7 @@ router.get('/', function(req, res, next){
         data['isSuccess'] = false;
     }
     
-    console.log(data);
+    // console.log(data);
     return res.json(data);
 });
 
@@ -81,7 +81,7 @@ router
         var isOverWrite = req.body.isOverWrite;
         var isExisted = fs.existsSync(filePath);
         
-        console.log(isOverWrite + "/" + isExisted);
+        // console.log(isOverWrite + "/" + isExisted);
         
         if ( !isExisted || (isExisted && isOverWrite === 'true') ) {
             fs.writeFile(filePath, req.body.saveData, 'utf-8');

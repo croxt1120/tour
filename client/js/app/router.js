@@ -34,11 +34,8 @@ define([
         	
         	var _start = function() {
 				//////////////////////////////////////////
-				var mainNavView = new MainNavView();
-				$('#navBox').append(mainNavView.el);
-	
-				//////////////////////////////////////////
 				var packageTourView = new PackageTourView();
+				packageTourView.$el.show();
 				$('#viewBox').append(packageTourView.el);
 	
 				var printTourInfoView = new PrintTourInfoView();
@@ -58,6 +55,26 @@ define([
 				
 				var adminInfoView = new AdminInfoView();
 				$('#viewBox').append(adminInfoView.el);
+
+				//////////////////////////////////////////
+				var mainNavView = new MainNavView();
+	     		mainNavView.on(Events.CLICK_DROP_DOWN_MENU, function(menu) {
+	     			switch (menu) {
+	     				case 'new':
+	     					window.location.href='/';
+	     					break;
+	     				case 'save':
+	     					_onSaveTour();
+	     					break;
+	     				case 'load':
+	     					_onLoadTour();
+	     					break;
+	     				default:
+	     					// code
+	     			}
+	     		});				
+				
+				$('#navBox').append(mainNavView.el);
 				
 				
 				///////////////////////////////////////
@@ -71,9 +88,7 @@ define([
 				     	"print-free-tour" : "_onShowPrintFreeTour",
 				     	"print-free-notice" : "_onShowPrintFreeNotice",
 				     	"code-mgr" : "_onShowCodeManager",
-						"admin" : "_onShowAdminView",
-						"save" : "_onSaveTour",
-						"load" : "_onLoadTour"
+						"admin" : "_onShowAdminView"
 				    },
 				    route: function(route, name, callback) {
 			     		var router = this;
@@ -81,14 +96,14 @@ define([
 			     		var f = function() {
 			     			
 			     			console.log('route before', route);
-			     			if (route !== 'save' && route !== 'load'){
+			     			// if (route !== 'save' && route !== 'load'){
+			     			if (route !== ''){
 			     				$('.sub-view').hide();
+			     				callback.apply(router, arguments);
+			     				console.log('route after', route);
 			     			}
-
-			     			callback.apply(router, arguments);
-			     			console.log('route after', route);
-			     		};
 			     			
+			     		};
 			     		return Backbone.Router.prototype.route.call(this, route, name, f);
 			     	},			     	
 				     	
@@ -164,43 +179,89 @@ define([
 			     		adminInfoView.$el.show();
 			     	},
 			     	
-			     	_onSaveTour: function() {
-			     		var tourSavePopupView = new TourSavePopupView();
+			     	// _onSaveTour: function() {
+			     	// 	var tourSavePopupView = new TourSavePopupView();
 			     		
-			     		var freeTour = freeTourView.getData();
-			     		var packageTour = packageTourView.getData();
+			     	// 	var freeTour = freeTourView.getData();
+			     	// 	var packageTour = packageTourView.getData();
 			     		
-			     		var saveData = {
-			     			freeTour: freeTour,
-			     			packageTour: packageTour
-			     		};
+			     	// 	var saveData = {
+			     	// 		freeTour: freeTour,
+			     	// 		packageTour: packageTour
+			     	// 	};
 			     		
-			     		tourSavePopupView.open({saveData: saveData});
-			     	},
+			     	// 	tourSavePopupView.open({saveData: saveData});
+			     	// },
 			     	
-			     	_onLoadTour: function() {
-			     		var tourListPopupView = new TourListPopupView();
-			     		tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
-			     			packageTourView.setData(tourInfo.packageTour);
-			     			freeTourView.setData(tourInfo.freeTour);
-			     		});
+			     	// _onLoadTour: function() {
+			     	// 	var tourListPopupView = new TourListPopupView();
+			     	// 	tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
+			     	// 		packageTourView.setData(tourInfo.packageTour);
+			     	// 		freeTourView.setData(tourInfo.freeTour);
+			     	// 	});
 			     		
-			     		var freeTour = freeTourView.getData();
-			     		var packageTour = packageTourView.getData();
-			     		var saveData = {
-			     			freeTour: freeTour,
-			     			packageTour: packageTour
-			     		};
+			     	// 	var freeTour = freeTourView.getData();
+			     	// 	var packageTour = packageTourView.getData();
+			     	// 	var saveData = {
+			     	// 		freeTour: freeTour,
+			     	// 		packageTour: packageTour
+			     	// 	};
 
 
-			     		tourListPopupView.open({saveData: saveData});
-			     	}
+			     	// 	tourListPopupView.open({saveData: saveData});
+			     	// }
 				});
-				new Router();
+				var router = new Router();
 				Backbone.history.start();
-				mainNavView.changeMenuActive("#" + Backbone.history.fragment);
-        	};
+				var dUrl = "";
+				
+				// 화면 초기 셋팅
+				if (Backbone.history.fragment !== '') {
+					dUrl = Backbone.history.fragment;
+				} else {
+					dUrl="package-tour";
+					$('.sub-view').hide();
+					packageTourView.$el.show();
+				}
+				mainNavView.changeMenuActive("#" + dUrl);
+				
+			    function _onSaveTour() {
+		     		var tourSavePopupView = new TourSavePopupView();
+		     		
+		     		var freeTour = freeTourView.getData();
+		     		var packageTour = packageTourView.getData();
+		     		
+		     		var saveData = {
+		     			freeTour: freeTour,
+		     			packageTour: packageTour
+		     		};
+		     		
+		     		tourSavePopupView.open({saveData: saveData});
+			    }				
+				
+				function _onLoadTour() {
+		     		var tourListPopupView = new TourListPopupView();
+		     		tourListPopupView.on(Events.CLOSE_POPUP, function(tourInfo) {
+		     			packageTourView.setData(tourInfo.packageTour);
+		     			freeTourView.setData(tourInfo.freeTour);
+		     			
+		     			// 데이터 로드 후 패키지 여행 선택
+						router.navigate('package-tour', { trigger: true });
+						mainNavView.changeMenuActive("#package-tour");
+		     		});
+		     		
+		     		var freeTour = freeTourView.getData();
+		     		var packageTour = packageTourView.getData();
+		     		var saveData = {
+		     			freeTour: freeTour,
+		     			packageTour: packageTour
+		     		};
+	
+	
+		     		tourListPopupView.open({saveData: saveData});				
+				}
 			
+        	};
 			
 			return {
 				start: _start

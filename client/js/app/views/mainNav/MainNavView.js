@@ -2,11 +2,13 @@ define([
         'jquery',
         'underscore',
         'backbone',
+        'datas/Events',
         'text!views/mainNav/mainNavTpl.html'
 ], function ( 
 		$,
 		_,
 		Backbone,
+		Events,
 		mainNavTpl
 		) {
 		    
@@ -15,7 +17,8 @@ define([
 		        	this.setElement(this.el);
 		            this.render();
 		            
-		            this.$('.dropdown-toggle').dropdown();
+		            this.$('li').removeClass('active');
+		            //this.$('.dropdown-toggle').dropdown();
 		        },
 		        
 		        render: function() {
@@ -28,13 +31,17 @@ define([
 		        },
 		        
 		        _onClickMenu: function(evt) {
-		        	 var hrefVal = this.$(evt.currentTarget).attr("href");
-		            this.changeMenuActive(hrefVal);
+		        	 //var hrefVal = this.$(evt.currentTarget).attr("href");
+		        	 var dataKey = this.$(evt.currentTarget).data('menu');
+		        	 if (!_.isUndefined(dataKey)) {
+		        	 	console.log(dataKey);
+		        	 	this.trigger(Events.CLICK_DROP_DOWN_MENU, dataKey);
+		        	 }
+		             //this.changeMenuActive(hrefVal);
 		        },
 		        
 		        // 메뉴 상태 변경
 		        changeMenuActive: function(hrefVal) {
-		        	console.log(hrefVal);
 		        	this.$('li').removeClass('active');
 		        	this.$("a[href$='"+ hrefVal + "']").parent().addClass('active');
 		        }

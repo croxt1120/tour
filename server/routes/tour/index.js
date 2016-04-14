@@ -13,11 +13,14 @@ router.get('/', function(req, res, next){
         var list = [],
             file = "";
         for (var idx in files) {
-            file = files[idx].replace('.json', '');
-            // console.log(file);
-            list.push( file );
+            
+            file = files[idx];
+            if (file.indexOf('.json') > -1) {
+                file = files[idx].replace('.json', '');
+                // console.log(file);
+                list.push( file );
+            }
         }
-        
         
         data['list'] = list;
         data['isSuccess'] = true;        

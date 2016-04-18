@@ -54,18 +54,17 @@ define([
 		            var tpl = _.template(baseInfoTpl, {} );
 		            this.$el.html(tpl);
 
-		            var $travelStartDate = this.$travelStartDate = _createDatepicker(this.$('#travelStartDate'));
-		            var $travelEndDate   = this.$travelEndDate = _createDatepicker(this.$('#travelEndDate'));
+		            this.$travelStartDate = _createDatepicker(this.$('#travelStartDate'));
+		            this.$travelEndDate = _createDatepicker(this.$('#travelEndDate'));
 
-		            $travelStartDate.datepicker().on('changeDate', function(e) {
+		            this.$travelStartDate.datepicker().on('changeDate', function(e) {
 		            	var startDate = e.date;
-		            	var endDate = $travelEndDate.datepicker("getDate");
-
+		            	var endDate = _this.$travelEndDate.datepicker("getDate");
 		            	_this.changeDate(startDate, endDate);
 		            });
 		            
-		            $travelEndDate.datepicker().on('changeDate', function(e) {
-		            	var startDate = $travelStartDate.datepicker("getDate");
+		            this.$travelEndDate.datepicker().on('changeDate', function(e) {
+		            	var startDate = _this.$travelStartDate.datepicker("getDate");
 		            	var endDate = e.date;
 		            	_this.changeDate(startDate, endDate);
 		             });
@@ -163,46 +162,37 @@ define([
 		        },
 		        
 		        setData: function(data) {
+		        	var _this = this;
+		        	// 날짜 셋팅전 변경 이벤트 해제 - 이전날짜 체크때문에 임시로 해제
+		            this.$travelStartDate.datepicker().off('changeDate');
+		            this.$travelEndDate.datepicker().off('changeDate');
+
 		        	for (var key in data) {
 		        		this.$('#'+key).val(data[key]);
 		        	}
-		        	
-		        	// this.$('#customerName').val(data.customerName);
-		        	// this.$('#adultMember').val(data.adultMember);
-		        	// this.$('#childMember').val(data.childMember);
-		        	
-		        	// this.$('#tourName').val(data.tourName);
-		        	
+
 		        	var travelStartDate = moment(data.travelStartDate).format('YYYY-MM-DD');
 		        	this.$travelStartDate.datepicker("setDate",travelStartDate);
 		        	
 		        	var travelEndDate = moment(data.travelEndDate).format('YYYY-MM-DD');
 		        	this.$travelEndDate.datepicker("setDate",travelEndDate);
 		        	
-		        	// this.$('#planner').val(data.planner);
-		        	// this.$('#plannerInfo').val(data.plannerInfo);
-		        	
 		        	this.$('#inclusion').val(data.inclusion.replace(/\<br\s*\>/gi, '\n'));
 		        	this.$('#exclusion').val(data.exclusion.replace(/\<br\s*\>/gi, '\n'));
 		        	this.$('#specialty').val(data.specialty.replace(/\<br\s*\>/gi, '\n'));
 		        	
-		        	// this.$('#extraCharge').val(data.extraCharge);
-		        	// this.$('#extraChargeInfo').val(data.extraChargeInfo);
-		        	
-		        	// this.$('#airline').val(data.airline);
-		        	// this.$('#depTime').val(data.depTime);
-		        	// this.$('#arrTime').val(data.arrTime);
-		        	// this.$('#flightNumber').val(data.flightNumber);
-		        	// this.$('#area').val(data.area);
-		        	
-		        	// this.$('#returnAirline').val(data.returnAirline);
-		        	// this.$('#returnDepTime').val(data.returnDepTime);
-		        	// this.$('#returnArrTime').val(data.returnArrTime);
-		        	// this.$('#returnFlightNumber').val(data.returnFlightNumber);
-		        	// this.$('#returnArea').val(data.returnArea);
-		        	
-		        	// this.$('#carMember').val(data.carMember);
-		        	// this.$('#driver').val(data.driver);
+		            // 날짜 셋팅 후 이벤트 재 설정
+		            this.$travelStartDate.datepicker().on('changeDate', function(e) {
+		            	var startDate = e.date;
+		            	var endDate = _this.$travelEndDate.datepicker("getDate");
+		            	_this.changeDate(startDate, endDate);
+		            });
+		            
+		            this.$travelEndDate.datepicker().on('changeDate', function(e) {
+		            	var startDate = _this.$travelStartDate.datepicker("getDate");
+		            	var endDate = e.date;
+		            	_this.changeDate(startDate, endDate);
+		             });
 		        },
 		        
 			    destroy: function(){

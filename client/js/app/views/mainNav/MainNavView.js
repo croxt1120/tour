@@ -18,7 +18,7 @@ define([
 		            this.render();
 		            
 		            this.$('li').removeClass('active');
-		            //this.$('.dropdown-toggle').dropdown();
+		            this.$('.dropdown-toggle').dropdown();
 		        },
 		        
 		        render: function() {
@@ -31,13 +31,14 @@ define([
 		        },
 		        
 		        _onClickMenu: function(evt) {
-		        	 //var hrefVal = this.$(evt.currentTarget).attr("href");
 		        	 var dataKey = this.$(evt.currentTarget).data('menu');
 		        	 if (!_.isUndefined(dataKey)) {
 		        	 	console.log(dataKey);
 		        	 	this.trigger(Events.CLICK_DROP_DOWN_MENU, dataKey);
+		        	 } else {
+		        	 	var hrefVal = this.$(evt.currentTarget).attr("href");
+		        	 	this.changeMenuActive(hrefVal);
 		        	 }
-		             //this.changeMenuActive(hrefVal);
 		        },
 		        
 		        // 메뉴 상태 변경

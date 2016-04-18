@@ -247,14 +247,15 @@ input{
 }
 
 #print .print-package .schedule .item .title  {
-    width: 40%;
+    /*width: 40%;*/
     float: left;
 }
 
 #print .print-package .schedule .item .explain  {
-    width: 60%;
-    padding-left: 10px;
-    float: left;
+    /*width: 60%;*/
+    /*padding-left: 10px;*/
+    /*float: left;*/
+    display: none;
 }
 
 

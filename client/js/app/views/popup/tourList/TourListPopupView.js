@@ -115,29 +115,33 @@ define([
 		        },
 		        
 		        _onClickRemove: function() {
-		        	var $selItem = this.$('.list-group .active');
-		        	if ($selItem.length == 1) {
-		        		var tourName = $selItem.text();
-		        		var url = '/tour/' + tourName;
-
-						$.ajax({
-						   url: url,
-						   type: 'delete',
-						   success: function(data) {
-			        			if (data.isSuccess) {
-			        				$selItem.remove();
-			        				alert('데이터가 삭제 되었습니다.');
-			        			} else {
-			        				alert('데이터 삭제에 실패 했습니다. ' + data.msg);
-			        			}						     
-						   }
-						}).fail(function(data) {
-		        			alert("데이터 삭제에 실패 했습니다.");
-		        		}).always(function(data) {
-		        		});
-		        		
-		        	} else {
-		        		alert("데이터를 선택해주시기 바랍니다.");
+		        	var _this = this;
+		        	if ( confirm("선택한 데이터를 삭제하시겠습니까?") ) {
+			        	var $selItem = this.$('.list-group .active');
+			        	if ($selItem.length == 1) {
+			        		var tourName = $selItem.text();
+			        		var url = '/tour/' + tourName;
+	
+							$.ajax({
+							   url: url,
+							   type: 'delete',
+							   success: function(data) {
+				        			if (data.isSuccess) {
+				        				alert('데이터가 삭제 되었습니다.');
+				        				//$selItem.remove();
+				        				_this._reqLoad();
+				        			} else {
+				        				alert('데이터 삭제에 실패 했습니다. ' + data.msg);
+				        			}						     
+							   }
+							}).fail(function(data) {
+			        			alert("데이터 삭제에 실패 했습니다.");
+			        		}).always(function(data) {
+			        		});
+			        		
+			        	} else {
+			        		alert("데이터를 선택해주시기 바랍니다.");
+			        	}
 		        	}
 		        }
 		    });

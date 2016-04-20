@@ -31,10 +31,16 @@ define([
 		        },
 		        
 		        setData: function(data) {
-		        	data.baseInfo.travelStartDate = moment(data.baseInfo.travelStartDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
-		        	data.baseInfo.travelEndDate = moment(data.baseInfo.travelEndDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	var freeInfo = data.freeInfo;
+		        	var adminInfo = data.adminInfo;
+		        	freeInfo.baseInfo.travelStartDate = moment(freeInfo.baseInfo.travelStartDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
+		        	freeInfo.baseInfo.travelEndDate = moment(freeInfo.baseInfo.travelEndDate, "YYYY-MM-DD").format('YYYY년 MM월 DD일 ddd요일');
 		        	
-		        	var tpl = _.template(freeTourTpl)(data);
+		        	var viewData = {};
+		        	viewData['freeInfo'] = freeInfo;
+		        	viewData['adminInfo'] = adminInfo;
+		        	
+		        	var tpl = _.template(freeTourTpl)(viewData);
 		        	this.$('.content').empty().append(tpl);
 		        },
 		        

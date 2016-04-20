@@ -158,7 +158,13 @@ define([
 			     	},
 			     	
 			     	_onShowPrintFreeTour: function() {
-			     		var data = freeTourView.getData();
+			     		//var data = freeTourView.getData();
+
+			     		var data = {
+			     			freeInfo: freeTourView.getData(),
+			     			adminInfo: adminInfoView.getData()
+			     		};			     		
+			     		
 			     		console.log(data);
 			     		printFreeInfoView.setData(data);
 			     		printFreeInfoView.$el.show();

@@ -89,9 +89,9 @@ define([
 		        	var member = this.$('#adultMember').val() * 1;
 		        	
 		        	// 천만원 단위까지만 가능
-		        	if (!Utils.isNumber(charge) || charge.toString().length > 8) {
-		        		charge = 0;
-		        	}		        	
+		        	// if (!Utils.isNumber(charge) || charge.toString().length > 8) {
+		        	// 	charge = 0;
+		        	// }		        	
 		        	
 		        	var total = charge * member;
 		        	this.$('.total-air-adult-charge').text(Utils.numberWithCommas(total));
@@ -104,9 +104,9 @@ define([
 		        	var member = this.$('#childMember').val() * 1;
 
 		        	// 천만원 단위까지만 가능
-		        	if (!Utils.isNumber(charge) || charge.toString().length > 8) {
-		        		charge = 0;
-		        	}		        	
+		        	// if (!Utils.isNumber(charge) || charge.toString().length > 8) {
+		        	// 	charge = 0;
+		        	// }		        	
 		        	
 		        	var total = charge * member;
 		        	this.$('.total-air-child-charge').text(Utils.numberWithCommas(total));
@@ -118,17 +118,17 @@ define([
 		        	rentCarCharge = Utils.numberWithoutCommas(rentCarCharge);
 
 		        	// 천만원 단위까지만 가능
-		        	if (!Utils.isNumber(rentCarCharge) || rentCarCharge.toString().length > 8) {
-		        		rentCarCharge = 0;
-		        	}		        	
+		        	// if (!Utils.isNumber(rentCarCharge) || rentCarCharge.toString().length > 8) {
+		        	// 	rentCarCharge = 0;
+		        	// }		        	
 		        	
 		        	var rentCarInsu = this.$('#rentCarInsu').val();
 		        	rentCarInsu = Utils.numberWithoutCommas(rentCarInsu);
 		        	
 		        	// 천만원 단위까지만 가능
-		        	if (!Utils.isNumber(rentCarInsu) || rentCarInsu.toString().length > 8) {
-		        		rentCarInsu = 0;
-		        	}		        	
+		        	// if (!Utils.isNumber(rentCarInsu) || rentCarInsu.toString().length > 8) {
+		        	// 	rentCarInsu = 0;
+		        	// }		        	
 		        			        	
 		        	var total = rentCarCharge + rentCarInsu;
 		        	this.$('.total-rent-car-charge').text(Utils.numberWithCommas(total));
@@ -141,9 +141,9 @@ define([
 		        	busRentCharge = Utils.numberWithoutCommas(busRentCharge);
 		        	
 		        	// 천만원 단위까지만 가능
-		        	if (!Utils.isNumber(busRentCharge) || busRentCharge.toString().length > 8) {
-		        		busRentCharge = 0;
-		        	}		        	
+		        	// if (!Utils.isNumber(busRentCharge) || busRentCharge.toString().length > 8) {
+		        	// 	busRentCharge = 0;
+		        	// }		        	
 		        	
 		        	this.$('.toal-bus-rent-charge').text(Utils.numberWithCommas(busRentCharge));
 		        	

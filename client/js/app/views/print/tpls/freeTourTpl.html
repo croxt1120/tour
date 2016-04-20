@@ -1,7 +1,7 @@
 <div id="printFree" class="print-tour" style="width: 790px; margin: auto; ">
     <div class="customer-info">
         <img src="/img/logo-tour-info.jpg" style="width: 790px;">
-        <h3 class="customer-name"><%=baseInfo.customerName%></h3>
+        <h3 class="customer-name"><%=freeInfo.baseInfo.customerName%></h3>
         
         <div class="baseInfo">
             <div style="float: left;width: 55%;">
@@ -10,15 +10,15 @@
                     <tbody>
                         <tr>
                             <td class="title-td">항공사</td>
-                            <td><%=baseInfo.airline%> (<%=baseInfo.flightNumber%>)</td>
+                            <td><%=freeInfo.baseInfo.airline%> (<%=freeInfo.baseInfo.flightNumber%>)</td>
                         </tr>
                         <tr>
                             <td class="title-td">출발 일시</td>
-                            <td><%=baseInfo.travelStartDate%> <%=baseInfo.depTime%></td>
+                            <td><%=freeInfo.baseInfo.travelStartDate%> <%=freeInfo.baseInfo.depTime%></td>
                         </tr>
                         <tr>
                             <td class="title-td">리턴 일시</td>
-                            <td><%=baseInfo.travelEndDate%> <%=baseInfo.returnDepTime%></td>
+                            <td><%=freeInfo.baseInfo.travelEndDate%> <%=freeInfo.baseInfo.returnDepTime%></td>
                         </tr>
                     </tbody>
                 </table>
@@ -36,23 +36,23 @@
                     <tbody>
                         <tr>
                             <td class="title-td">성인 항공 요금</td>
-                            <td style="width: 150px"><%=baseInfo.airOneAdult%></td>
+                            <td style="width: 150px"><%=freeInfo.baseInfo.airOneAdult%></td>
                             <td style="width: 70px;">인원</td>
-                            <td style="width: 70px;" class="title-td"><%=baseInfo.adultMember%> 명</td>
+                            <td style="width: 70px;" class="title-td"><%=freeInfo.baseInfo.adultMember%> 명</td>
                             <td class="title-td">성인 총 요금</td>
-                            <td><%=baseInfo.totalAirAdultCharge%></td>
+                            <td><%=freeInfo.baseInfo.totalAirAdultCharge%></td>
                         </tr>
                         <tr>
                             <td>아동 항공 요금</td>
-                            <td><%=baseInfo.airOneChild%></td>
+                            <td><%=freeInfo.baseInfo.airOneChild%></td>
                             <td>인원</td>
-                            <td><%=baseInfo.childMember%> 명</td>
+                            <td><%=freeInfo.baseInfo.childMember%> 명</td>
                             <td>아동 총 요금</td>
-                            <td><%=baseInfo.totalAirChildCharge%></td>
+                            <td><%=freeInfo.baseInfo.totalAirChildCharge%></td>
                         </tr>
                         <tr>
                             <td colspan="5">항공권 총 요금</td>
-                            <td><%=expenseInfo.totalAirCharge%></td>
+                            <td><%=freeInfo.expenseInfo.totalAirCharge%></td>
                         </tr>
                     </tbody>
                 </table>
@@ -63,7 +63,7 @@
             <h4><span class="title label label-default">2. 숙소부분</span></h4>
             <table class="table table-bordered" style="">
                 <tbody>
-                    <% _.each(accInfos, function(accInfo) { %>
+                    <% _.each(freeInfo.accInfos, function(accInfo) { %>
                     <tr>
                         <td class="title-td">숙소 명</td>
                         <td style="width: 290px;"><%=accInfo.name%></td>
@@ -73,7 +73,7 @@
                     <% }) %>
                     <tr>
                         <td class="title-td" colspan="3">총 숙소비용</td>
-                        <td ><%=expenseInfo.totalRoomCharge%></td>
+                        <td ><%=freeInfo.expenseInfo.totalRoomCharge%></td>
                     </tr>                    
                 </tbody>
             </table>
@@ -85,31 +85,31 @@
                 <tbody>
                     <tr>
                         <td class="title-td">이 름</td>
-                        <td><%=rentCarInfo.rentCarName%></td>
+                        <td><%=freeInfo.rentCarInfo.rentCarName%></td>
                         <td class="title-td">번 호</td>
-                        <td><%=rentCarInfo.rentCarPhone%></td>
+                        <td><%=freeInfo.rentCarInfo.rentCarPhone%></td>
                     </tr>
                     <tr>
                         <td class="title-td">위치</td>
                         <td colspan="3" style="text-align: left;">
-                            <%=rentCarInfo.rentCarLocation%>
+                            <%=freeInfo.rentCarInfo.rentCarLocation%>
                         </td>
                     </tr>
                     <tr>
                         <td class="title-td">차 종</td>
-                        <td ><%=rentCarInfo.rentCarType%></td>
+                        <td ><%=freeInfo.rentCarInfo.rentCarType%></td>
                         <td class="title-td">차량 요금</td>
-                        <td ><%=rentCarInfo.rentCarCharge%></td>
+                        <td ><%=freeInfo.rentCarInfo.rentCarCharge%></td>
                     </tr>
                     <tr>
                         <td class="title-td">사용 시간</td>
-                        <td ><%=rentCarInfo.rentCarUsingTime%></td>
+                        <td ><%=freeInfo.rentCarInfo.rentCarUsingTime%></td>
                         <td class="title-td">자차 보험</td>
-                        <td ><%=rentCarInfo.rentCarInsu%></td>
+                        <td ><%=freeInfo.rentCarInfo.rentCarInsu%></td>
                     </tr>
                     <tr>
                         <td class="title-td" colspan="3">차량 총 요금</td>
-                        <td ><%=expenseInfo.totalRentCarCharge%></td>
+                        <td ><%=freeInfo.expenseInfo.totalRentCarCharge%></td>
                     </tr>
                 </tbody>
             </table>
@@ -121,9 +121,9 @@
                 <tbody>
                     <tr>
                         <td class="title-td">인승</td>
-                        <td style="width: 273px;"><%=busInfo.busMember%> 명</td>
+                        <td style="width: 273px;"><%=freeInfo.busInfo.busMember%> 명</td>
                         <td class="title-td">차량 요금</td>
-                        <td><%=busInfo.busRentCharge%></td>
+                        <td><%=freeInfo.busInfo.busRentCharge%></td>
                     </tr>
                     <tr>
                         <td class="title-td">비고</td>
@@ -144,10 +144,10 @@
                     <label>1. 항공 + 2. 숙소 + 3. 렌터카 + 4. 차량 대절 = </label> 
                 </div>
                 
-                <label class="total-charge" style="font-size: 34px; font-weight: bold;margin-left: 60px;"><%=expenseInfo.totalCharge%></label>
+                <label class="total-charge" style="font-size: 34px; font-weight: bold;margin-left: 60px;"><%=freeInfo.expenseInfo.totalCharge%></label>
             </div>
-            <p style="margin-top: 10px">* 당 여향은 현금 결제 기준이며, 카드 결제일 경우 부가세(VAT) 별도 입니다.</p>
-            <p>* 입금계좌 : 국민은행 472902-01-387815 강순영(하나투어)</p>            
+            
+            <p style="margin-top: 10px"><%=adminInfo.packagePrintMsg%></p>
         </div>
         
     </div>

@@ -29,7 +29,7 @@ require([
 			        if (!Utils.isNumber(money)) {
 			            alert("입력 값이 잘 못 되었습니다.");
 			            money = 0;
-			        }else if (money.toString().length > 9) {
+			        }else if (money.toString().length > 8) {
 			            alert("천만원 단위까지만 입력 가능합니다.");
 			            money = 0;
 			        } else {

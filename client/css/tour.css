@@ -185,6 +185,10 @@ input{
     background-color: #eeeeee !important;
 }
 
+#print .print-package .title-td.food {
+    width: 120px;
+}
+
 #print .print-package .inclusion  {
     text-align: left;
 }

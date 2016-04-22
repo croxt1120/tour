@@ -325,7 +325,9 @@ define([
 						        rowView.setData(schedule);
 				        	});
 				        	
-				        	_this.$('.total-schedule-price').text(scheduleInfo.total);
+				        	_this._onChangePrice();
+				        	
+				        	//_this.$('.total-schedule-price').text(scheduleInfo.total);
 						} else {
 							alert("숙소 데이터 검색에 실패했습니다.");
 						}

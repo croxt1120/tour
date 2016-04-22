@@ -171,7 +171,7 @@ define([
 		        	viewData['childCharge'] = expenseInfo.childCharge;
 		        	viewData['childMember'] = baseInfo.childMember;
 		        	viewData['totalChildCharge'] = Utils.numberWithCommas(totalChild);
-		        	viewData['totalTourExpenses'] = expenseInfo.totalTourExpenses;
+		        	viewData['totalTourExpenses'] = expenseInfo.totalTourExpenses + expenseInfo.extraCharge; // 총 판매가 + 기타금액
 		        	
 		        	// 추가 금액
 		        	viewData['extraCharge'] = baseInfo.extraCharge;

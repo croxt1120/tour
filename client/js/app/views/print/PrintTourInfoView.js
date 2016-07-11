@@ -37,15 +37,18 @@ define([
         		scInfo['depTimeBeforeAHour'] = baseInfo.depTimeBeforeAHour;
         		scInfo['depTime'] = baseInfo.depTime;
         		scInfo['arrTime'] = baseInfo.arrTime;
-        		scInfo['area'] = baseInfo.area;
+        		scInfo['area'] = baseInfo.area;	 // 출발 지역
+        		scInfo['arrAarea'] = baseInfo.arrAarea;	 // 도착 지역
         		
         		scInfo['returnDepTimeBeforeAHour'] = baseInfo.returnDepTimeBeforeAHour;
         		scInfo['returnAirline'] = baseInfo.returnAirline;
         		scInfo['returnFlightNumber'] = baseInfo.returnFlightNumber;
         		scInfo['returnDepTime'] = baseInfo.returnDepTime;			        		
         		scInfo['returnArrTime'] = baseInfo.returnArrTime;
-        		scInfo['returnArea'] = baseInfo.returnArea;
-
+        		scInfo['returnArea'] = baseInfo.returnArea;			// 출발 지역(RETURN)
+        		scInfo['returnArrArea'] = baseInfo.returnArrArea;	// 도착 지역 (RETURN)
+        		
+        		
 
         		scInfo['meal'] = mealInfos.meals[0];
         		scInfo['schedules'] = scheduleInfo.schedules[0].scheduleItems;
@@ -85,6 +88,7 @@ define([
 		        		scInfo['depTime'] = baseInfo.depTime;
 		        		scInfo['arrTime'] = baseInfo.arrTime;
 		        		scInfo['area'] = baseInfo.area;
+		        		scInfo['arrAarea'] = baseInfo.arrAarea;	 // 도착 지역
 		        		
 		        		
 	        		} else {
@@ -98,19 +102,21 @@ define([
 			        		scInfo['depTimeBeforeAHour'] = baseInfo.returnDepTimeBeforeAHour;
 			        		scInfo['depTime'] = baseInfo.returnDepTime;
 			        		scInfo['arrTime'] = baseInfo.returnArrTime;
-			        		scInfo['area'] = baseInfo.returnArea;
+			        		scInfo['returnArea'] = baseInfo.returnArea;
+			        		scInfo['returnArrArea'] = baseInfo.returnArrArea;	// 도착 지역 (RETURN)
 	        			
 		        			//scInfo['depAirport'] = '제주 공항';
 		        			//scInfo['depTime'] = baseInfo.returnArrTime;
 		        			//scInfo['arrAirport'] = '김포 공항';
 		        			//scInfo['arrTime'] = baseInfo.returnDepTime;
-	        			} else {
-			        		scInfo['airline'] = "";
-			        		scInfo['flightNumber'] = "";
-			        		scInfo['depTime'] = "";
-			        		scInfo['arrTime'] = "";
-			        		scInfo['area'] = "";
 	        			}
+	        			// else {
+			        	// 	scInfo['airline'] = "";
+			        	// 	scInfo['flightNumber'] = "";
+			        	// 	scInfo['depTime'] = "";
+			        	// 	scInfo['arrTime'] = "";
+			        	// 	scInfo['area'] = "";
+	        			// }
 	        		}
 	        		
 	        		scInfo['meals'] = mealInfos.meals[i];

@@ -235,7 +235,7 @@
                     <td colspan="2" class="schedule" style="text-align: left;">
                         <label class="start-msg"><%=scInfo.area %>공항 도작 및 수속(신분증 필수 지참)</label></br>
                         <label class="start-sc"><%=scInfo.area %>공항 출발</label></br>
-                        <label class="arrive-sc"><%=scInfo.returnArea %>공항 도착</label>
+                        <label class="arrive-sc"><%=scInfo.arrAarea %>공항 도착</label>
                         <%
                             var schedules = scInfo.schedules;
                             _.each(schedules, function(schedule) { %>
@@ -258,9 +258,9 @@
                         </div>
                         <%}%>
                         
-                        <label class="start-msg">제주 공항 도작 및 수속(신분증 필수 지참)</label></br>
+                        <label class="start-msg"><%=scInfo.returnArea %> 공항 도작 및 수속(신분증 필수 지참)</label></br>
                         <label class="start-sc"><%=scInfo.returnArea %> 공항 출발</label></br>
-                        <label class="arrive-sc"><%=scInfo.area %> 공항 도착</label>
+                        <label class="arrive-sc"><%=scInfo.returnArrArea %> 공항 도착</label>
                     </td>
                     <td class="meal" style="text-align: left;">
                         <% var meal = scInfo.meal; %>
@@ -315,9 +315,9 @@
                     <td colspan="2" class="schedule" style="text-align: left; position:relative;">
                         <div>
                         <% if (idx == 0) {%>
-                            <label class="start-msg">김포공항 도작 및 수속(신분증 필수 지참)</label></br>
-                            <label class="start-sc">김포공항 출발</label></br>
-                            <label class="arrive-sc">제주공항 도착</label>
+                            <label class="start-msg"><%=scInfo.area %> 공항 도작 및 수속(신분증 필수 지참)</label></br>
+                            <label class="start-sc"><%=scInfo.area %> 공항 출발</label></br>
+                            <label class="arrive-sc"><%=scInfo.arrAarea %>공항 도착</label>
                         <%} %>
                         </div>
                         
@@ -346,9 +346,9 @@
                         
                         <% if (idx == (scLen-1)) { %>
                         <div >
-                            <label class="start-msg">제주 공항 도작 및 수속(신분증 필수 지참)</label></br>
-                            <label class="start-sc">제주 공항 출발</label></br>
-                            <label class="arrive-sc">김포 공항 도착</label>
+                            <label class="start-msg"><%=scInfo.returnArea %> 공항 도작 및 수속(신분증 필수 지참)</label></br>
+                            <label class="start-sc"><%=scInfo.returnArea %> 공항 출발</label></br>
+                            <label class="arrive-sc"><%=scInfo.returnArrArea %> 공항 도착</label>
                         </div>
                         <%} %>
                     </td>

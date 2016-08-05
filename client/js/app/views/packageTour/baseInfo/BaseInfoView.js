@@ -170,13 +170,14 @@ define([
 		        	for (var key in data) {
 		        		this.$('#'+key).val(data[key]);
 		        	}
+		        	
+		        	// 날짜 설정 
+		        	this._travelStartDate = moment(data.travelStartDate).format('YYYY-MM-DD');
+		        	this.$travelStartDate.datepicker("setDate", this._travelStartDate);
+		        	
+		        	this._travelEndDate = moment(data.travelEndDate).format('YYYY-MM-DD');
+		        	this.$travelEndDate.datepicker("setDate", this._travelEndDate);
 
-		        	var travelStartDate = moment(data.travelStartDate).format('YYYY-MM-DD');
-		        	this.$travelStartDate.datepicker("setDate",travelStartDate);
-		        	
-		        	var travelEndDate = moment(data.travelEndDate).format('YYYY-MM-DD');
-		        	this.$travelEndDate.datepicker("setDate",travelEndDate);
-		        	
 		        	this.$('#inclusion').val(data.inclusion.replace(/\<br\s*\>/gi, '\n'));
 		        	this.$('#exclusion').val(data.exclusion.replace(/\<br\s*\>/gi, '\n'));
 		        	this.$('#specialty').val(data.specialty.replace(/\<br\s*\>/gi, '\n'));

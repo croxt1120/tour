@@ -3,6 +3,9 @@ require.config({
 		// 경로 설정
         paths: {
             jquery     : '../libs/jquery.min',
+            jquery_ui_widget  : '../libs/jquery.ui.widget',
+            jquery_iframe_transport  : '../libs/jquery.iframe-transport',
+            jquery_fileupload  : '../libs/jquery.fileupload',
             text       : '../libs/text',
             underscore : '../libs/underscore.min',
             backbone   : '../libs/backbone',
@@ -34,6 +37,9 @@ require.config({
                 deps : ['jquery'],
                 exports : 'semantic'
             },
+            bootstrap : {
+                deps : ['jquery']
+            },
             datetimepicker : {
                 deps: ['jquery', 'moment', 'bootstrap'],
                 exports : 'datetimepicker'
@@ -49,6 +55,16 @@ require.config({
             select2: {
                 deps: ['jquery'],
                 exports : 'select2'
+            },
+            jquery_ui_widget  : {
+                deps : ["jquery"],
+            },
+            
+            jquery_iframe_transport  : {
+                deps : ["jquery"],
+            },
+            jquery_fileupload  :{
+                deps : ["jquery", "jquery_ui_widget"] 
             }
             
         }

@@ -1,30 +1,12 @@
-.form-control {
-    display:inline-block;
+/* print common */
+@media print
+{    
+    .no-print, .no-print *
+    {
+        visibility: hidden;
+    }
 }
 
-textarea {
-    resize: none;
-}
-
-input{
-    width: 100%;
-}
-
-.table {
-    margin: 0px;
-}
-
-.table th {
-    /* padding: 2px !important; */
-    text-align: center;
-    vertical-align: middle !important;
-}
-
-.table td {
-   /* padding: 2px !important; */
-}
-
-/* print common*/
 .print-tour table > thead > tr > th,
 .print-tour table > tbody > tr > th,
 .print-tour table > tfoot > tr > th,
@@ -34,6 +16,9 @@ input{
    border: 1px solid #000000 !important;
 }
 
+.print-tour table {
+    margin-bottom : 0;
+}
 .print-tour table>tbody>tr>th {
     padding: 4px;
 }
@@ -47,98 +32,6 @@ input{
     font-size: 12px;
     font-family: GulimChe;
     font-weight: bold;
-}
-
-/* nav */
-.divider-vertical {
-    height: 30px;
-    margin: 0 9px;
-    margin-top: 10px;
-    border-left: 1px solid #F2F2F2;
-    border-right: 1px solid #FFF;
-}
-
-
-/* package */
-.package-info-table th {
-    width: 110px;
-}
-
-.package-info-table .width-50 {
-    width: 50px;
-}
-
-.package-info-table input {
-    width: 100%;
-}
-
-/* accommodation */
-.accommodation-table thead th {
-    
-}
-
-.accommodation-table thead .day {
-    min-width: 110px;
-}
-.accommodation-table .select-box {
-    width: 50%;
-    float: left;
-    margin-top: 2px;
-}
-
-.accommodation-table .input-acc-phone {
-    width: 50%;
-}
-
-/* schedule */
-.meal-table {
-    margin-bottom: 0px;
-}
-
-.meal-table th{
-    width: 230px;
-}
-
-.meal-table thead .day {
-    width: 65px;
-}
-
-.meal-table thead .total {
-    width: 85px;
-}
-
-.meal-table .select-box {
-    width: 128px;
-    float: left;
-    margin-top: 2px;
-}
-
-.meal-table .input-food-price {
-    width: 85px;
-}
-
-/* schedule */
-
-.schedule-table thead .day {
-    min-width: 65px;
-}
-
-.schedule-table thead .schedule {
-    width: 347px;
-}
-
-.schedule-table thead .total {
-    width: 85px;
-}
-
-.schedule-table .select-box {
-    width: 157px;
-    float: left;
-    margin-top: 2px;
-}
-
-.schedule-table .input-price {
-    width: 85px;
 }
 
 /* print-package*/
@@ -293,17 +186,72 @@ input{
     vertical-align: middle;
 }
 
-
-/* code management */
-.code-form {
-    padding: 10px 50px 10px 50px;    
+/* 테이블 제목 */
+.bold {
+    font-weight : bold;text-align : center;background-color:#efefef;
 }
 
-.code-table-container {
-    padding: 10px 50px 10px 50px;    
+/* panel table (패널 내부 테이블) */
+.panel table td {
+    padding:5px; border-bottom : 1px solid #e8e8e8; border-top : 1px solid #e8e8e8;
+}
+.panel table tr th {
+    width:60px; text-align:center; padding:3px; border-bottom : 1px solid #e8e8e8; border-top : 1px solid #e8e8e8;
+}
+.panel table {
+    margin: 5px 0;
+    width: 100%;
 }
 
-.code-td {
+.panel table tr th:first-child {
+    width:17%;
+    background-color:#efefef;
+}
+
+/* airline table (항공편) */
+.airline {
+    border-bottom : 1px solid #eee
+}
+.airline th {
+    width:60px !important;
+}
+
+/* image view thumbnail (썸네일 이미지) */
+.thumbnail {
+    position: relative;
+    width: calc(25% - 30px);
+    height: 80px;
+    overflow: hidden;
+    margin: 5px 15px;
+    float: left;
     text-align: center;
-    vertical-align: middle !important;
+    padding: 25px;
+    box-shadow: 3px 3px 3px #eee;
+    cursor : pointer;
 }
+.thumbnail img {
+    cursor : pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+/* schedule table (일정 테이블)*/
+table.scheduleDayTable {
+    margin : 0;
+    padding : 0;
+}
+
+table.scheduleDayTable td {
+    border : 0px;
+}
+
+.select2-container .select2-selection--single {
+    height:34px;
+}
+

@@ -72,10 +72,10 @@ router
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
     var data = {};
     
-    console.log(new Date() + "========================================================");
-    console.log("tour save : " + tourName);
-    // console.log(saveData);
-    console.log("=====================================================================");    
+    // console.log(new Date() + "========================================================");
+    // console.log("tour save : " + tourName);
+    // // console.log(saveData);
+    // console.log("=====================================================================");    
     
     
     if (fs.existsSync(PATH_TOUR_DIR)) {

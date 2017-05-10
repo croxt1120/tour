@@ -14,6 +14,7 @@ define([
 	};
 	
 	var _numberWithCommas = function(x) {
+	    x = Math.round(x * 1);
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
     

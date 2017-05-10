@@ -1,0 +1,64 @@
+<tr>
+    <td rowspan="2" class="title-td">
+        <%= date %>
+        <label class="days"> <%=index%> 일차</label>
+    </td>
+    <td class="area">
+        <% 
+            for(var i=0; i<schedules.length; i++){
+                var scInfo = schedules[i];
+        %>
+                <div><%=scInfo.place%></div>
+        <%
+            }
+        %>
+    </td>
+    <td class="traffic" style="vertical-align: top;">
+        <% 
+            for(var i=0; i<schedules.length; i++){
+                var scInfo = schedules[i];
+        %>
+                <div><%=scInfo.transportation%></div>
+        <%
+            }
+        %>
+    </td>
+    <td class="time" style="vertical-align: top;">
+        <% 
+            for(var i=0; i<schedules.length; i++){
+                var scInfo = schedules[i];
+        %>
+                <div><%=scInfo.time%></div>
+        <%
+            }
+        %>
+
+    </td>
+    <td colspan="2" class="schedule" style="text-align: left; position:relative;">
+        <% 
+            for(var i=0; i<schedules.length; i++){
+                var scInfo = schedules[i];
+        %>
+                <div><%=scInfo.summary%></div>
+        <%
+            }
+        %>
+    </td>
+    <td class="meal" style="text-align: left;">
+        <% 
+            for(var i=0; i<meals.length; i++){
+        %>
+                <div><%=meals[i]%></div>
+        <%
+            }
+        %>
+    </td>
+</tr>
+<tr>
+    <td colspan="4" style="text-align: left">
+        숙소 : <label class="hotel"><%=hotel.name%></label>
+    </td>
+    <td colspan="2">
+        <%=hotel.phone%>
+    </td>
+</tr>

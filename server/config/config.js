@@ -1,7 +1,7 @@
 var path = require('path');
 var config = {
     db:{},
-    server:{}
+    server:{},
 };
 
 module.exports = config;

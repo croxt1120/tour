@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+    <div class="panel-heading">기본정보</div>
+    <div class="panel-body">
+        <table>
+            <tr>
+                <th>손님</th>
+                <td><input type="text" class="info form-control" id="client" maxlength="9" id=""></td>
+                <th>성인</th>
+                <td><input type="number" class="member form-control" id="adult" min="0" value="0" ></td>
+                <th>아동</th>
+                <td><input type="number" class="member form-control" id="child" min="0" value="0"></td>
+                <th>유아</th>
+                <td><input type="number" class="member form-control" id="baby"  min="0" value="0"></td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td colspan="7"><input type="text" class="info form-control" id="title" maxlength=30></td>
+            </tr>
+            <tr>
+                <th>여행 개시일</th>
+                <td colspan="7"><input type="text" class="date form-control" id="start"></td>
+            </tr>
+            <tr>
+                <th>여행 마감일</th>
+                <td colspan="7"><input type="text" class="date form-control" id="end"></td>
+            </tr>
+            <tr>
+                <th>기획자</th>
+                <td colspan="3"><input type="text" class="info form-control" id="planner" maxlength=30></td>
+                <td colspan="4"><input type="text" class="info form-control" id="plannerInfo" maxlength=30 placeholder="정보"></td>
+            </tr>
+            <tr>
+                <th>포함 사항</th>
+                <td colspan="7"><textarea id="inclusion" class="info form-control" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <th>불포함 사항</th>
+                <td colspan="7"><textarea id="exclusion" class="info form-control" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <th>특별 사항</th>
+                <td colspan="7"><textarea id="specialty" class="info form-control" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <th>기타 추가요금</th>
+                <td colspan="3"><input type="text" class="info price form-control" id="extraCharge" maxlength=10 ></td>
+                <td colspan="4"><input type="text" class="info form-control" id="extraChargeInfo" placeholder="내역"></td>
+            </tr>
+            <tr>
+                <th>항공사
+                    <button type="button" class="add-airline btn btn-default" aria-label="Left Align">
+                      경유지 추가
+                    </button>
+                </th>
+                <td colspan="7" id="airlineRow"></td>
+            </tr>
+            <tr>
+                <th>차량</th>
+                <td colspan="2"><input type="number" class="info form-control" id="car" min="0"></td>
+                <td>인승</td>
+                <th>기사님</th>
+                <td colspan="3"><input type="text" class="info form-control" id="driver"></td>
+            </tr>
+        </table>
+    </div>
+</div>

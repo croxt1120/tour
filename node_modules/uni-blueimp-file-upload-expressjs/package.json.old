@@ -1,0 +1,35 @@
+{
+  "name": "uni-blueimp-file-upload-expressjs",
+  "version": "0.1.0",
+  "description": "jQuery File Upload using Expressjs : 'borrowed' from Blueimp jQuery File Upload developed by Sebastian Tschan",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node specs/"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.0.0-rc.19",
+    "formidable": "^1.0.14",
+    "lwip": "0.0.5",
+    "mkdirp": "^0.5.0",
+    "uuid": "~2.0.1"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zain-creation/uni-blueimp-file-upload-expressjs.git"
+  },
+  "keywords": [
+    "jQuery",
+    "file",
+    "upload",
+    "expressjs"
+  ],
+  "author": "Fayssal tahtoub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zain-creation/uni-blueimp-file-upload-expressjs/issues"
+  },
+  "homepage": "https://github.com/zain-creation/uni-blueimp-file-upload-expressjs"
+}

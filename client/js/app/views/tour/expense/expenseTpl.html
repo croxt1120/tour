@@ -1,0 +1,135 @@
+<div class="panel panel-default">
+    <div class="panel-heading">가격</div>
+    <div class="panel-body">
+        <table>
+            <tr>
+                <th>기준환율</th>
+                <th>USD</th>
+                <td><input id="USD" type="text" class="exchange price form-control" value="0"></td>
+                <th>EUR</th>
+                <td><input id="EUR" type="text" class="exchange price form-control" value="0"></td>
+            </tr>
+        </table>
+        <table>
+            <thead>
+                <th class="bold"></th>
+                <th class="bold">구분</th>
+                <td class="bold">적요</td>
+                <td class="bold">가격</td>
+                <td class="bold">단위</td>
+                <td class="bold">1인요금</td>
+                <td class="bold">총금액</td>
+            </thead>
+            <tbody>
+                <tr class="airfare adult">
+                    <th rowspan="4">항공요금</th>
+                    <td>성인</td>
+                    <td><input type="text" class="summary form-control"></td>
+                    <td><input type="text" class="price form-control" value="0"></td>
+                    <td>
+                        <select class="form-control"></select>
+                    </td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr class="airfare child">
+                    <td>아동</td>
+                    <td><input type="text" class="summary form-control"></td>
+                    <td><input type="text" class="price form-control" value="0"></td>
+                    <td><select class="form-control"></select></td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr class="airfare baby">
+                    <td>유아</td>
+                    <td><input type="text" class="summary form-control"></td>
+                    <td><input type="text" class="price form-control" value="0"></td>
+                    <td><select class="form-control"></select></td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr class="airfare total">
+                    <td class="bold" colspan="4">항공 총 금액</td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr class="hotel">
+                    <th rowspan="4">지상비</th>
+                    <td style="text-align:center;">
+                        <button type="button" class="add-land btn btn-default">
+                            호텔
+                        </button>
+                    </td>
+                    <td><input type="text" class="summary form-control"></td>
+                    <td><input type="text" class="price form-control" value="0"></td>
+                    <td><select class="form-control"></select></td>
+                    <td class="person">0</td>
+                    <td class="people">0</td>
+                </tr>
+                <tr class="hotel total">
+                    <td class="bold" colspan="4">호텔 총 금액</td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr class="tour">
+                    <td style="text-align:center;">
+                        <button type="button" class="add-land btn btn-default">
+                            현지투어
+                        </button>
+                    </td>
+                    <td><input type="text" class="summary form-control"></td>
+                    <td><input type="text" class="price form-control" value="0"></td>
+                    <td><select class="form-control"></select></td>
+                    <td class="person">0</td>
+                    <td class="people">0</td>
+                </tr>
+                <tr class="tour total">
+                    <td class="bold" colspan="4">현지투어 총 금액</td>
+                    <td class="person"></td>
+                    <td class="people"></td>
+                </tr>
+                <tr>
+                    <td colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="bold"></td>
+                    <td class="bold">구분</td>
+                    <td class="bold">총원가</td>
+                    <td class="bold" colspan="2">1인수익</td>
+                    <td class="bold" style="width:14%">1인판매가</td>
+                    <td class="bold" style="width:14%">판매가</td>
+                </tr>
+                <tr class="result adult">
+                    <th rowspan="3">1인 총금액</th>
+                    <td>성인</td>
+                    <td class="cost">0</td>
+                    <td colspan="2"><input type="text" class="revenue price form-control" value="0"></td>
+                    <td class="person">0</td>
+                    <td class="people">0</td>
+                </tr>
+                <tr class="result child">
+                    <td>아동</td>
+                    <td class="cost">0</td>
+                    <td colspan="2"><input type="text" class="revenue price form-control" value="0"></td>
+                    <td class="person">0</td>
+                    <td class="people">0</td>
+                </tr>
+                <tr class="result baby">
+                    <td>유아</td>
+                    <td class="cost">0</td>
+                    <td colspan="2"><input type="text" class="revenue price form-control" value="0"></td>
+                    <td class="person">0</td>
+                    <td class="people">0</td>
+                </tr>
+                <tr class="result total">
+                    <th>계약금</th>
+                    <td colspan="2"><input type="text" class="deposit price form-control" value="0"></td>
+                    <td class="bold">잔금</td>
+                    <td colspan="3" class="balance"></td>
+                    <!--<td class="bold">납기일</td>-->
+                    <!--<td ><input type="text" class="date form-control" id="dueDate"></td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

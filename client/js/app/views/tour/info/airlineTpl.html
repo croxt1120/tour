@@ -1,0 +1,23 @@
+<table class="airline">
+    <tr>
+        <th rowspan="2">
+            <% if(!_.isNull(name)) { %>
+                <%= name %>
+            <% } else { %>
+                <button type="button" class="remove-airline btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+            <% } %>
+        </th>
+        <td><input type="text" class="form-control" id="airline" maxlength=30 placeholder="항공사"></td>
+        <th>출발</th>
+        <td><input type="text" class="form-control" id="locale1" maxlength=30 placeholder="지역"></td>
+        <td><input type="text" class="time form-control" id="time1" maxlength=30 placeholder="시간"></td>
+    </tr>
+    <tr>
+        <td><input type="text" class="form-control" id="flight" maxlength=30 placeholder="편명"></td>
+        <th>도착</th>
+        <td><input type="text" class="form-control" id="locale2" maxlength=30 placeholder="지역"></td>
+        <td><input type="text" class="time form-control" id="time2" maxlength=30 placeholder="시간"></td>
+    </tr>
+</table>

@@ -113,8 +113,14 @@ define([
         },
         _onClickButtonAdd : function(evt){
             var target = $(evt.target);
-            var table = target.parents("tr").find("table");
-            table.append(scheduleDayRowTpl);
+            var tr = target.parents("tr").eq(0);
+            var table = tr.find("table");
+            if(table.length != 0){
+                table.append(scheduleDayRowTpl);    
+            }else{
+                tr.after(scheduleDayRowTpl);
+            }
+            
         },
         
         _onClickButtonRemove : function(evt){
@@ -177,8 +183,8 @@ define([
                     _.each(day.find("tr"), function(tr, idx){
                         tr = $(tr);  
                         _view._setScheduleType(daySchedule[idx].type, tr);
-                        $(tr).find(".place").val(daySchedule[idx].place).trigger("change");
-                        $(tr).find(".price").val(daySchedule[idx].price) * 1;
+                        $(tr).find(".place").val(daySchedule[idx].place);
+                        $(tr).find(".price").val(daySchedule[idx].price).trigger("change");
                     });
                 }
                 

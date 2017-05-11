@@ -173,7 +173,8 @@ define([
 	                },
 	                
 	                deposit : 0,
-	                balance : 0
+	                balance : 0,
+	                dueDate : moment().format("YYYY-MM-DD")
 	            },
 	            admin : {
 					depositor : "보성블루투어",
@@ -185,6 +186,7 @@ define([
 				},
 				
 				files : [],
+				url : [],
 	        };
 	        
 		    this.trigger("change:all");

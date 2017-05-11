@@ -161,6 +161,7 @@ define([
 				date : {
 					start : moment(data.date.start).format('YYYY년 MM월 DD일 dddd'),
 					end : moment(data.date.end).format('YYYY년 MM월 DD일 dddd'),
+					due : moment(data.price.dueDate).format('YYYY년 MM월 DD일 dddd'),
 				},
 				
 				admin : {

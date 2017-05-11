@@ -50,23 +50,42 @@ define([
 
 		_onClickSave: function() {
 			var _view = this;
-			this._reqSaveImage()
-				.success(function(data){
-					var url = TourData.getData("url");
-					_.each(data.files, function(file){
-						url.push(file.name);
+			if(TourData.getData("files").length > 0){
+				this._reqSaveImage()
+					.success(function(data){
+						var url = TourData.getData("url");
+						_.each(data.files, function(file){
+							url.push(file.name);
+						});
+						TourData.setData("url", url);
+						TourData.setData("files", []);
+	
+						_view._reqSave(false);	
+						_view.$(".progress .progress-bar").css("width", "0%");
+						_view.$(".progress .progress-bar").text("");
+						_view.$(".progress").hide();
 					});
-					TourData.setData("url", url);
-					TourData.setData("files", []);
-
-					_view._reqSave(false);		
-				});
+			}else{
+				_view._reqSave(false);
+			}
+			
 		},
 		_reqSaveImage :function(){
 			var imageFiles = {
 				files: TourData.getData("files"),
-				url : "/file/upload"
+				url : "/file/upload",
 			};
+			var _view = this;
+			$('#fileupload').bind('fileuploadprogress', function (e, data) {
+			    // Log the current bitrate for this upload:
+			    console.log(data.loaded, "/", data.total);
+			    var percent = Math.round(data.loaded/data.total * 1000)/10;
+			    
+			    _view.$(".progress .progress-bar").css("width", percent + "%");
+			    _view.$(".progress .progress-bar").text(percent + "%");
+			});
+			
+			_view.$(".progress").show();
 			return $('#fileupload').fileupload("send", imageFiles);
 		},
 		

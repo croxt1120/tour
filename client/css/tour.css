@@ -164,6 +164,10 @@
     width: 90px;
 }
 
+#print .schedule-table td > div {
+    height:18px;
+}
+
 /* print free tour*/
 #printFree table .title-td {
     width: 120px;

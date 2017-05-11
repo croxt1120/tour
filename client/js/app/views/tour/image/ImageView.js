@@ -74,18 +74,18 @@ define([
         },
 
         events: {
-            "click img": "_onClickImg"
+            // "click img": "_onClickImg"
         },
 
-        _onClickImg: function(evt) {
-            var target = $(evt.target).parents(".thumbnail");
-            var index = target.index(".thumbnail");
+        // _onClickImg: function(evt) {
+        //     var target = $(evt.target).parents(".thumbnail");
+        //     var index = target.index(".thumbnail");
 
-            this.files.splice(index, 1);
-            TourData.setData("files", this.files);
+        //     this.files.splice(index, 1);
+        //     TourData.setData("files", this.files);
 
-            target.remove();
-        },
+        //     target.remove();
+        // },
 
         setData: function() {
             var urls = TourData.getData("url");

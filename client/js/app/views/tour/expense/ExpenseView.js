@@ -3,6 +3,7 @@ define([
     "underscore",
     "backbone",
     "select2",
+    "moment",
     "common/TourData",
     "common/Utils",
     "text!views/tour/expense/expenseTpl.html",
@@ -12,6 +13,7 @@ define([
     _,
     Backbone,
     select,
+    moment,
     TourData,
     Utils,
     expenseTpl,
@@ -26,6 +28,7 @@ define([
     var ExpenseView = Backbone.View.extend({
         initialize : function(){
             this.render();
+            moment.locale('ko');
             this.listenTo(TourData, "change:member", this._calculateAll);
             var _view =this;
             $("#extraCharge").on("change", function(){
@@ -45,7 +48,8 @@ define([
             "change .hotel .price" : "_onChangeHotelPrice",
             "change .tour .price" : "_onChangeTourPrice",
             "change .result .revenue" : "_onChangeResultRow",
-            "change .result .deposit" : "_onChangeDeposit"
+            "change .result .deposit" : "_onChangeDeposit",
+            "change #dueDate" : "_onChangeDuedate"
         },
         
         render : function(){
@@ -55,6 +59,11 @@ define([
                 data: SelectData              
             });
             
+            this.$("#dueDate").datepicker({
+             	autoclose: true,
+             	format: 'yyyy년 mm월 dd일 DD',
+             	language: 'kr',
+            });
             return this;
         },
         
@@ -139,6 +148,9 @@ define([
             this.getData();
         },
         
+        _onChangeDuedate : function(evt){
+            this.getData();
+        },
         _calculateAirfareRow : function(tr){
             var key = tr.attr("class").replace("airfare ", "");
             
@@ -460,6 +472,8 @@ define([
             data.deposit = Utils.numberWithoutCommas(this.$(".result .deposit").val());
             data.balance = Utils.numberWithoutCommas(this.$(".result .balance").text());
             
+            data.dueDate = moment(this.$("#dueDate").datepicker("getDate")).format("YYYY-MM-DD");
+            
             TourData.setData("price", data);
         },
         
@@ -547,6 +561,9 @@ define([
             // 계약금
             this.$(".result .deposit").val(data.deposit).trigger("change");
             
+            
+            //납기일
+            this.$("#dueDate").datepicker("setDate", data.dueDate);
             this._calculateAll();
         }
     });

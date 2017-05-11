@@ -83,7 +83,7 @@ define([
                     this.getData("date", data);
                 }else{
                     alert("여행 개시일은 여행 마감일 이전 날짜로 설정 할 수 없습니다.");
-    				this.$("#end").datepicker("setDate",start);
+    				this.$("#end").datepicker("setDate",start.toDate());
                 }
             }
         },
@@ -160,8 +160,8 @@ define([
                 _view.$("#"+k).val(v);
             });
             
-            this.$("#end").datepicker("clearDate");
-            this.$("#start").datepicker("clearDate");
+            this.$("#end").datepicker("clearDates");
+            this.$("#start").datepicker("clearDates");
             
             _.each(data.date, function(v,k){
                 _view.$("#"+k).datepicker("setDate", v);

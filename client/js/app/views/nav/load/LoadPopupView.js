@@ -42,6 +42,8 @@ define([
 
 		open: function() {
 			// 데이터 조회
+			var $selItem = this.$('.list-group .active');
+			$selItem.removeClass("active");
 			this.$el.modal("show");
 			this._reqLoad();
 		},

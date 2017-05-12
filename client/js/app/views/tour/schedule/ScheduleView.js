@@ -178,24 +178,22 @@ define([
             var _view = this;
             var daysTr = this.$(".scheduleDayTable");
             
-            if(data.length == daysTr.length){
-                for(var i=0; i<daysTr.length; i++){
-                    var daySchedule = data[i];
-                    var day = daysTr.eq(i);
-                    
-                    for(var j=1; j<daySchedule.length; j++){
-                        _view._onClickButtonAdd({target : day});
-                    }
-                    
-                    _.each(day.find("tr"), function(tr, idx){
-                        tr = $(tr);  
-                        _view._setScheduleType(daySchedule[idx].type, tr);
-                        $(tr).find(".place").val(daySchedule[idx].place);
-                        $(tr).find(".price").val(daySchedule[idx].price).trigger("change");
-                    });
-                }
+            for(var i=0; i<data.length; i++){
+                var daySchedule = data[i];
+                var day = daysTr.eq(i);
                 
+                for(var j=1; j<daySchedule.length; j++){
+                    _view._onClickButtonAdd({target : day});
+                }
+                var trs = day.find("tr");
+                _.each(daySchedule, function(data, idx){
+                    var tr = $(trs[idx]);
+                    _view._setScheduleType(data.type, tr);
+                    $(tr).find(".place").val(data.place);
+                    $(tr).find(".price").val(data.price).trigger("change");
+                });
             }
+                
             
             this.getData();
         },

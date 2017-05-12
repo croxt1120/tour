@@ -117,22 +117,19 @@ define([
             var _view = this;
             var meals = this.$(".meal");
             
-            if(data.length == meals.length){
-                _.each(meals, function(mealRow, idx){
-                    var dayData = data[idx];
-                    var meal = $(mealRow).find(".name");
-                    var price = $(mealRow).find(".price");
-                    
-                    for(var i=0; i<3; i++){
-                        meal.eq(i).val(dayData[i].name);
-                        price.eq(i).val(dayData[i].price).trigger("change");    
-                    }
-                    
-                    _view._calculateDayTotal($(mealRow));
-                });
+            _.each(data, function(dayData, idx){
+                var meal = $(meals[idx]).find(".name");
+                var price = $(meals[idx]).find(".price");
+                                
+                for(var i=0; i<3; i++){
+                    meal.eq(i).val(dayData.name);
+                    price.eq(i).val(dayData.price).trigger("change");    
+                }
                 
-                this._calculateTotal();
-            }
+                _view._calculateDayTotal($(meals[idx]));
+            });
+            
+            this._calculateTotal();
         }
     });
     

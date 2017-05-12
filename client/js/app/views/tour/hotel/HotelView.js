@@ -52,12 +52,12 @@ define([
             var data = TourData.getData("hotels");
             
             var hotels = this.$(".hotel");
-            if(data.length == hotels.length){
-                _.each(hotels, function(hotel, i){
-                    $(hotel).find(".name").val(data[i].name);
-                    $(hotel).find(".phone").val(data[i].phone);
+            // if(data.length == hotels.length){
+                _.each(data, function(hotel, i){
+                    $(hotels[i]).find(".name").val(hotel.name);
+                    $(hotels[i]).find(".phone").val(hotel.phone);
                 });
-            }
+            // }
         },
         
         getData : function(){

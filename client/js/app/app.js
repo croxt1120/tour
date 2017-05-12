@@ -4,19 +4,20 @@ require([
 	require([
 		'jquery',
 		'bootstrap',
+		'views/nav/NavView',
 	    'router',
 	    'moment',
 	    'datetimepicker',
-	    'common/Utils',
-	    'views/nav/NavView'
+	    'common/Utils'
+	    
     ], function (
     	$,
     	bootstrap,
+    	MainNavView,
         Router,
         moment,
         datetimepicker,
-        Utils,
-        MainNavView
+        Utils
     ){
     	moment.locale('ko');
     	

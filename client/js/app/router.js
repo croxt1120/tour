@@ -17,8 +17,8 @@ define([
 ) {
 	var currentView = _.noop();
 	var views = {
-		tour : new TourView(),
-		print : new PrintView(),
+		"package-tour" : new TourView(),
+		"print-package" : new PrintView(),
 		admin : new AdminInfoView()
 	};
 	
@@ -34,10 +34,10 @@ define([
 			"admin" : "_onShowAdmin",
 	    },
 	    _onShowPrintView : function(){
-	    	this.changeView("print");
+	    	this.changeView("print-package");
 	    },
      	_onShowPackageTourView : function() {
-     		this.changeView("tour");
+     		this.changeView("package-tour");
      	},
      	_onShowAdmin : function(){
      		this.changeView("admin");	
@@ -56,7 +56,14 @@ define([
      		currentView = views[key];
      		views[key].$el.show();
      		
-     		views[key].setData();
+     		try{
+     			views[key].setData();
+     		}catch(e){
+     			console.log(e);
+     		}
+     		var li = $('a[href="#'+key+'"]').parents("li").eq(0);
+     		li.siblings("li").removeClass("active");
+     		li.addClass("active");
      	}
 	});
 		

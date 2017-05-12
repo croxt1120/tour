@@ -1,0 +1,242 @@
+{
+    "member": {
+        "adult": "2",
+        "child": "0",
+        "baby": "0"
+    },
+    "info": {
+        "client": "지창욱 오하나",
+        "title": "지창욱 오하나 하와이",
+        "planner": "",
+        "plannerInfo": "",
+        "inclusion": "왕복항공권, 전용 차량비, 현지공항세, 관광진흥개발기금, 전쟁보험료, 유류할증료, 숙박비, 식사비, 관광지 입장료, 1억원 여행자보험, ",
+        "exclusion": "가이드팁,자유 시간에 식사,에티켓팁,개인 경비",
+        "specialty": "",
+        "extraCharge": 0,
+        "extraChargeInfo": "",
+        "car": "9",
+        "driver": "",
+        "domestic" : true
+    },
+    "date": {
+        "start": "2017-06-20",
+        "end": "2017-06-26"
+    },
+    "airlines": [{
+        "airline": "KE",
+        "locale1": "인천",
+        "time1": "21:20",
+        "flight": "053",
+        "locale2": "호놀룰루",
+        "time2": "10:50"
+    }, {
+        "airline": "KE",
+        "locale1": "호놀룰루",
+        "time1": "13:00",
+        "flight": "054",
+        "locale2": "인천",
+        "time2": "17:45"
+    }],
+    "hotels": [{
+        "name": "쉐라톤 와이키키 호텔",
+        "phone": ""
+    }, {
+        "name": "쉐라톤 와이키키 호텔",
+        "phone": ""
+    }, {
+        "name": "쉐라톤 와이키키 호텔",
+        "phone": ""
+    }, {
+        "name": "쉐라톤 와이키키 호텔",
+        "phone": ""
+    }, {
+        "name": "쉐라톤 와이키키 호텔",
+        "phone": ""
+    }, {
+        "name": "기내 숙박",
+        "phone": ""
+    }, {
+        "name": "",
+        "phone": ""
+    }],
+    "meals": [
+        [{
+            "name": "기내식",
+            "price": 0
+        }, {
+            "name": "현지식 뷔페식",
+            "price": 0
+        }, {
+            "name": "한식(불고기 전골)",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "현지식 뷔페식",
+            "price": 0
+        }, {
+            "name": "랍스터킹레스토랑",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "런치크루즈",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "기내식",
+            "price": 0
+        }, {
+            "name": "기내식",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }]
+    ],
+    "schedules": [
+        [{
+            "type": "place",
+            "place": "시내 관광",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "자유시간",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "다이아몬드헤드분화구/한국지도마을/하나우마베이 전망대/할로나 블로우 홀/마카푸 포인트 전망대",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "돌핀스타 돌핀와칭 크루즈",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "알라 모아나 쇼핑센터",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "호놀룰루 출발",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "한국 도착",
+            "price": 0
+        }]
+    ],
+    "price": {
+        "exchangeRate": {
+            "USD": 1150,
+            "EUR": 0
+        },
+        "airfare": {
+            "adult": {
+                "summary": "대한항공 항공료",
+                "price": 1299400,
+                "currency": "KRW",
+                "person": 1299400,
+                "people": 2598800
+            },
+            "child": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            }
+        },
+        "hotel": [{
+            "summary": "쉐라톤 와이키키 호텔",
+            "price": 2548980,
+            "currency": "KRW",
+            "person": 1274490,
+            "people": 2548980
+        }],
+        "tour": [{
+            "summary": "돌핀크루즈",
+            "price": 138,
+            "currency": "USD",
+            "person": 158700,
+            "people": 317400
+        }],
+        "result": {
+            "adult": {
+                "revenue": 266410,
+                "person": 2999000,
+                "people": 5998000
+            },
+            "child": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            }
+        },
+        "deposit": 0,
+        "balance": 5998000,
+        "dueDate": "2017-05-12"
+    },
+    "admin": {
+        "depositor": "보성블루투어",
+        "bankName": "국민은행",
+        "accountNumber": "472901-01-055465",
+        "packagePrintMsg": "* 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.\n* 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%\n* 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.\n"
+    },
+    "files": [],
+    "url": []
+}

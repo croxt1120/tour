@@ -29,13 +29,11 @@ define([
             this.$el.append(mealTpl);
             this.addRow(1);
         },
-        
         _onChangeDate : function(){
             var date = TourData.getData("date");
             var days = moment(date.end).diff( moment(date.start), 'days') + 1;
             this.addRow(days);
         },
-        
         _onChangeInput : function(){
             this.getData();
         },

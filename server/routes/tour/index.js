@@ -67,6 +67,7 @@ router
 })
 .post(function(req, res, next) {
     var tourName = req.params.tourName;
+    console.log("tourName", tourName);
     var isOverWrite = req.body.isOverWrite;
     var saveData = req.body.saveData;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";

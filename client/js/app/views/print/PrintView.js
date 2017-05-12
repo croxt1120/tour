@@ -26,6 +26,7 @@ define([
 		initialize: function() {
 			this.render();
 			moment.locale("ko");
+			this.listenTo(TourData, "change", this.setData);
 		},
 		render: function() {
 			var tpl = _.template(printViewTpl, {});
@@ -52,16 +53,23 @@ define([
 			};
 			
 			var makeAirlineSchedule = function(airline){
-				var schedules = [];					
+				var schedules = [];
+				var info =TourData.getData("info");
+				var hour = 3;
+				
+				if(info.domestic == true){
+					hour = 1;
+				}
+				
 				schedules.push({
-					place : airline.locale1,
-					transportation : airline.airline,
-					time : moment(airline.time1, "HH:mm").subtract('hour', 1).format("HH:mm"),
+					place : airline.locale1 ,
+					transportation : airline.airline + "-" + airline.flight,
+					time : moment(airline.time1, "HH:mm").subtract('hour', hour).format("HH:mm"),
 					summary : airline.locale1 + " 공항 도작 및 수속(신분증 필수 지참)",
 				});
 				schedules.push({
 					place : "",
-					transportation : "("+airline.flight+")",
+					transportation : "",
 					time : airline.time1,
 					summary : airline.locale1 + " 공항 출발",
 				});
@@ -97,12 +105,14 @@ define([
 				
 				_.each(schedules[i], function(schedule, idx){
 					if(schedule.type == "place"){
-						item.schedules.push({
-							place : "",
-							transportation : "",
-							time : "",
-							summary : schedule.place,
-						});
+						if(schedule.place != ""){
+							item.schedules.push({
+								place : "",
+								transportation : "",
+								time : "",
+								summary : schedule.place,
+							});
+						}
 					}else{
 						item.schedules = item.schedules.concat(makeAirlineSchedule(airlines[schedule.place]));
 					}
@@ -121,9 +131,10 @@ define([
 			var convertData = {
 				title : data.info.title,
 				
+				airline : _.first(data.airlines).airline,
 				client : data.info.client,
 				planner : data.info.planner,
-				plannerInfo : data.info.planner,
+				plannerInfo : data.info.plannerInfo,
 				
 				inclusion : data.info.inclusion,
 				exclusion : data.info.exclusion,

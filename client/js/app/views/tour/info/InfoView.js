@@ -138,7 +138,10 @@ define([
                     input = $(input);
                     var id = input.attr("id");
                     var value = input.val();
-                    if(input.hasClass("price")){
+                    
+                    if(id == "domestic"){
+                        value = input.is(":checked");
+                    }else if(input.hasClass("price")){
                         value = Utils.numberWithoutCommas(input.val());
                     }
                     data[id] = value;
@@ -153,7 +156,11 @@ define([
             var data = TourData.getData();
             
             _.each(data.info, function(v,k){
-                _view.$("#"+k).val(v);
+                if(k == "domestic"){
+                    _view.$("#"+k).attr("checked", v);    
+                }else{
+                    _view.$("#"+k).val(v);
+                }
             });
             
             _.each(data.member, function(v,k){

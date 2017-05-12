@@ -92,7 +92,7 @@ define([
 		_reqSave: function(isOverWrite) {
 			var _this = this;
 			var tourName = this.$('#tourName').val();
-			var url = '/tour/' + tourName;
+			var url = '/tour/' + encodeURIComponent(tourName);
 			var data = {};
 
 			var packageTour = TourData.getData();
@@ -100,7 +100,9 @@ define([
 
 			data['saveData'] = JSON.stringify(packageTour);
 			data['isOverWrite'] = isOverWrite;
-
+			
+			
+			console.log("SAVE DATA", data);
 			$.post(url, data, function(res) {
 				if (res.isSuccess) {
 					alert('데이터를 저장하였습니다.');

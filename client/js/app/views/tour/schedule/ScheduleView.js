@@ -25,7 +25,7 @@ define([
         initialize: function() {
             this.render();
             this.listenTo(TourData, "change:date", this._onChangeDate);
-            this.listenTo(TourData, "change:all", this._onChangeDate);
+            this.listenTo(TourData, "change:all", this._onLoadChangeDate);
         },
         
         render : function(){
@@ -39,6 +39,7 @@ define([
             "change #scheduleTable input" : "_changeInput",
             "change #scheduleTable select" : "_changeInput",
         },
+        
         _addRow : function(rowCount){
             var tpl = _.template(mealRowTpl);
             var _view = this;
@@ -52,6 +53,13 @@ define([
         },
         
         _onChangeDate : function(){
+            var date = TourData.getData("date");
+            var days = moment(date.end).diff( moment(date.start), 'days') + 1;
+            this._addRow(days);
+            this.getData();
+        },
+        
+        _onLoadChangeDate : function(){
             var date = TourData.getData("date");
             var days = moment(date.end).diff( moment(date.start), 'days') + 1;
             this._addRow(days);

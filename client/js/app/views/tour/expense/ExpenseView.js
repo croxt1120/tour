@@ -230,13 +230,17 @@ define([
             var tour = Utils.numberWithoutCommas(this.$(".tour.total").find(".person").text());
             var hotel = Utils.numberWithoutCommas(this.$(".hotel.total").find(".person").text());
             var revenue = Utils.numberWithoutCommas(tr.find(".revenue").val());
-            
+            var member = TourData.getData("member");
             var value = airfare + tour + hotel;
+            
+            if(member[className] == 0){
+                value = 0;
+            }
             tr.find(".cost").text(Utils.numberWithCommas(value));
             
             value += revenue;
             tr.find(".person").text(Utils.numberWithCommas(value));
-            var member = TourData.getData("member");
+            
             
             tr.find(".people").text(Utils.numberWithCommas(value * member[className]));
             

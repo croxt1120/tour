@@ -56,7 +56,6 @@ define([
             var date = TourData.getData("date");
             var days = moment(date.end).diff( moment(date.start), 'days') + 1;
             this._addRow(days);
-            this.getData();
         },
         
         _onLoadChangeDate : function(){

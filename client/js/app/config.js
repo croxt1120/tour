@@ -8,7 +8,7 @@ require.config({
             jquery_fileupload  : '../libs/jquery.fileupload',
             text       : '../libs/text',
             underscore : '../libs/underscore.min',
-            backbone   : '../libs/backbone',
+            backbone   : '../libs/backbone-min',
             semantic   : '../libs/semantic',
             moment     : '../libs/moment-with-locales',
             bootstrap  : '../libs/bootstrap',

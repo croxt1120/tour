@@ -53,7 +53,7 @@ define([
 			};
 			
 			var makeAirlineSchedule = function(airline){
-				var schedules = [];
+				var schedules = [[],[]];
 				var info =TourData.getData("info");
 				var hour = 3;
 				
@@ -61,34 +61,53 @@ define([
 					hour = 1;
 				}
 				
-				schedules.push({
+				var timeFormat = "HH:mm";
+				var dateFormat = "YYYY-MM-DD HH:mm";
+				var format = "YYYY-MM-DD";
+				
+				var timeIndex = 0;
+				
+				schedules[timeIndex].push({
 					place : airline.locale1 ,
 					transportation : airline.airline + "-" + airline.flight,
-					time : moment(airline.time1, "HH:mm").subtract('hour', hour).format("HH:mm"),
+					time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
 					summary : airline.locale1 + " 공항 도작 및 수속(신분증 필수 지참)",
 				});
-				schedules.push({
+				
+				schedules[timeIndex].push({
 					place : "",
 					transportation : "",
-					time : airline.time1,
+					time : moment(airline.date1 + " " +airline.time1, dateFormat).format(timeFormat),
 					summary : airline.locale1 + " 공항 출발",
-				});
-				schedules.push({
+				});	
+					
+				if(moment(airline.date1 + " " +airline.time1, dateFormat).format(format) 
+					!= moment(airline.date2 + airline.time2, dateFormat).format(format)){
+						
+					timeIndex += 1;
+				}
+				
+				schedules[timeIndex].push({
 					place : airline.locale2,
 					transportation : "",
-					time : airline.time2,
-					summary : airline.locale2 + " 공항 도착",
-				});
+					time : moment(airline.date2 + " " +airline.time2, dateFormat).format(timeFormat),
+					summary : airline.locale2 + " 공항 도착 (비행시간 : " +airline.flighttime + "시간)",
+				});		
 				
-				return schedules;
+				if(timeIndex != 0){
+					return schedules;
+				}else{
+					return [schedules[0]];
+				}
 			};
 			
 			var days = moment(date.end).diff( moment(date.start), 'days');
 			var scheduleData = [];
+			var prevSchedule = [];
 			for(var i=0; i<= days; i++){
 				var item = {
 					index : i + 1,
-					date : moment(date.start).add("day", i).format ("MM월 DD일"),
+					date : moment(date.start).add(i, "day").format ("MM월 DD일"),
 					meals : [],
 					hotel : {
 						name : changeBlank(hotels[i].name),
@@ -97,6 +116,10 @@ define([
 					schedules : []
 				};
 				
+				if(prevSchedule.length > 0){
+					item.schedules = prevSchedule;
+					prevSchedule = [];
+				}
 				var mealPrefix = ["조", "중", "석"];
 				_.each(meals[i], function(meal, idx){
 					var name = changeBlank(meal.name);
@@ -114,14 +137,36 @@ define([
 							});
 						}
 					}else{
-						item.schedules = item.schedules.concat(makeAirlineSchedule(airlines[schedule.place]));
+						var airlineSchedule = makeAirlineSchedule(airlines[schedule.place]);
+						if(airlineSchedule.length == 1){
+							item.schedules = item.schedules.concat(airlineSchedule[0]);	
+						}else{
+							item.schedules = item.schedules.concat(airlineSchedule[0]);	
+							prevSchedule = prevSchedule.concat(airlineSchedule[1]);
+						}
+						
 					}
 				});
 				scheduleData.push(item);
 			}
-
-			_.first(scheduleData).schedules = makeAirlineSchedule(_.first(airlines)).concat(_.first(scheduleData).schedules);
-			_.last(scheduleData).schedules = _.last(scheduleData).schedules.concat(makeAirlineSchedule(_.last(airlines)));
+			
+			var first = makeAirlineSchedule(_.first(airlines));
+			var last = makeAirlineSchedule(_.last(airlines));
+			
+			var len = scheduleData.length;
+			if(first.length == 1){
+				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
+			}else{
+				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
+				scheduleData[1].schedules = first[1].concat(_.first(scheduleData).schedules);	
+			}
+			
+			if(last.length == 1){
+				scheduleData[len-1].schedules = _.last(scheduleData).schedules.concat(last[0]);
+			}else{
+				scheduleData[len-2].schedules = _.last(scheduleData).schedules.concat(last[0]);
+				scheduleData[len-1].schedules = _.last(scheduleData).schedules.concat(last[1]);
+			}
 			
 			return scheduleData;
 		},

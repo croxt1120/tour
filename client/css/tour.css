@@ -1,3 +1,13 @@
+.bootstrap-datetimepicker-widget table td {
+    border-bottom : 0 !important;
+    border-top : 0 !important;
+}
+
+.bootstrap-datetimepicker-widget table tr th {
+    border-bottom : 0 !important;
+    border-top : 0 !important;
+}
+
 /* print common */
 @media print
 {    
@@ -263,4 +273,5 @@ table.scheduleDayTable td {
 .select2-container .select2-selection--single {
     height:34px;
 }
+
 

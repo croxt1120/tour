@@ -1,3 +1,5 @@
+//script.setAttribute("data-main", "js/main");
+
 require([
     'config'
 ], function () {
@@ -40,7 +42,7 @@ require([
 	        $(evt.currentTarget).val(money);
     	});
     	
-    	$('body').on('change', 'input.time', function(evt) {
+    	$('body').on('change', 'input.da', function(evt) {
 			var time = $(evt.currentTarget).val();
 			var isValid = Utils.checkTimeFormat(time);
 	        

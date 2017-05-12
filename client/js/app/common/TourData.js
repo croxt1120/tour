@@ -72,15 +72,21 @@ define([
 	            	flight : "",							// 편명
 	            	locale1: "",							// 출발지역
 	            	locale2 : "",							// 도착지역
-	            	time1 : "",								// 출발시간
-	            	time2 : ""								// 도착시간				
+	            	date1 : moment().format("YYYY-MM-DD"),
+	            	date2 : moment().format("YYYY-MM-DD"),
+	            	time1 : "00:00",						// 출발시간
+	            	time2 : "00:00",						// 도착시간	
+	            	flighttime : 0
 	            }, {
 	            	airline : "",							// 항공사
 	            	flight : "",							// 편명
 	            	locale1: "",							// 출발지역
 	            	locale2 : "",							// 도착지역
-	            	time1 : "",								// 출발시간
-	            	time2 : ""								// 도착시간
+	            	date1 : moment().format("YYYY-MM-DD"),
+	            	date2 : moment().format("YYYY-MM-DD"),
+	            	time1 : "00:00",						// 출발시간
+	            	time2 : "00:00",						// 도착시간				
+	            	flighttime : 0
 	            }],
 	            // 숙소 화면 데이터
 	            hotels : [{									// 숙소 정보 (Array)	
@@ -182,9 +188,9 @@ define([
 	            },
 	            // 관리자 화면 데이터
 	            admin : {
-					depositor : "보성블루투어",
-					bankName : "국민은행",
-					accountNumber : "472901-01-055465",
+					depositor : "보성블루투어(강순영)",
+					bankName : "신한은행",
+					accountNumber : "100-028-663472",
 					packagePrintMsg : "* 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.\n" +
 	    							  "* 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%\n"+
 	    							  "* 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.\n"

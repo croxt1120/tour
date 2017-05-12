@@ -25,6 +25,8 @@ define([
         initialize : function(){
             this.render();
             moment.locale('ko');
+            
+            this.listenTo(TourData, "change:date", this._onChangeDateAirline);
         },
         
         events: {
@@ -33,14 +35,12 @@ define([
             "changeDate .date" : "_onChangeDate",
             "change .info" : "_onChangeInfo",
             "change .member" : "_onChangeMember",
-            "change .airline input" : "_onChangeAirLine"
+            "change .airline .air" : "_onChangeAirLine",
+            "change .airline .airDate" : "_onChangeAirLineDate",
         },
         
         render : function(){
             this.$el.append(infoTpl);
-            
-            this._addAirplane("귀국");
-            this._addAirplane("출국");
             
             var datepickerOption ={
              	autoclose: true,
@@ -55,7 +55,8 @@ define([
         },
         
         _onClickAddAirplane : function(evt){
-            this._addAirplane();
+            var date = TourData.getData("date");
+            this._addAirplane(undefined, date.start, date.start, false);
             this._onChangeAirLine();
         },
         
@@ -108,6 +109,14 @@ define([
                     input = $(input);
                     var id= input.attr("id");
                     var value = input.val();
+                    
+                    if(input.hasClass("date")){
+                        value = moment(input.datepicker("getDate")).format("YYYY-MM-DD");
+                    }else if(input.hasClass("time")){
+                        if(value == ""){
+                            value = "00:00";
+                        }
+                    }
                     airlineData[id] = value;
                 });
                 data.push(airlineData);
@@ -116,18 +125,39 @@ define([
             TourData.setData("airlines", data);
         },
         
-        _addAirplane : function(name, target){
+        _addAirplane : function(name, date1, date2, row){
             var rowTemplate = _.template(airlineTpl);
+            
             if(_.isUndefined(name)){
                 name = null;
             }
             
-            if(this.$(".airline").length == 0){
-                this.$("#airlineRow").append(rowTemplate({name : name}));
+            var tpl = $(rowTemplate({name : name}));
+            
+            tpl.find("#date1").datepicker({
+             	autoclose: true,
+             	format: 'yyyy-mm-dd',
+             	language: 'kr',
+            });
+            
+            tpl.find("#date1").datepicker("setDate", moment(date1, "YYYY-MM-DD").toDate());
+            
+            tpl.find("#date2").datepicker({
+             	autoclose: true,
+             	format: 'yyyy-mm-dd',
+             	language: 'kr',
+            });
+            
+            tpl.find("#date2").datepicker("setDate", moment(date2, "YYYY-MM-DD").toDate());
+            
+            if(row == true){
+                this.$("#airlineRow").append(tpl);
             }else{
                 var lastAirline = _.last(this.$(".airline"));
-                $(rowTemplate({name : name})).insertBefore($(lastAirline));
+                tpl.insertBefore($(lastAirline));
             }
+            
+            return tpl;
         },
         
         getData : function(key, data){
@@ -157,7 +187,7 @@ define([
             
             _.each(data.info, function(v,k){
                 if(k == "domestic"){
-                    _view.$("#"+k).attr("checked", v);    
+                    _view.$("#"+k).attr("checked", v);   
                 }else{
                     _view.$("#"+k).val(v);
                 }
@@ -175,17 +205,26 @@ define([
             });
             
             var airlines = data.airlines;
+            
             this.$("#airlineRow").empty();
             
-            this._addAirplane("귀국");
-            this._addAirplane("출국");
-            for(var i=0; i < airlines.length - 2; i++){
-                this._addAirplane();
-            }
-            var airlinesEl = this.$(".airline");
             for(var j=0; j < airlines.length; j++){
+                var name = undefined;
+                
+                if(j == 0){
+                    name = "출국";
+                }else if (j == airlines.length -1){
+                    name = "귀국";
+                }
+                
+                var airlinesEl = this._addAirplane(name, airlines[j].date1, airlines[j].date2, true);
                 _.each(airlines[j], function(v,k){
-                    airlinesEl.eq(j).find("#"+k).val(v);
+                    if(k == "date1" || k == "date2"){
+                        
+                    }else{
+                        airlinesEl.find("#"+k).val(v);
+                    }
+                    
                 });
             }
         },

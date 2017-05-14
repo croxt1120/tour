@@ -26,7 +26,7 @@ define([
             this.render();
             moment.locale('ko');
             
-            this.listenTo(TourData, "change:date", this._onChangeDateAirline);
+            // this.listenTo(TourData, "change:date", this._onChangeDateAirline);
         },
         
         events: {
@@ -75,17 +75,24 @@ define([
     		
             // 초기 설정시 end가 설정 안됬을때 제외
             if(end.isValid()){
-                if(_isValidDate(start, end)){
-                    var data = {
-                        start : start.format("YYYY-MM-DD"),
-                        end : end.format("YYYY-MM-DD")
-                    };
-                    
-                    this.getData("date", data);
-                }else{
+                if(!_isValidDate(start, end)){
                     alert("여행 개시일은 여행 마감일 이전 날짜로 설정 할 수 없습니다.");
     				this.$("#end").datepicker("setDate",start.toDate());
+    				end = start;
                 }
+                
+                var data = {
+                    start : start.format("YYYY-MM-DD"),
+                    end : end.format("YYYY-MM-DD")
+                };
+                
+                this.getData("date", data);
+                
+                this.$(".airline #date1").datepicker("setDate", start.toDate());
+                this.$(".airline #date2").datepicker("setDate", start.toDate());
+                
+                $(_.last(this.$(".airline #date1"))).datepicker("setDate", end.toDate());
+                $(_.last(this.$(".airline #date2"))).datepicker("setDate", end.toDate());
             }
         },
         

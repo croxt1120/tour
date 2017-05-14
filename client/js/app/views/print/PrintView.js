@@ -8,7 +8,8 @@ define([
 	'common/TourData',
 	'text!views/print/tpls/printViewTpl.html',
 	'text!views/print/tpls/tourInfoTpl.html',
-	'text!views/print/tpls/scheduleTpl.html'
+	'text!views/print/tpls/scheduleTpl.html',
+	'text!/../../css/print-tour.css',
 	
 ], function(
 	$,
@@ -20,7 +21,8 @@ define([
 	TourData,
 	printViewTpl,
 	tourInfoTpl,
-	scheduleTpl
+	scheduleTpl,
+	printStyle
 ) {
 	var PrintView = Backbone.View.extend({
 		initialize: function() {
@@ -37,7 +39,8 @@ define([
 			return this;
 		},
 		events: {
-			"click .btn-print": "onPrintClick"
+			"click .btn-print": "onClickPrint",
+			"click .btn-email": "onClickSendEmail"
 		},
 		
 		_getScheduleData : function(){
@@ -240,7 +243,7 @@ define([
 			});
 		},
 
-		onPrintClick: function(evt) {
+		onClickPrint: function(evt) {
 			var $print = this.$('.print-tour');
 
 			$("#appView").hide();
@@ -249,6 +252,27 @@ define([
 			window.print();
 			$("#appView").show();
 			this.$('.content').append($print);
+		},
+		
+		onClickSendEmail : function(evt){
+			var result = $("<div></div>");
+			var style = $("<style></style>").text(printStyle);
+			var html = this.$('.content').html();
+			
+			result.append(style);
+			result.append(html);
+			
+			$.post("/mail", {html : result.html()}, function(res) {
+				if (res.isSuccess) {
+					alert('데이터를 저장하였습니다.');
+				}
+				else {
+					alert('데이터 저장에 실패 했습니다.');
+				}
+
+			}).fail(function(res) {
+				alert('데이터 저장에 실패 했습니다.');
+			}).always(function(res) {});
 		}
 	});
 	return PrintView;

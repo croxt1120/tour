@@ -1,167 +1,23 @@
-*{
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    line-height: 1.4;
-}
-
-label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: 700;
-}
-
-.form-control {
-    display:inline-block;
-}
-
-textarea {
-    resize: none;
-}
-
-input{
-    width: 100%;
-}
-
-table {
-  max-width: 100%;
-    border-collapse: collapse;
-    margin: 0px;
-}
-
-table th {
-    /* padding: 2px !important; */
-    text-align: center;
-    vertical-align: middle !important;
-}
-
-/*.table td {*/
-   /* padding: 2px !important; */
-/*}*/
-
-/* print common*/
-.print-tour table > thead > tr > th,
-.print-tour table > tbody > tr > th,
-.print-tour table > tfoot > tr > th,
-.print-tour table > thead > tr > td,
-.print-tour table > tbody > tr > td,
-.print-tour table > tfoot > tr > td {
+#print table > thead > tr > th,
+#print table > tbody > tr > th,
+#print table > tfoot > tr > th,
+#print table > thead > tr > td,
+#print table > tbody > tr > td,
+#print table > tfoot > tr > td {
    border: 1px solid #000000 !important;
-   vertical-align: top;
+   padding: 4px;
+   text-align: center;
 }
 
-
-
-.print-tour table>tbody>tr>th {
-    padding: 4px;
-}
-.print-tour table>tbody>tr>td {
-    padding: 4px;
-    text-align: center;
+#print table {
+    margin-bottom : 0;
 }
 
-
-.print-tour {
+#print {
     -webkit-print-color-adjust:exact;
     font-size: 12px;
     font-family: GulimChe;
     font-weight: bold;
-}
-
-/* nav */
-.divider-vertical {
-    height: 30px;
-    margin: 0 9px;
-    margin-top: 10px;
-    border-left: 1px solid #F2F2F2;
-    border-right: 1px solid #FFF;
-}
-
-
-/* package */
-.package-info-table th {
-    width: 110px;
-}
-
-.package-info-table .width-50 {
-    width: 50px;
-}
-
-.package-info-table input {
-    width: 100%;
-}
-
-/* accommodation */
-/*.accommodation-table thead th {*/
-    
-/*}*/
-
-.accommodation-table thead .day {
-    min-width: 110px;
-}
-.accommodation-table .select-box {
-    width: 50%;
-    float: left;
-    margin-top: 2px;
-}
-
-.accommodation-table .input-acc-phone {
-    width: 50%;
-}
-
-/* schedule */
-.meal-table {
-    margin-bottom: 0px;
-}
-
-.meal-table th{
-    width: 230px;
-}
-
-.meal-table thead .day {
-    width: 65px;
-}
-
-.meal-table thead .total {
-    width: 85px;
-}
-
-.meal-table .select-box {
-    width: 128px;
-    float: left;
-    margin-top: 2px;
-}
-
-.meal-table .input-food-price {
-    width: 85px;
-}
-
-/* schedule */
-
-.schedule-table thead .day {
-    min-width: 65px;
-}
-
-.schedule-table thead .schedule {
-    width: 347px;
-}
-
-.schedule-table thead .total {
-    width: 85px;
-}
-
-.schedule-table .select-box {
-    width: 157px;
-    float: left;
-    margin-top: 2px;
-}
-
-.schedule-table .input-price {
-    width: 85px;
 }
 
 /* print-package*/
@@ -204,18 +60,29 @@ table th {
     text-align: left;
 }
 
-
-#print .print-package {
-    width: 100%;
-}
-
 #print .print-package .title-td  {
     background-color: #eeeeee !important;
 }
 
+#print .print-package .title-td.food {
+    width: 120px;
+}
+
+#print .print-package .inclusion  {
+    text-align: left;
+}
+
+#print .print-package .exclusion  {
+    text-align: left;
+}
+
+#print .print-package .specialty  {
+    text-align: left;
+}
+
+
 #print .print-package .days  {
      margin-top: 50%;
-    /*margin-top: 100px;*/
 }
 
 #print .print-package .area  {
@@ -226,12 +93,10 @@ table th {
 #print .print-package .traffic-aday  {
     width: 80px;
     position: relative;
-    /*vertical-align: bottom;*/
 }
 
 #print .print-package .traffic  {
     width: 80px;
-    /*position: relative;*/
     vertical-align: bottom;
 }
 #print .print-package .total-tour-expenses  {
@@ -247,7 +112,6 @@ table th {
 
 #print .print-package .time  {
     width: 90px;
-    /*position:relative;*/
     vertical-align: bottom;
 }
 
@@ -262,14 +126,11 @@ table th {
 }
 
 #print .print-package .schedule .item .title  {
-    width: 40%;
     float: left;
 }
 
 #print .print-package .schedule .item .explain  {
-    width: 60%;
-    /*padding-left: 10px;*/
-    float: left;
+    display: none;
 }
 
 
@@ -281,40 +142,10 @@ table th {
     width: 90px;
 }
 
-/* print free tour*/
-#printFree table .title-td {
-    width: 120px;
-    vertical-align: middle;
+#print .schedule-table td.meal div {
+    height: auto;
 }
 
-#printFree .title{
-    background-color: #ccc !important;
-    color: #000;
-    border: none;
+#print .schedule-table td > div {
+    height:18px;
 }
-
-/* print notice */
-#printNotice blockquote {
-    font-size: 12px;
-}
-
-#printNotice table .title-td {
-    width: 120px;
-    vertical-align: middle;
-}
-
-
-/* code management */
-.code-form {
-    padding: 10px 50px 10px 50px;    
-}
-
-.code-table-container {
-    padding: 10px 50px 10px 50px;    
-}
-
-.code-td {
-    text-align: center;
-    vertical-align: middle !important;
-}
-

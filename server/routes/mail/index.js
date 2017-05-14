@@ -3,29 +3,29 @@ var router = express.Router();
 
 
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
+// var smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transport = nodemailer.createTransport(smtpTransport({
-    host: '',
+var transport = nodemailer.createTransport({
+    host: 'smtp.naver.com',
     port: 587,
+    secure : true,
     auth: {
-        user: '',
-        pass: ''
+        user: 'jeongkilahan',
+        pass: 'ajk405..'
     },
-    rejectUnauthorized: false,
-    connectionTimeout:10000
-}));
+    // rejectUnauthorized: false,
+    // connectionTimeout:10000
+});
 
 router.post('/', function(req, res) {
   var mailOptions= {
-      from: '', // sender address 
+      from: 'jeongkilahan@naver.com', // sender address 
       to: [
-            { name: "", address: ""},
+            { name: "carran", address: "carran@naver.com"},
           ],
-      subject : "",
+      subject : "test",
       html : req.body.html,
-  	  text : "",
   };
   
   transport.sendMail(mailOptions, function(err, info){

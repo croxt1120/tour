@@ -20,6 +20,6 @@ module.exports = function(app, config) {
         console.log(new Date() + "========================================================");
         console.error(err.stack);
         console.log("=====================================================================");
-        next(err);
+        res.status(500).send('Something broke!');      
     });
 };

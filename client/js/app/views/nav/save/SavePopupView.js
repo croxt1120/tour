@@ -92,7 +92,15 @@ define([
 		_reqSave: function(isOverWrite) {
 			var _this = this;
 			var tourName = this.$('#tourName').val();
+			var r = new RegExp(/[\\\\\/:*?"<>|]/);
+			
+			if(r.test(tourName) == true){
+				alert("이름에 특수문자 \\ / : * ? < > | 를 사용할 수 없습니다.");
+				return;
+			}
+			
 			var url = '/tour/' + encodeURIComponent(tourName);
+			
 			var data = {};
 
 			var packageTour = TourData.getData();

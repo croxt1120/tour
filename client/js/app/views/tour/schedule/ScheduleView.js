@@ -150,21 +150,14 @@ define([
             var sum = 0;
             _.each(tables, function(table, index){
                 var dayData = [];
-                var daySum = 0;
                 _.each($(table).find("tbody").find("tr"), function(tr){
                     var place = $(tr).find(".place").val();
-                    var price = Utils.numberWithoutCommas( $(tr).find(".price").val() );
-                    daySum += price;
                     dayData.push({
                         type : $(tr).find(".place").get(0).tagName.toLowerCase() == "select" ? "airline" : "place",
                         place : place, 
-                        price : price,
                     });
                 });
                 
-                $(table).parents("tr").find(".scheduleDayTotal").text(Utils.numberWithCommas(daySum));
-
-                sum += daySum;
                 data.push(dayData);
             });
             

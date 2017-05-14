@@ -122,8 +122,8 @@ define([
                 var price = $(meals[idx]).find(".price");
                                 
                 for(var i=0; i<3; i++){
-                    meal.eq(i).val(dayData.name);
-                    price.eq(i).val(dayData.price).trigger("change");    
+                    meal.eq(i).val(dayData[i].name);
+                    price.eq(i).val(dayData[i].price).trigger("change");    
                 }
                 
                 _view._calculateDayTotal($(meals[idx]));

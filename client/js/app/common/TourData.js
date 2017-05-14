@@ -111,7 +111,6 @@ define([
 	            	[{										// 일자별 일정 정보
 	            		type : "place",						// 일정 타입 (place / airline)
 	            		place : "", 						// 일정명
-	            		price : 0							// 일정 가격
 	            	}]
 	            ],
 	            // 가격 화면 데이터

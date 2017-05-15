@@ -14,8 +14,8 @@ var transport = nodemailer.createTransport({
         user: 'jeongkilahan',
         pass: 'ajk405..'
     },
-    // rejectUnauthorized: false,
-    // connectionTimeout:10000
+    rejectUnauthorized: false,
+    connectionTimeout:10000
 });
 
 router.post('/', function(req, res) {

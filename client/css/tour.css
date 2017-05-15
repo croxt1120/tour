@@ -203,13 +203,12 @@
 /* image view thumbnail (썸네일 이미지) */
 .thumbnail {
     position: relative;
-    width: calc(25% - 30px);
-    height: 80px;
+    width: 150px;
+    height: 100px;
     overflow: hidden;
     margin: 5px 15px;
     float: left;
     text-align: center;
-    padding: 25px;
     box-shadow: 3px 3px 3px #eee;
     cursor : pointer;
 }

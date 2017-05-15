@@ -50,6 +50,7 @@ define([
 
 		_onClickSave: function() {
 			var _view = this;
+			this.$("button").attr("disabled", true);
 			if(TourData.getData("files").length > 0){
 				this._reqSaveImage()
 					.success(function(data){
@@ -64,12 +65,16 @@ define([
 						_view.$(".progress .progress-bar").css("width", "0%");
 						_view.$(".progress .progress-bar").text("");
 						_view.$(".progress").hide();
+					})
+					.always(function(){
+						_view.$("button").removeAttr("disabled");
 					});
 			}else{
 				_view._reqSave(false);
 			}
 			
 		},
+		
 		_reqSaveImage :function(){
 			var imageFiles = {
 				files: TourData.getData("files"),
@@ -129,7 +134,9 @@ define([
 
 			}).fail(function(res) {
 				alert('데이터 저장에 실패 했습니다.');
-			}).always(function(res) {});
+			}).always(function(res) {
+				_this.$("button").removeAttr("disabled");
+			});
 		}
 	});
 

@@ -104,7 +104,7 @@ define([
                     if(!(k == 0 || k == airlines.length - 1)){
                         data.push({
                             id : k,
-                            text : airline.flight
+                            text : airline.airline + "-" + airline.flight
                         });
                     }
                 });

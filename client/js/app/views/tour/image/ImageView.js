@@ -28,16 +28,56 @@ define([
         addGallery: function(files) {
             var _view = this;
             if (_.isArray(files)) {
-                _.each(files, function(file) {
-                    var reader = new FileReader();
+                _.each(files,function(file){
+                    var reader = new FileReader();  
                     reader.onload = function(e) {
+                        // var gallery = $(galleryTpl);
+                        // gallery.find("img").attr("src", e.target.result);
+                        // gallery.insertBefore(_view.$(".thumbnail.add"));
+                        
                         var gallery = $(galleryTpl);
-                        gallery.find("img").attr("src", e.target.result);
+                        var img = $("<img/>")[0];
+                        img.onload = function(){
+                            var canvas = gallery.find("canvas")[0];
+                            var ctx = canvas.getContext("2d");
+                            ctx.drawImage(img, 0, 0);
+                            
+                            var MAX_WIDTH = gallery.width();
+                            var MAX_HEIGHT = gallery.height();
+                            var width = MAX_WIDTH;
+                            var height = MAX_HEIGHT;
+                            
+                            console.log("MAX", MAX_WIDTH, MAX_HEIGHT);
+                            
+                            if (width > height) {
+                              if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                              }
+                            } else {
+                              if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                              }
+                            }
+                            
+                            console.log("RESULT", width, height);
+                            canvas.width = width;
+                            canvas.height = height;
+                            canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                            
+                            canvas.toDataURL("image/png");
+                        };
+                        
+                        img.src = e.target.result;
                         gallery.insertBefore(_view.$(".thumbnail.add"));
                     };
+                    
                     reader.readAsDataURL(file);
+                    
+                    
                 });
-
+                
                 this.files = this.files.concat(files);
                 TourData.setData("files", this.files);
             }
@@ -48,6 +88,10 @@ define([
             this.$el.append(imageTpl);
             $('#fileupload').fileupload({
                 dataType: 'json',
+                disableImageResize: false,
+                imageMaxWidth: 900,
+                imageMaxHeight: 600,
+                imageCrop: true, // Force cropped images,
                 add: function(e, data) {
                     var uploadFile = data.files[0];
                     var isValid = true;
@@ -55,7 +99,7 @@ define([
                         alert('png, jpg, gif 만 가능합니다');
                         isValid = false;
                     }
-                    else if (uploadFile.size > 5000000) { // 5mb
+                    else if (uploadFile.size > 500000000) { // 500mb
                         alert('파일 용량은 5메가를 초과할 수 없습니다.');
                         isValid = false;
                     }
@@ -95,7 +139,40 @@ define([
             var _view = this;
             _.each(urls, function(url) {
                 var gallery = $(galleryTpl);
-                gallery.find("img").attr("src", "/image/"+url);
+                var img = $("<img>")[0];
+                img.onload = function(){
+                    var canvas = gallery.find("canvas")[0];
+                    var ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    
+                    var MAX_WIDTH = gallery.width();
+                    var MAX_HEIGHT = gallery.height();
+                    var width = MAX_WIDTH;
+                    var height = MAX_HEIGHT;
+                    
+                    console.log("MAX", MAX_WIDTH, MAX_HEIGHT);
+                    
+                    if (width > height) {
+                      if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                      }
+                    } else {
+                      if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height;
+                        height = MAX_HEIGHT;
+                      }
+                    }
+                    
+                    console.log("RESULT", width, height);
+                    canvas.width = width;
+                    canvas.height = height;
+                    canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                    
+                    canvas.toDataURL("image/png");
+                };
+                
+                img.src = "/image/thumbnail/"+url;
                 gallery.insertBefore(_view.$(".thumbnail.add"));
             });
         }

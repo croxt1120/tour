@@ -14,8 +14,8 @@ var options=  {
     imageTypes:  /\.(gif|jpe?g|png)/i,
     copyImgAsThumb : true, // required 
     imageVersions :{
-        maxWidth : 200,
-        maxHeight : 200
+        maxWidth : 900,
+        maxHeight : 600
     },
     accessControl: {
         allowOrigin: '*',

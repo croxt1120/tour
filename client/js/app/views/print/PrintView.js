@@ -184,9 +184,9 @@ define([
 				planner : data.info.planner,
 				plannerInfo : data.info.plannerInfo,
 				
-				inclusion : data.info.inclusion,
-				exclusion : data.info.exclusion,
-				specialty : data.info.specialty,
+				inclusion : data.info.inclusion.replace(/\n/g, '<br>'),
+				exclusion : data.info.exclusion.replace(/\n/g, '<br>'),
+				specialty : data.info.specialty.replace(/\n/g, '<br>'),
 				
 				car : data.info.car,
 				driver : data.info.driver,

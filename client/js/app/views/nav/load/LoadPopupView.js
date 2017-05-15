@@ -3,7 +3,6 @@ define([
 	'underscore',
 	'bootstrap',
 	'backbone',
-	'router',
 	'custom/View',
 	'common/TourData',
 	'text!views/nav/load/tpls/loadTpl.html'
@@ -12,7 +11,6 @@ define([
 	_,
 	bootstrap,
 	Backbone,
-	router,
 	View,
 	TourData,
 	tourLoadPopupTpl
@@ -52,7 +50,9 @@ define([
 		// 팝업창 보이지 않게 1
 		close: function() {
 			this.$el.modal('hide');
-			router.navigate('package-tour', { trigger: true });
+			require(["router"], function(router){
+				router.navigate('package-tour', { trigger: true });	
+			});
 		},
 
 		_reqLoad: function() {

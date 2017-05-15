@@ -47,8 +47,6 @@ define([
                             var width = MAX_WIDTH;
                             var height = MAX_HEIGHT;
                             
-                            console.log("MAX", MAX_WIDTH, MAX_HEIGHT);
-                            
                             if (width > height) {
                               if (width > MAX_WIDTH) {
                                 height *= MAX_WIDTH / width;
@@ -61,7 +59,6 @@ define([
                               }
                             }
                             
-                            console.log("RESULT", width, height);
                             canvas.width = width;
                             canvas.height = height;
                             canvas.getContext("2d").drawImage(img, 0, 0, width, height);
@@ -94,19 +91,11 @@ define([
                 imageCrop: true, // Force cropped images,
                 add: function(e, data) {
                     var uploadFile = data.files[0];
-                    var isValid = true;
                     if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
                         alert('png, jpg, gif 만 가능합니다');
-                        isValid = false;
-                    }
-                    else if (uploadFile.size > 500000000) { // 500mb
-                        alert('파일 용량은 5메가를 초과할 수 없습니다.');
-                        isValid = false;
-                    }
-
-                    if (isValid == false) {
                         return;
                     }
+
                     if (uploadFile) {
                         _view.addGallery(data.files);
                     }

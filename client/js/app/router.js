@@ -4,6 +4,7 @@ define([
     'underscore',
     "common/TourData",
     "views/tour/TourView",
+    "views/list/ListView",
     'views/print/PrintView',
     'views/admin/AdminInfoView',
 ], function (
@@ -12,12 +13,14 @@ define([
 	_,
 	TourData,
 	TourView,
+	ListView,
 	PrintView,
 	AdminInfoView
 ) {
 	var currentView = _.noop();
 	var views = {
 		"package-tour" : new TourView(),
+		"list" : new ListView(),
 		"print-package" : new PrintView(),
 		admin : new AdminInfoView()
 	};
@@ -30,11 +33,15 @@ define([
 		routes:{
 			"" : "_onShowPackageTourView",
 			"package-tour" : "_onShowPackageTourView",
+			"list" :  "_onShowListView",
 			"print-package" : "_onShowPrintView", 
 			"admin" : "_onShowAdmin",
 	    },
 	    _onShowPrintView : function(){
 	    	this.changeView("print-package");
+	    },
+	    _onShowListView : function(){
+	    	this.changeView("list");
 	    },
      	_onShowPackageTourView : function() {
      		this.changeView("package-tour");

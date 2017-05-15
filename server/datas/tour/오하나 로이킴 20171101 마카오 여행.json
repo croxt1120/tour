@@ -1,0 +1,188 @@
+{
+    "member": {
+        "adult": "2",
+        "child": "0",
+        "baby": "0"
+    },
+    "info": {
+        "client": "로이킴 오하나",
+        "title": "오하나 로이킴 20171101 마카오 여행",
+        "domestic": false,
+        "planner": "오하나",
+        "plannerInfo": "",
+        "inclusion": "왕복항공권,국내공항세, 현지공항세, 관광진흥개발기금, 전쟁보험료, 유류할증료,숙박비(조식 포함),1억원 여행자보험",
+        "exclusion": "식사비용,관광지 입장료,기타 개인 경비",
+        "specialty": "",
+        "extraCharge": 0,
+        "extraChargeInfo": "",
+        "car": "",
+        "driver": ""
+    },
+    "date": {
+        "start": "2017-11-01",
+        "end": "2017-11-04"
+    },
+    "airlines": [{
+        "airline": "RS",
+        "locale1": "인천",
+        "time1": "12:40",
+        "flight": "521",
+        "locale2": "마카오",
+        "time2": "15:15"
+    }, {
+        "airline": "RS",
+        "locale1": "마카오",
+        "time1": "16:45",
+        "flight": "522",
+        "locale2": "인천",
+        "time2": "21:20"
+    }],
+    "hotels": [{
+        "name": "더 파리지안 마카오",
+        "phone": ""
+    }, {
+        "name": "더 파리지안 마카오",
+        "phone": ""
+    }, {
+        "name": "더 파리지안 마카오",
+        "phone": ""
+    }, {
+        "name": "",
+        "phone": ""
+    }],
+    "meals": [
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "기내식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }],
+        [{
+            "name": "호텔식",
+            "price": 0
+        }, {
+            "name": "불포함",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }]
+    ],
+    "schedules": [
+        [{
+            "type": "place",
+            "place": "",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "",
+            "price": 0
+        }],
+        [{
+            "type": "place",
+            "place": "",
+            "price": 0
+        }]
+    ],
+    "price": {
+        "exchangeRate": {
+            "USD": 1150,
+            "EUR": 0
+        },
+        "airfare": {
+            "adult": {
+                "summary": "에어서울 항공료",
+                "price": 340000,
+                "currency": "KRW",
+                "person": 340000,
+                "people": 680000
+            },
+            "child": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            }
+        },
+        "hotel": [{
+            "summary": "더 파리지안 마카오",
+            "price": 900000,
+            "currency": "KRW",
+            "person": 450000,
+            "people": 900000
+        }],
+        "tour": [{
+            "summary": "하우스 오브 댄싱 워터쇼",
+            "price": 80,
+            "currency": "USD",
+            "person": 92000,
+            "people": 184000
+        }],
+        "result": {
+            "adult": {
+                "revenue": 0,
+                "person": 882000,
+                "people": 1764000
+            },
+            "child": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            }
+        },
+        "deposit": 0,
+        "balance": 1764000,
+        "dueDate": "2017-05-12"
+    },
+    "admin": {
+        "depositor": "보성블루투어",
+        "bankName": "국민은행",
+        "accountNumber": "472901-01-055465",
+        "packagePrintMsg": "* 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.\n* 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%\n* 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.\n"
+    },
+    "files": [],
+    "url": []
+}

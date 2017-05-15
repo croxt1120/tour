@@ -74,7 +74,7 @@ define([
 					place : airline.locale1 ,
 					transportation : airline.airline + "-" + airline.flight,
 					time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
-					summary : airline.locale1 + " 공항 도작 및 수속(신분증 필수 지참)",
+					summary : airline.locale1 + " 공항 도작 및 수속 ("+(info.domestic==true?"신분증":"여권")+" 필수 지참)",
 				});
 				
 				schedules[timeIndex].push({
@@ -94,7 +94,7 @@ define([
 					place : airline.locale2,
 					transportation : "",
 					time : moment(airline.date2 + " " +airline.time2, dateFormat).format(timeFormat),
-					summary : airline.locale2 + " 공항 도착 (비행시간 : " +airline.flighttime + "시간)",
+					summary : airline.locale2 + " 공항 도착 (비행시간 : " +airline.flighttime + ")",
 				});		
 				
 				if(timeIndex != 0){

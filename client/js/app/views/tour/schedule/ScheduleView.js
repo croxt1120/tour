@@ -1,22 +1,30 @@
 define([
     "jquery",
+    "jquery_ui_widget",
+    "jquery_iframe_transport",
+    "jquery_fileupload",
     "underscore",
     "backbone",
     "select2",
     "moment",
     "common/TourData",
     "common/Utils",
+    "text!views/tour/schedule/galleryTpl.html",
     "text!views/tour/schedule/scheduleTpl.html",
     "text!views/tour/schedule/scheduleRowTpl.html",
     "text!views/tour/schedule/scheduleDayRowTpl.html"
 ], function(
     $,
+    jquery_ui_widget,
+    jquery_iframe_transport,
+    jquery_fileupload,
     _,
     Backbone,
     select2,
     moment,
     TourData,
     Utils,
+    galleryTpl,
     mealTpl,
     mealRowTpl,
     scheduleDayRowTpl
@@ -24,6 +32,7 @@ define([
     var ScheduleView = Backbone.View.extend({
         initialize: function() {
             this.render();
+            this.files = [];
             this.listenTo(TourData, "change:date", this._onChangeDate);
             this.listenTo(TourData, "change:all", this._onLoadChangeDate);
         },
@@ -49,12 +58,92 @@ define([
                 var dayRow = $(tpl({day : day + 1}));
                 _view._onClickButtonAdd({target : dayRow.find(".scheduleDayTable")});
                 _view.$("#scheduleTable > tbody").append(dayRow);
+                
+                dayRow.find('#fileupload').fileupload({
+                    dataType: 'json',
+                    disableImageResize: false,
+                    imageMaxWidth: 900,
+                    imageMaxHeight: 600,
+                    imageCrop: true, // Force cropped images,
+                    add: function(e, data) {
+                        var tr= $(e.target).parents(".scheduleRow");
+                        
+                        var uploadFile = data.files[0];
+                        if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
+                            alert('png, jpg, gif 만 가능합니다');
+                            return;
+                        }
+    
+                        if (uploadFile) {
+                            _view.addGallery(data.files, tr);
+                        }
+                        
+                    },
+                    fail: function(e, data) {
+                        alert('서버와 통신 중 문제가 발생했습니다');
+                    }
+                });
+                _view.files.push([]);
             });
+        },
+        
+        addGallery: function(files, scheduleRow) {
+            var index = scheduleRow.index() / 2;
+            var target = this.$(".imageRow").eq(index);
+            
+            if (_.isArray(files)) {
+                _.each(files,function(file){
+                    var reader = new FileReader();  
+                    reader.onload = function(e) {
+                        var gallery = $(galleryTpl);
+                        var img = $("<img/>")[0];
+                        img.onload = function(){
+                            var canvas = gallery.find("canvas")[0];
+                            var ctx = canvas.getContext("2d");
+                            ctx.drawImage(img, 0, 0);
+                            
+                            var MAX_WIDTH = gallery.width();
+                            var MAX_HEIGHT = gallery.height();
+                            var width = MAX_WIDTH;
+                            var height = MAX_HEIGHT;
+                            
+                            if (width > height) {
+                              if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                              }
+                            } else {
+                              if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                              }
+                            }
+                            
+                            canvas.width = width;
+                            canvas.height = height;
+                            canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                            
+                            canvas.toDataURL("image/png");
+                        };
+                        
+                        img.src = e.target.result;
+                        target.find("td").append(gallery);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                    
+                    
+                });
+                
+                this.files[index] = this.files[index].concat(files);
+                TourData.setData("files", this.files);
+            }
         },
         
         _onChangeDate : function(){
             var date = TourData.getData("date");
             var days = moment(date.end).diff( moment(date.start), 'days') + 1;
+            this.files = [];
             this._addRow(days);
         },
         
@@ -187,6 +276,51 @@ define([
                 });
             }
                 
+            var urls = TourData.getData("url");
+            
+            this.$(".thumbnail.img").remove();
+            _.each(urls, function(urlArr,idx) {
+                var target = _view.$(".imageRow").eq(idx);
+                _.each(urlArr, function(url){
+                    var gallery = $(galleryTpl);
+                    var img = $("<img>")[0];
+                    img.onload = function(){
+                        var canvas = gallery.find("canvas")[0];
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0);
+                        
+                        var MAX_WIDTH = gallery.width();
+                        var MAX_HEIGHT = gallery.height();
+                        var width = MAX_WIDTH;
+                        var height = MAX_HEIGHT;
+                        
+                        console.log("MAX", MAX_WIDTH, MAX_HEIGHT);
+                        
+                        if (width > height) {
+                          if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                          }
+                        } else {
+                          if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                          }
+                        }
+                        
+                        console.log("RESULT", width, height);
+                        canvas.width = width;
+                        canvas.height = height;
+                        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                        
+                        canvas.toDataURL("image/png");
+                    };
+                    
+                    img.src = "/image/thumbnail/"+url;
+                    target.find("td").append(gallery);
+                });
+                
+            });
             
             this.getData();
         },

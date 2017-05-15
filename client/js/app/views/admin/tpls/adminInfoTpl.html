@@ -1,14 +1,13 @@
-<div id="adminView">
-    <div class="sub-view">
-    	<div>
-    		<div id="bankInfoBox" style="width: 600px; float: left; ">
-    		    
+<div id="adminView" class="container-fluid">
+    <div class="row">
+        <div id="bankInfoBox" class="col-md-4">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">계좌 정보</div>
                     <div class="panel-body">
                         <table class="bank-info-table table table-bordered input-group">
                             <tbody>
-    
+
                                 <tr>
                                     <th>
                                         예금주
@@ -17,7 +16,7 @@
                                         <input id="depositor" class="data" data-type="input" type="text" value="보성블루투어">
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>
                                         은행
@@ -32,40 +31,38 @@
                                     </th>
                                     <td>
                                         <input id="accountNumber" class="data" data-type="input" type="text" value="472901-01-055465">
-                                    </td>                                
+                                    </td>
                                 </tr>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                
-    		</div>
-    		
-    		<div id="accommodationInfoBox" style="width: 790px; float: left; ">
-    		    
-                <div class="panel panel-default">
-                    <div class="panel-heading">프린트</div>
-                    <div class="panel-body">
-                        <table class="package-info-table table table-bordered input-group">
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        패키지 여행</br> 하단 문구
-                                    </th>
-                                    <td>
-                                        <textarea id="packagePrintMsg" class="data form-control" rows="5">
+
+            </div>
+        </div>
+        <div id="accommodationInfoBox" class="col-md-8">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">프린트</div>
+                <div class="panel-body">
+                    <table class="package-info-table table table-bordered input-group">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    패키지 여행</br> 하단 문구
+                                </th>
+                                <td>
+                                    <textarea id="packagePrintMsg" class="data form-control" rows="5">
     * 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.
     * 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%
     * 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.</textarea>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-    		</div>
-    	</div>
+            </div>
+
+        </div>
     </div>
 </div>

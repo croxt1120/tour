@@ -4,7 +4,6 @@ define([
     'underscore',
     'backbone',
     'views/nav/save/SavePopupView',
-    'views/nav/load/LoadPopupView',
     'text!views/nav/navTpl.html'
 ], function ( 
 	$,
@@ -12,12 +11,10 @@ define([
 	_,
 	Backbone,
 	SavePopupView,
-	LoadPopupView,
 	mainNavTpl
 ) {
     var views = {
         save : new SavePopupView(),
-		load : new LoadPopupView(),
     };
     
     var NavView = Backbone.View.extend({
@@ -44,7 +41,6 @@ define([
                         window.location.href='/';
                         break;
                     case "save" :
-                    case "load" :
                         views[name].open();	
                         break;
                 }

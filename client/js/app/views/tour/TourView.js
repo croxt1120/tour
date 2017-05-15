@@ -5,7 +5,6 @@ define([
     "common/TourData",
     "views/tour/info/InfoView",
     "views/tour/expense/ExpenseView",
-    "views/tour/image/ImageView",
     "views/tour/meal/MealView",
     "views/tour/hotel/HotelView",
     "views/tour/schedule/ScheduleView",
@@ -17,7 +16,6 @@ define([
     TourData,
     InfoView,
     ExpenseView,
-    ImageView,
     MealView,
     HotelView,
     ScheduleView,
@@ -38,7 +36,6 @@ define([
             this.views["info"]    = new InfoView({el : this.$("#tour-wide")});
             this.views["expense"] = new ExpenseView({el : this.$("#tour-wide")});
             
-            this.views["image"] = new ImageView({el : this.$("#tour-narrow")});
             this.views["meal"] = new MealView({el : this.$("#tour-narrow")});
             this.views["hotel"] = new HotelView({el : this.$("#tour-narrow")});
             this.views["schedule"] = new ScheduleView({el : this.$("#tour-narrow")});

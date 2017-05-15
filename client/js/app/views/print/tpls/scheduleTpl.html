@@ -1,5 +1,9 @@
 <tr>
+    <% if(urls.length > 0 ) { %>
+    <td rowspan="3">
+    <% } else {%>
     <td rowspan="2">
+    <% } %>
         <%=index%> 일차<br>
         <%= date %>
     </td>
@@ -62,3 +66,15 @@
         <%=hotel.phone%>
     </td>
 </tr>
+
+<% if(urls.length > 0 ) { %>
+    <tr>
+        <td colspan="8" style="text-align: left">
+            <% for(var i=0; i<urls.length; i++){ 
+                var url = urls[i];
+            %>
+                <div class="thumbnail img"><img width="135" height="90" src="/image/thumbnail/<%= url %>"/></div>
+            <% } %>            
+        </td>
+    </tr>
+<% } %>

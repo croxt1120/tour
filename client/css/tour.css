@@ -200,6 +200,11 @@
     width:60px !important;
 }
 
+#print .thumbnail{
+    height:90px !important;
+    width:135px;
+}
+
 /* image view thumbnail (썸네일 이미지) */
 .thumbnail {
     position: relative;

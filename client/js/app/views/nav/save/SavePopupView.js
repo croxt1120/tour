@@ -51,15 +51,39 @@ define([
 		_onClickSave: function() {
 			var _view = this;
 			this.$("button").attr("disabled", true);
-			if(TourData.getData("files").length > 0){
+			var isValid = false;
+			var files = TourData.getData("files");
+			for(var i =0; i<files.length; i++){
+				if(files[i].length != 0){
+					isValid = true;
+					break;
+				}
+			}
+			if(isValid == true){
 				this._reqSaveImage()
 					.success(function(data){
 						var url = TourData.getData("url");
+						var files = TourData.getData("files");
+						var newFiles = [];
+						var fileNames = {};
+						
 						_.each(data.files, function(file){
-							url.push(file.name);
+							fileNames[file.originalName] = file.name;
 						});
+						
+						_.each(files, function(fileArr, day){
+							newFiles.push([]);
+							if(_.isUndefined(url[day])){
+								url[day] = [];		
+							}
+							_.each(fileArr, function(file){
+								url[day].push(fileNames[file.name]);
+							});
+						});
+						
+						console.log(url, newFiles);
 						TourData.setData("url", url);
-						TourData.setData("files", []);
+						TourData.setData("files", newFiles);
 	
 						_view._reqSave(false);	
 						_view.$(".progress .progress-bar").css("width", "0%");
@@ -76,8 +100,14 @@ define([
 		},
 		
 		_reqSaveImage :function(){
+			var data = TourData.getData("files");
+			var files = [];
+			_.each(data, function(v){
+				files = files.concat(v);
+			});
+			
 			var imageFiles = {
-				files: TourData.getData("files"),
+				files: files,
 				url : "/file/upload",
 			};
 			var _view = this;

@@ -1,5 +1,13 @@
-<tr>
-    <td class="bold"><%=day%>일차</td>
+<tr class="scheduleRow">
+    <td rowspan="2" class="bold"><%=day%>일차 <br>
+        <div class="add fileinput-button btn btn-default btn-sm">
+            <span>
+                사진 추가
+                <input id="fileupload" type="file" name="files[]" multiple="">
+            </span>
+            
+        </div> 
+    </td>
     <td>
         <table class="scheduleDayTable">
             <colgroup>
@@ -8,4 +16,7 @@
             </colgroup>
         </table>
     </td>
+</tr>
+<tr class="imageRow">
+    <td></td>
 </tr>

@@ -47,6 +47,7 @@ define([
 			var airlines = TourData.getData("airlines");
 			var meals = TourData.getData("meals");
 			var hotels = TourData.getData("hotels");
+			var urls = TourData.getData("url");
 			var schedules = TourData.getData("schedules");
 			
 			var date = TourData.getData("date");
@@ -116,9 +117,11 @@ define([
 						name : changeBlank(hotels[i].name),
 						phone : changeBlank(hotels[i].phone),
 					},
-					schedules : []
+					schedules : [],
+					urls : urls[i]
 				};
 				
+				console.log(urls);
 				if(prevSchedule.length > 0){
 					item.schedules = prevSchedule;
 					prevSchedule = [];

@@ -88,11 +88,11 @@ define([
                 
                 this.getData("date", data);
                 
-                // this.$(".airline #date1").datepicker("setDate", start.toDate());
-                // this.$(".airline #date2").datepicker("setDate", start.toDate());
+                $(_.first(this.$(".airline #date1"))).datepicker("setDate", start.toDate());
+                $(_.first(this.$(".airline #date2"))).datepicker("setDate", start.toDate());
                 
-                // $(_.last(this.$(".airline #date1"))).datepicker("setDate", end.toDate());
-                // $(_.last(this.$(".airline #date2"))).datepicker("setDate", end.toDate());
+                $(_.last(this.$(".airline #date1"))).datepicker("setDate", end.toDate());
+                $(_.last(this.$(".airline #date2"))).datepicker("setDate", end.toDate());
             }
         },
         

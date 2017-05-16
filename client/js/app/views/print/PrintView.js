@@ -118,7 +118,7 @@ define([
 						phone : changeBlank(hotels[i].phone),
 					},
 					schedules : [],
-					urls : urls[i]
+					urls : _.isUndefined(urls[i])? [] : urls[i]
 				};
 				
 				console.log(urls);

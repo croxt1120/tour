@@ -1,225 +1,218 @@
-<div id="print" class="print-tour" style="width: 790px; margin: auto;">
-    <div class="cover">
-        <img src="<%= host %>/img/cover.jpg" style="width: 735px;">
-        <table class="info">
+<div id="print" class="print-tour" style="width:790px;margin:auto;-webkit-print-color-adjust:exact;font-size:12px;font-family:GulimChe;font-weight:bold;">
+    <div class="cover" style="width: 100%;height: 1147px;position: relative;">
+        <img src="<%=host%>/img/cover.jpg" style="width:735px;position:absolute;margin:auto;top:0;left:0;right:0;bottom:0;">
+        <table class="info" style="margin-bottom:0;position:absolute;top:500px;left:150px;font-size:25px;text-align:center;">
             <tr>
-                <td>
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                     상품명: 
                 </td>
-                <td style="width: 400px" class="tour-name">
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;width: 400px" class="tour-name">
                     <%=title%>
                 </td>
             </tr>
-            
             <tr>
-                <td>
-                    여행일: 
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
+                    여행일:
                 </td>
-                <td class="travel-start-date">
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="travel-start-date">
                     <%=date.start%>
                 </td>
             </tr>
-            
             <tr>
-                <td>
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                     기획자: 
                 </td>
-                <td class="planner">
+                <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="planner">
                     <%=planner%>
                 </td>
             </tr>
         </table>
     </div>
     <div class="customer-info">
-        <img src="<%= host %>/img/logo-tour-info.jpg" style="width: 790px;">
+        <img src="<%=host%>/img/logo-tour-info.jpg" style="width: 790px;">
         <h3 class="customer-name"> <%=client%></h3>
-        <table class="print-package table table-bordered">
+        <table class="print-package table table-bordered" style="margin-bottom : 0;">
             <tbody>
                 <tr>
-                    <td style="width: 90px;" class="title-td">
+                    <td style="width:90px;border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;" class="title-td">
                         항 공 사
                     </td>
-                    <td class="airline" style="width: 160px;">
+                    <td class="airline" style="width:160px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=airline%>
                     </td>
-                    <td class="title-td" style="width: 90px;">
+                    <td class="title-td" style="width:90px;border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         여행일
                     </td>
-                    <td colspan="3" class="travel-date" style="width: 449px;">
+                    <td colspan="3" class="travel-date" style="width:449px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=date.start%> ~ <%=date.end%>
                     </td>
                 </tr>
-
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         성 인 요 금
                     </td>
-                    <td class="adult-charge">
+                    <td class="adult-charge" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=adult.person%>
                     </td>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         인원
                     </td>
-                    <td class="adult-member">
+                    <td class="adult-member" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=adult.member%>
                     </td>
-                    <td class="total-adult-charge">
+                    <td class="total-adult-charge" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=adult.people%>
                     </td>
-                    <td  class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         여행 총 경비
                     </td>
                 </tr>
-
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         아 동 요 금
                     </td>
-                    <td class="child-charge">
+                    <td class="child-charge" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=child.person%>
                     </td>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         인원
                     </td>
-                    <td class="child-member" style="width: 78px;">
+                    <td class="child-member" style="width:78px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=child.member%>
                     </td>
-                    <td class="total-child-charge" style="width: 148px;">
+                    <td class="total-child-charge" style="width:148px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=child.people%>
                     </td>
-                    <td rowspan="3" class="total-tour-expenses">
+                    <td rowspan="3" class="total-tour-expenses" style="border:1px solid #000000 !important;padding:4px;text-align:center;font-size:20px;font-weight:bold;vertical-align:middle;">
                         <%=price.total%>
                     </td>
                 </tr>
-                
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         유 아 요 금
                     </td>
-                    <td class="child-charge">
+                    <td class="child-charge" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=baby.person%>
                     </td>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         인원
                     </td>
-                    <td class="child-member" style="width: 78px;">
+                    <td class="child-member" style="width:78px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=baby.member%>
                     </td>
-                    <td class="total-child-charge" style="width: 148px;">
+                    <td class="total-child-charge" style="width:148px;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         <%=baby.people%>
-                    </td>
+                    </td>   
                 </tr>
-                
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         기타추가금액
                     </td>
-                    <td class="extra-charge">
+                    <td class="extra-charge" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=price.extraCharge%>
                     </td>
-                    <td class="extra-charge-info" colspan="3">
+                    <td class="extra-charge-info" colspan="3" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=price.extraChargeInfo%>
                     </td>
                 </tr>
-
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         포함사항
                     </td>
-                    <td colspan="5" class="inclusion"><%=inclusion%></td>
+                    <td colspan="5" class="inclusion" style="border:1px solid #000000 !important;padding:4px;text-align:left;">
+                        <%=inclusion%>
+                    </td>
                 </tr>
-
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         불포함사항
                     </td>
-                    <td colspan="5" class="exclusion"><%=exclusion%></td>
+                    <td colspan="5" class="exclusion" style="border:1px solid #000000 !important;padding:4px;text-align:left;">
+                        <%=exclusion%>
+                    </td>
                 </tr>
-                
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         특별사항
                     </td>
-                    <td colspan="5" class="specialty"><%=specialty%></td>
+                    <td colspan="5" class="specialty" style="border:1px solid #000000 !important;padding:4px;text-align:left;">
+                        <%=specialty%>
+                    </td>
                 </tr>
-
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         차 량
                     </td>
-                    <td>
+                    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=car%> 인승
                     </td>
-                    <td colspan="2" class="title-td">
+                    <td colspan="2" class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         담당 기사
                     </td>
-                    <td colspan="2">
+                    <td colspan="2" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=driver%>
                     </td>
                 </tr>
-                
                 <tr>
-                    <td class="title-td">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">
                         기획자
                     </td>
-                    <td class="planner">
+                    <td class="planner" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=planner%>
                     </td>
-                    <td colspan="4" class="plannerInfo">
+                    <td colspan="4" class="plannerInfo" style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=plannerInfo%>
                     </td>
                 </tr>
-			</tbody>
-		</table>
-
-        <!--스케줄 -->
-		<table class="print-package schedule-table table table-bordered">
-			<tbody style="border-top-style: hidden;">
-				<tr class="title">
-					<td class="title-td">일자</td>
-					<td class="title-td" style="width: 80px;">지역</td>
-					<td class="title-td" style="width: 80px;">교통편</td>
-					<td class="title-td">시간</td>
-					<td class="title-td" style="width: 323px;" colspan="2">상세 일정</td>
-					<td class="title-td food">식사</td>
-				</tr>
-			</tobdy>
-		</table>
-		
-		<table class="print-package table table-bordered"
-		 style="width: 790px;">
-			<tbody style="border-top-style: hidden;">
+            </tbody>
+        </table>
+        <!--&#49828;&#52992;&#51460; -->
+        <table class="print-package schedule-table table table-bordered" style="margin-bottom : 0;">
+            <tbody style="border-top-style: hidden;">
+                <tr class="title">
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;width:90px;">일자</td>
+                    <td class="title-td" style="width:90px;border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">지역</td>
+                    <td class="title-td" style="width:90px;border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;">교통편</td>
+                    <td class="title-td" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;width:90px;">시간</td>
+                    <td class="title-td" style="width:90px;border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;" colspan="2">상세 일정</td>
+                    <td class="title-td food" style="border:1px solid #000000 !important;padding:4px;text-align:center;background-color:#eeeeee !important;width:120px;">식사</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="print-package table table-bordered" style="width:790px;margin-bottom:0;">
+            <tbody style="border-top-style: hidden;">
                 <tr>
-                    <td colspan="6" style="text-align: left;">
+                    <td colspan="6" style="text-align:left;border:1px solid #000000 !important;padding:4px;">
                         * <%=admin.depositor%> / <%=admin.bankName%> <%=admin.accountNumber%>
                     </td>
                 </tr>
-                
                 <tr>
-                    <td style="background-color: red !important; color: white !important; ">
+                    <td style="background-color:red !important;color:white !important;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         * 계약금
                     </td>
-                    <td>
+                    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=price.deposit%>
                     </td>
-                    <td style="background-color: red !important; color: white !important; ">
+                    <td style="background-color:red !important;color:white !important;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         잔금
                     </td>
-                    <td>
+                    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=price.balance%>
                     </td>
-                    <td style="background-color: red !important; color: white !important; ">
+                    <td style="background-color:red !important;color:white !important;border:1px solid #000000 !important;padding:4px;text-align:center;">
                         납기일
                     </td>
-                    <td>
+                    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;">
                         <%=date.due%>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6" style="text-align: left;"><%=admin.packagePrintMsg%>
+                    <td colspan="6" style="text-align:center;border:1px solid #000000 !important;padding:4px;">
+                        <%=admin.packagePrintMsg%>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+    

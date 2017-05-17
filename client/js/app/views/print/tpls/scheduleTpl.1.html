@@ -1,13 +1,16 @@
+<div id="print" class="print-tour">
+<div class="customer-info">
+<table class="print-package schedule-table table table-bordered" style="margin-bottom : 0;">
 <tr>
     <% if(urls.length > 0 ) { %>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" rowspan="3">
+    <td rowspan="3">
     <% } else {%>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" rowspan="2">
+    <td rowspan="2">
     <% } %>
         <%=index%> 일차<br>
         <%= date %>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="area">
+    <td class="area">
         <% 
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
@@ -17,7 +20,7 @@
             }
         %>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="traffic" style="vertical-align: top;">
+    <td class="traffic" style="vertical-align: top;">
         <% 
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
@@ -27,7 +30,7 @@
             }
         %>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="time" style="vertical-align: top;">
+    <td class="time" style="vertical-align: top;">
         <% 
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
@@ -38,7 +41,7 @@
         %>
 
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" colspan="2" class="schedule" style="text-align: left; position:relative;">
+    <td colspan="2" class="schedule" style="text-align: left; position:relative;">
         <% 
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
@@ -48,7 +51,7 @@
             }
         %>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="meal" style="text-align: left;">
+    <td class="meal" style="text-align: left;">
         <% 
             for(var i=0; i<meals.length; i++){
         %>
@@ -59,17 +62,17 @@
     </td>
 </tr>
 <tr>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" colspan="4" style="text-align: left">
+    <td colspan="4" style="text-align: left">
         숙소 : <%=hotel.name%>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" colspan="2">
+    <td colspan="2">
         <%=hotel.phone%>
     </td>
 </tr>
 
 <% if(urls.length > 0 ) { %>
     <tr>
-        <td colspan="8" style="border: 1px solid #000000 !important;padding: 4px;text-align: left;">
+        <td colspan="8" style="text-align: left">
             <% for(var i=0; i<urls.length; i++){ 
                 var url = urls[i];
             %>
@@ -78,3 +81,7 @@
         </td>
     </tr>
 <% } %>
+
+</table>
+</div>
+</div>

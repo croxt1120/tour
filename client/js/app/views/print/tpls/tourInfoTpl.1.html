@@ -1,0 +1,225 @@
+<div id="print" class="print-tour" style="width: 790px; margin: auto;">
+    <div class="cover">
+        <img src="<%= host %>/img/cover.jpg" style="width: 735px;">
+        <table class="info">
+            <tr>
+                <td>
+                    상품명: 
+                </td>
+                <td style="width: 400px" class="tour-name">
+                    <%=title%>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    여행일: 
+                </td>
+                <td class="travel-start-date">
+                    <%=date.start%>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    기획자: 
+                </td>
+                <td class="planner">
+                    <%=planner%>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="customer-info">
+        <img src="<%= host %>/img/logo-tour-info.jpg" style="width: 790px;">
+        <h3 class="customer-name"> <%=client%></h3>
+        <table class="print-package table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width: 90px;" class="title-td">
+                        항 공 사
+                    </td>
+                    <td class="airline" style="width: 160px;">
+                        <%=airline%>
+                    </td>
+                    <td class="title-td" style="width: 90px;">
+                        여행일
+                    </td>
+                    <td colspan="3" class="travel-date" style="width: 449px;">
+                        <%=date.start%> ~ <%=date.end%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        성 인 요 금
+                    </td>
+                    <td class="adult-charge">
+                        <%=adult.person%>
+                    </td>
+                    <td class="title-td">
+                        인원
+                    </td>
+                    <td class="adult-member">
+                        <%=adult.member%>
+                    </td>
+                    <td class="total-adult-charge">
+                        <%=adult.people%>
+                    </td>
+                    <td  class="title-td">
+                        여행 총 경비
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        아 동 요 금
+                    </td>
+                    <td class="child-charge">
+                        <%=child.person%>
+                    </td>
+                    <td class="title-td">
+                        인원
+                    </td>
+                    <td class="child-member" style="width: 78px;">
+                        <%=child.member%>
+                    </td>
+                    <td class="total-child-charge" style="width: 148px;">
+                        <%=child.people%>
+                    </td>
+                    <td rowspan="3" class="total-tour-expenses">
+                        <%=price.total%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        유 아 요 금
+                    </td>
+                    <td class="child-charge">
+                        <%=baby.person%>
+                    </td>
+                    <td class="title-td">
+                        인원
+                    </td>
+                    <td class="child-member" style="width: 78px;">
+                        <%=baby.member%>
+                    </td>
+                    <td class="total-child-charge" style="width: 148px;">
+                        <%=baby.people%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        기타추가금액
+                    </td>
+                    <td class="extra-charge">
+                        <%=price.extraCharge%>
+                    </td>
+                    <td class="extra-charge-info" colspan="3">
+                        <%=price.extraChargeInfo%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        포함사항
+                    </td>
+                    <td colspan="5" class="inclusion"><%=inclusion%></td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        불포함사항
+                    </td>
+                    <td colspan="5" class="exclusion"><%=exclusion%></td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        특별사항
+                    </td>
+                    <td colspan="5" class="specialty"><%=specialty%></td>
+                </tr>
+
+                <tr>
+                    <td class="title-td">
+                        차 량
+                    </td>
+                    <td>
+                        <%=car%> 인승
+                    </td>
+                    <td colspan="2" class="title-td">
+                        담당 기사
+                    </td>
+                    <td colspan="2">
+                        <%=driver%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="title-td">
+                        기획자
+                    </td>
+                    <td class="planner">
+                        <%=planner%>
+                    </td>
+                    <td colspan="4" class="plannerInfo">
+                        <%=plannerInfo%>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+
+        <!--스케줄 -->
+		<table class="print-package schedule-table table table-bordered">
+			<tbody style="border-top-style: hidden;">
+				<tr class="title">
+					<td class="title-td">일자</td>
+					<td class="title-td" style="width: 80px;">지역</td>
+					<td class="title-td" style="width: 80px;">교통편</td>
+					<td class="title-td">시간</td>
+					<td class="title-td" style="width: 323px;" colspan="2">상세 일정</td>
+					<td class="title-td food">식사</td>
+				</tr>
+			</tobdy>
+		</table>
+		
+		<table class="print-package table table-bordered"
+		 style="width: 790px;">
+			<tbody style="border-top-style: hidden;">
+                <tr>
+                    <td colspan="6" style="text-align: left;">
+                        * <%=admin.depositor%> / <%=admin.bankName%> <%=admin.accountNumber%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="background-color: red !important; color: white !important; ">
+                        * 계약금
+                    </td>
+                    <td>
+                        <%=price.deposit%>
+                    </td>
+                    <td style="background-color: red !important; color: white !important; ">
+                        잔금
+                    </td>
+                    <td>
+                        <%=price.balance%>
+                    </td>
+                    <td style="background-color: red !important; color: white !important; ">
+                        납기일
+                    </td>
+                    <td>
+                        <%=date.due%>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: left;"><%=admin.packagePrintMsg%>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -88,11 +88,18 @@ define([
                 
                 this.getData("date", data);
                 
-                $(_.first(this.$(".airline #date1"))).datepicker("setDate", start.toDate());
-                $(_.first(this.$(".airline #date2"))).datepicker("setDate", start.toDate());
+                var first = $(_.first(this.$(".airline")));
+                if(first.find("#airline").val() == "" && first.find("#locale1").val() == "" && first.find("#locale2").val() == ""){
+                    $(_.first(this.$(".airline #date1"))).datepicker("setDate", start.toDate());
+                    $(_.first(this.$(".airline #date2"))).datepicker("setDate", start.toDate());
+                }
                 
-                $(_.last(this.$(".airline #date1"))).datepicker("setDate", end.toDate());
-                $(_.last(this.$(".airline #date2"))).datepicker("setDate", end.toDate());
+                var last = $(_.last(this.$(".airline")));
+                if(last.find("#airline").val() == "" && last.find("#locale1").val() == "" && last.find("#locale2").val() == ""){
+                    $(_.last(this.$(".airline #date1"))).datepicker("setDate", end.toDate());
+                    $(_.last(this.$(".airline #date2"))).datepicker("setDate", end.toDate());
+                }
+                
             }
         },
         
@@ -137,6 +144,14 @@ define([
             
             if(_.isUndefined(name)){
                 name = null;
+            }
+            
+            if(_.isNull(date1)){
+                date1 = TourData.getData("date").start;
+            }
+            
+            if(_.isNull(date2)){
+                date2 = TourData.getData("date").start;
             }
             
             var tpl = $(rowTemplate({name : name}));
@@ -204,13 +219,6 @@ define([
                 _view.$("#"+k).val(v);
             });
             
-            this.$("#end").datepicker("clearDates");
-            this.$("#start").datepicker("clearDates");
-            
-            _.each(data.date, function(v,k){
-                _view.$("#"+k).datepicker("setDate", v);
-            });
-            
             var airlines = data.airlines;
             
             this.$("#airlineRow").empty();
@@ -234,6 +242,16 @@ define([
                     
                 });
             }
+            
+            this.$("#end").datepicker("clearDates");
+            this.$("#start").datepicker("clearDates");
+            
+            _.each(data.date, function(v,k){
+                if(v == null){
+                    v = moment().format("YYYY-MM-DD");
+                }
+                _view.$("#"+k).datepicker("setDate", v);
+            });
         },
         
     });

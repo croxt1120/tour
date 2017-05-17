@@ -126,7 +126,7 @@ define([
 		
 		_reqSave: function(isOverWrite) {
 			var _this = this;
-			var tourName = this.$('#tourName').val();
+			var tourName = this.$('#tourName').val().replace(/\s*$/,"");
 			var r = new RegExp(/[\\\\\/:*?"<>|]/);
 			
 			if(r.test(tourName) == true){

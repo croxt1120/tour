@@ -294,8 +294,6 @@ define([
                         var width = MAX_WIDTH;
                         var height = MAX_HEIGHT;
                         
-                        console.log("MAX", MAX_WIDTH, MAX_HEIGHT);
-                        
                         if (width > height) {
                           if (width > MAX_WIDTH) {
                             height *= MAX_WIDTH / width;
@@ -308,7 +306,6 @@ define([
                           }
                         }
                         
-                        console.log("RESULT", width, height);
                         canvas.width = width;
                         canvas.height = height;
                         canvas.getContext("2d").drawImage(img, 0, 0, width, height);

@@ -26,13 +26,13 @@ router.post('/', function(req, res) {
   var mailOptions= {
       from: 'hanatour2009@live.co.kr', // sender address 
       to: [
-            { name: "carran", address: "carran@naver.com"},
+            { address: res.body.mail },
           ],
       subject : "test",
       html : req.body.html,
   };
   
-  console.log(req.body.html);
+  console.log(JSON.stringify(req.body));
   transport.sendMail(mailOptions, function(err, info){
     var data  = {};
     if(err){ //메일 보내기 실패시 

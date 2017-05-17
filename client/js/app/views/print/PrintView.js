@@ -275,16 +275,16 @@ define([
 				"height": "197px"
 			});
 			
-			$.post("/mail", {html : result.html()}, function(res) {
+			$.post("/mail", {html : result.html(), mail : this.$("#email").val() }, function(res) {
 				if (res.isSuccess) {
-					alert('데이터를 저장하였습니다.');
+					alert("메일을 전송했습니다.");
 				}
 				else {
-					alert('데이터 저장에 실패 했습니다.');
+					alert('메일 전송에 실패했습니다.');
 				}
 
 			}).fail(function(res) {
-				alert('데이터 저장에 실패 했습니다.');
+				alert('메일 전송에 실패했습니다.');
 			}).always(function(res) {});
 		}
 	});

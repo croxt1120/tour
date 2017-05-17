@@ -281,9 +281,9 @@ define([
 			var result = $("<div></div>");
 			var html = this.$('.content').html();
 			result.append(html);
-			if(data.mail.includes("lycos.co.kr") || data.mail.includes("live.co.kr") || data.mail.includes("nate.com")){
+			// if(data.mail.includes("lycos.co.kr") || data.mail.includes("live.co.kr") || data.mail.includes("nate.com")){
 			
-			}else{
+			// }else{
 				result.find(".coverimg").remove();
 				result.find(".cover").css({
 					"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
@@ -291,7 +291,7 @@ define([
 					"width": "calc(100% - 260px)",
 					"height": "197px"
 				});
-			}
+			// }
 			data.html = result.html();
 			
 			$.post("/mail", data, function(res) {

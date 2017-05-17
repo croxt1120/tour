@@ -32,7 +32,6 @@ router.post('/', function(req, res) {
       html : req.body.html,
   };
   
-  console.log(JSON.stringify(req.body));
   transport.sendMail(mailOptions, function(err, info){
     var data  = {};
     if(err){ //메일 보내기 실패시 

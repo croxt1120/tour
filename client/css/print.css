@@ -149,3 +149,8 @@
 #print .schedule-table td > div {
     height:18px;
 }
+
+#print .thumbnail{
+    height:90px !important;
+    width:135px;
+}

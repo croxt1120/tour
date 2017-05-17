@@ -264,6 +264,11 @@ define([
 			var result = $("<div></div>");
 			var html = this.$('.content').html();
 			
+			result.find(".coverimg").remove();
+			result.find(".cover").css({
+				"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
+				"background-size": "cover",
+			});
 			result.append(html);
 			
 			$.post("/mail", {html : result.html()}, function(res) {

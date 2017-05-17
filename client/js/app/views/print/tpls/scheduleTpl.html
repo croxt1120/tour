@@ -12,7 +12,7 @@
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
         %>
-                <div><%=scInfo.place%></div>
+                <div style="height:18px"><%=scInfo.place%></div>
         <%
             }
         %>
@@ -22,7 +22,7 @@
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
         %>
-                <div><%=scInfo.transportation%></div>
+                <div style="height:18px"><%=scInfo.transportation%></div>
         <%
             }
         %>
@@ -32,27 +32,27 @@
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
         %>
-                <div><%=scInfo.time%></div>
+                <div style="height:18px"><%=scInfo.time%></div>
         <%
             }
         %>
 
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" colspan="2" class="schedule" style="text-align: left; position:relative;">
+    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: left;" colspan="2" class="schedule" style="text-align: left; position:relative;">
         <% 
             for(var i=0; i<schedules.length; i++){
                 var scInfo = schedules[i];
         %>
-                <div><%=scInfo.summary%></div>
+                <div style="height:18px"><%=scInfo.summary%></div>
         <%
             }
         %>
     </td>
-    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: center;" class="meal" style="text-align: left;">
+    <td style="border: 1px solid #000000 !important;padding: 4px;text-align: left;" class="meal" style="text-align: left;">
         <% 
             for(var i=0; i<meals.length; i++){
         %>
-                <div><%=meals[i]%></div>
+                <div style="height:18px"><%=meals[i]%></div>
         <%
             }
         %>

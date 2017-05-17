@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
       to: [
             { address: req.body.mail },
           ],
-      subject : "test",
+      subject : req.body.title,
       html : req.body.html,
   };
   

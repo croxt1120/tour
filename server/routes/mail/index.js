@@ -3,20 +3,25 @@ var router = express.Router();
 
 
 var nodemailer = require('nodemailer');
-// var smtpTransport = require('nodemailer-smtp-transport');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transport = nodemailer.createTransport({
-    host: 'smtp.naver.com',
-    port: 587,
-    secure : true,
+var transport = nodemailer.createTransport(smtpTransport({
+    service : "Gmail",
     auth: {
         user: 'jeongkilahan',
         pass: 'ajk405..'
-    },
-    rejectUnauthorized: false,
-    connectionTimeout:10000
-});
+    }
+    // host: 'smtp.naver.com',
+    // port: 587,
+    // secure : true,
+    // auth: {
+    //     user: 'jeongkilahan',
+    //     pass: 'ajk405..'
+    // },
+    // rejectUnauthorized: false,
+    // connectionTimeout:10000
+}));
 
 router.post('/', function(req, res) {
   var mailOptions= {

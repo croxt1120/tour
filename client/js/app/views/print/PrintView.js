@@ -233,7 +233,7 @@ define([
 					packagePrintMsg : data.admin.packagePrintMsg.replace(/\n/g, '<br>')
 				},
 				
-				host : window.location.host
+				host : window.location.protocol + "//" + window.location.host
 			};
 			
 			var tpl = _.template(tourInfoTpl);
@@ -244,7 +244,7 @@ define([
 			var _view = this;
 			var schedulesTpl = _.template(scheduleTpl);
 			_.each(schedules, function(schedule){
-				schedule["host"] = window.location.host;
+				schedule["host"] = window.location.protocol + "//" + window.location.host;
 				_view.$(".schedule-table").append(schedulesTpl(schedule));
 			});
 		},

@@ -3,10 +3,9 @@ var router = express.Router();
 
 
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transport = nodemailer.createTransport(smtpTransport({
+var transport = nodemailer.createTransport("smtp", {
     service : "Gmail",
     auth: {
         user: 'jeongkilahan@gmail.com',
@@ -21,7 +20,7 @@ var transport = nodemailer.createTransport(smtpTransport({
     // },
     // rejectUnauthorized: false,
     // connectionTimeout:10000
-}));
+});
 
 router.post('/', function(req, res) {
   var mailOptions= {

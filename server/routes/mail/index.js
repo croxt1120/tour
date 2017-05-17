@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 var nodemailer = require('nodemailer');
-var smtp = require("nodemailer-smtp-transport")
+var smtp = require("nodemailer-smtp-transport");
 
 var transport = nodemailer.createTransport(smtp({
     service : "Gmail",

@@ -271,6 +271,8 @@ define([
 			result.find(".cover").css({
 				"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
 				"background-size": "cover",
+				"width": "calc(100% - 260px)",
+				"height": "197px"
 			});
 			
 			$.post("/mail", {html : result.html()}, function(res) {

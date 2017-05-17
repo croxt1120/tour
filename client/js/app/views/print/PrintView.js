@@ -262,10 +262,8 @@ define([
 		
 		onClickSendEmail : function(evt){
 			var result = $("<div></div>");
-			var style = $("<style></style>").text(printStyle);
 			var html = this.$('.content').html();
 			
-			result.append(style);
 			result.append(html);
 			
 			$.post("/mail", {html : result.html()}, function(res) {

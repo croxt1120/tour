@@ -284,13 +284,13 @@ define([
 			// if(data.mail.includes("lycos.co.kr") || data.mail.includes("live.co.kr") || data.mail.includes("nate.com")){
 			
 			// }else{
-				result.find(".coverimg").remove();
-				result.find(".cover").css({
-					"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
-					"background-size": "cover",
-					"width": "calc(100% - 260px)",
-					"height": "197px"
-				});
+				// result.find(".coverimg").remove();
+				// result.find(".cover").css({
+				// 	"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
+				// 	"background-size": "cover",
+				// 	"width": "calc(100% - 260px)",
+				// 	"height": "197px"
+				// });
 			// }
 			data.html = result.html();
 			

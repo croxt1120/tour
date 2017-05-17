@@ -261,12 +261,26 @@ define([
 		},
 		
 		onClickSendEmail : function(evt){
+			var data = {
+				html : "",
+				mail : this.$("#email").val(),
+				title : this.$("#title").val()
+			};
+			
+			var email = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+			if(email.test(data.mail) != true){
+				alert("이메일 주소를 확인해주세요");
+				return;
+			}
+			
+			if($.trim(data.title) == ""){
+				alert("메일 제목을 입력하세요");
+				return;
+			}
+			
 			var result = $("<div></div>");
 			var html = this.$('.content').html();
-			
-			
 			result.append(html);
-			
 			result.find(".coverimg").remove();
 			result.find(".cover").css({
 				"background-image": "url("+window.location.protocol + "//" + window.location.host+"/img/cover.jpg)",
@@ -275,7 +289,9 @@ define([
 				"height": "197px"
 			});
 			
-			$.post("/mail", {html : result.html(), mail : this.$("#email").val() }, function(res) {
+			data.html = result.html();
+			
+			$.post("/mail", data, function(res) {
 				if (res.isSuccess) {
 					alert("메일을 전송했습니다.");
 				}

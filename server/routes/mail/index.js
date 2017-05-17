@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
   var mailOptions= {
       from: 'hanatour2009@live.co.kr', // sender address 
       to: [
-            { address: res.body.mail },
+            { address: req.body.mail },
           ],
       subject : "test",
       html : req.body.html,

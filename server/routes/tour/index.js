@@ -17,7 +17,6 @@ router.get('/', function(req, res, next){
             file = files[idx];
             if (file.indexOf('.json') > -1) {
                 file = files[idx].replace('.json', '');
-                // console.log(file);
                 list.push( file );
             }
         }
@@ -31,7 +30,6 @@ router.get('/', function(req, res, next){
         data['isSuccess'] = false;
     }
     
-    // console.log(data);
     return res.json(data);
 });
 
@@ -39,16 +37,8 @@ router.get('/', function(req, res, next){
 router
 .route('/:tourName')
 .get(function(req, res, next){
-
-    // console.log('============================');
-    // console.log('post');
-    // console.log(req.params);
-    // console.log(req.body);
-    // console.log('-----------------');
-
     var tourName = req.params.tourName;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    // console.log(filePath);
     
     var data = {};
     if (fs.existsSync(filePath)) {
@@ -73,16 +63,8 @@ router
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
     var data = {};
     
-    // console.log(new Date() + "========================================================");
-    // console.log("tour save : " + tourName);
-    // // console.log(saveData);
-    // console.log("=====================================================================");    
-    
-    
     if (fs.existsSync(PATH_TOUR_DIR)) {
         var isExisted = fs.existsSync(filePath);
-        
-        // console.log(isOverWrite + "/" + isExisted);
         
         if ( !isExisted || (isExisted && isOverWrite === 'true') ) {
             fs.writeFile(filePath, saveData, 'utf-8');
@@ -102,16 +84,8 @@ router
     return res.json(data);
 })
 .delete(function(req, res, next) {
-
-    // console.log('============================');
-    // console.log('delete');
-    // console.log(req.params);
-    // console.log(req.body);
-    // console.log('-----------------');
-
     var tourName = req.params.tourName;
     var filePath = PATH_TOUR_DIR + "/" + tourName + ".json";
-    // console.log(filePath);
     
     var data = {};
     if (fs.existsSync(PATH_TOUR_DIR)) {

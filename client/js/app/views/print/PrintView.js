@@ -163,15 +163,15 @@ define([
 			if(first.length == 1){
 				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
 			}else{
-				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
-				scheduleData[1].schedules = first[1].concat(_.first(scheduleData).schedules);	
+				scheduleData[0].schedules = first[0].concat(scheduleData[0].schedules);	
+				scheduleData[1].schedules = scheduleData[1].schedules.concat(first[1]);
 			}
 			
 			if(last.length == 1){
 				scheduleData[len-1].schedules = _.last(scheduleData).schedules.concat(last[0]);
 			}else{
-				scheduleData[len-2].schedules = _.last(scheduleData).schedules.concat(last[0]);
-				scheduleData[len-1].schedules = _.last(scheduleData).schedules.concat(last[1]);
+				scheduleData[len-2].schedules = scheduleData[len-2].schedules.concat(last[0]);
+				scheduleData[len-1].schedules = last[1].concat(scheduleData[len-1].schedules);
 			}
 			
 			return scheduleData;

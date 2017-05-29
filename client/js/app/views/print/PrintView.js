@@ -164,7 +164,7 @@ define([
 				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
 			}else{
 				scheduleData[0].schedules = first[0].concat(scheduleData[0].schedules);	
-				scheduleData[1].schedules = scheduleData[1].schedules.concat(first[1]);
+				scheduleData[1].schedules = first[1].concat(scheduleData[1].schedules);
 			}
 			
 			if(last.length == 1){

@@ -62,7 +62,7 @@ define([
                 _.each(_.range(rowCount), function(day){
                     var dayRow = $(tpl({day : len + day + 1}));
                     _view._onClickButtonAdd({target : dayRow.find(".scheduleDayTable")});
-                    _view.$("#scheduleTable > tbody").append(dayRow);
+                    _view.$("#scheduleTable").append(dayRow);
                     
                     dayRow.find('#fileupload').fileupload({
                         dataType: 'json',

@@ -215,11 +215,11 @@ define([
 	    },
 	    
 	    checkData : function(){
+	    	var _view = this;
 	    	var keys = _.keys(defaultData);
-	    	
 	    	_.each(keys, function(v){
-	    		if(_.isUndefined(this.tourData[v])){
-	    			this.tourData[v] = $.extend({}, defaultData[v]);
+	    		if(_.isUndefined(_view.tourData[v])){
+	    			_view.tourData[v] = $.extend({}, defaultData[v]);
 	    		}
 	    	});
 	    },

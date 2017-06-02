@@ -22,6 +22,24 @@ define([
         return str.toString().replace(/,/g, "") * 1;
     };
     
+    var _getPrintDate = function(start, end){
+		var text = start.format("YYYY년 MM월 DD일");
+		if(start.year() == end.year()){
+			if(start.month() == end.month()){
+				if(start.day() == end.day()){
+					
+				} else {
+					text += " ~ " + end.format("DD일");
+				}
+			}else{
+				text += " ~ " + end.format("MM월 DD일");
+			}
+		}else{
+			text += " ~ " + end.format("YYYY년 MM월 DD일");
+		}
+		return text;
+	};
+	
     var _checkInputMoney = function(money) {
         // 콤마 제거
         money = _numberWithoutCommas(money);
@@ -50,6 +68,7 @@ define([
 	    numberWithCommas: _numberWithCommas,
 	    numberWithoutCommas: _numberWithoutCommas,
 	    checkInputMoney: _checkInputMoney,
-	    checkTimeFormat: _checkTimeFormat
+	    checkTimeFormat: _checkTimeFormat,
+	    getPrintDateRange : _getPrintDate
 	};
 } );

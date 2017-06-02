@@ -8,6 +8,10 @@
     border-top : 0 !important;
 }
 
+.yes-print {
+    display :none;
+}
+
 /* print common */
 @media print
 {    
@@ -15,8 +19,13 @@
     {
         display: none;
     }
+    .yes-print, .yes-print *{
+        display : block;
+        word-break:break-all;
+    }
     .coverimg {display: block;}
 }
+
 
 /* 테이블 제목 */
 .bold {

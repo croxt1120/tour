@@ -6,6 +6,7 @@ define([
     "views/tour/TourView",
     "views/list/ListView",
     'views/print/PrintView',
+    'views/contract/PrintContractView',
     'views/admin/AdminInfoView',
 ], function (
 	Backbone,
@@ -15,6 +16,7 @@ define([
 	TourView,
 	ListView,
 	PrintView,
+	PrintContractView,
 	AdminInfoView
 ) {
 	var currentView = _.noop();
@@ -22,6 +24,7 @@ define([
 		"package-tour" : new TourView(),
 		"list" : new ListView(),
 		"print-package" : new PrintView(),
+		"print-contract" : new PrintContractView(),
 		admin : new AdminInfoView()
 	};
 	
@@ -35,10 +38,14 @@ define([
 			"package-tour" : "_onShowPackageTourView",
 			"list" :  "_onShowListView",
 			"print-package" : "_onShowPrintView", 
+			"print-contract" : "_onShowPrintContractView", 
 			"admin" : "_onShowAdmin",
 	    },
 	    _onShowPrintView : function(){
 	    	this.changeView("print-package");
+	    },
+	    _onShowPrintContractView : function(){
+	    	this.changeView("print-contract");
 	    },
 	    _onShowListView : function(){
 	    	this.changeView("list");

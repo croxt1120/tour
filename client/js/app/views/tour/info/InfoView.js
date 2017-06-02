@@ -65,7 +65,6 @@ define([
         },
         
         _onChangeDate : function(evt){
-            console.log(evt);
             var start = moment(this.$("#start").datepicker("getDate"));
             var end = moment(this.$("#end").datepicker("getDate"));
             

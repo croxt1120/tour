@@ -283,7 +283,7 @@ define([
                 var len = trs.length;
                 
                 if(daySchedule.length - len > 0){
-                    for(var j=1; j<daySchedule.length-len; j++){
+                    for(var j=0; j<daySchedule.length-len; j++){
                         _view._onClickButtonAdd({target : day});
                     }
                 }else{

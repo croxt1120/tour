@@ -65,6 +65,7 @@ define([
         },
         
         _onChangeDate : function(evt){
+            console.log(evt);
             var start = moment(this.$("#start").datepicker("getDate"));
             var end = moment(this.$("#end").datepicker("getDate"));
             
@@ -76,9 +77,13 @@ define([
             // 초기 설정시 end가 설정 안됬을때 제외
             if(end.isValid()){
                 if(!_isValidDate(start, end)){
+                    var dateData = TourData.getData("date");
+                    this.$("#start").datepicker("setDate", moment(dateData.start, "YYYY-MM-DD").toDate());
+                    this.$("#end").datepicker("setDate", moment(dateData.end, "YYYY-MM-DD").toDate());
                     alert("여행 개시일은 여행 마감일 이전 날짜로 설정 할 수 없습니다.");
-    				this.$("#end").datepicker("setDate",start.toDate());
-    				end = start;
+                    return;
+    				// this.$("#end").datepicker("setDate",start.toDate());
+    				// end = start;
                 }
                 
                 var data = {

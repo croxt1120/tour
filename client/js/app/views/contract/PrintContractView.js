@@ -103,6 +103,8 @@ define([
 			    	EUR : Utils.numberWithCommas(data.price.exchangeRate.EUR),
 			    	USD : Utils.numberWithCommas(data.price.exchangeRate.USD)
 			    },
+			    depositor : data.admin.depositor,
+			    bankName : data.admin.bankName
 			};
 			
 			if(data.member.adult != 0){

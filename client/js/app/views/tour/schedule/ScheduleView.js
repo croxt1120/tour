@@ -53,7 +53,7 @@ define([
             var tpl = _.template(mealRowTpl);
             var _view = this;
             
-            var trs = this.$(".scheduleDayTable > tbody > .scheduleRow");
+            var trs = this.$("#scheduleTable > tbody > .scheduleRow");
             
             var len = trs.length;
             rowCount -= len;

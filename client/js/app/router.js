@@ -34,7 +34,7 @@ define([
 	
 	var Router = Backbone.Router.extend({
 		routes:{
-			"" : "_onShowPackageTourView",
+			"" : "_onShowListView",
 			"package-tour" : "_onShowPackageTourView",
 			"list" :  "_onShowListView",
 			"print-package" : "_onShowPrintView", 

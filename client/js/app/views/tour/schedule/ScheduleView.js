@@ -279,10 +279,21 @@ define([
                 var daySchedule = data[i];
                 var day = daysTr.eq(i);
                 
-                for(var j=1; j<daySchedule.length; j++){
-                    _view._onClickButtonAdd({target : day});
-                }
                 var trs = day.find("tr");
+                var len = trs.length;
+                
+                if(daySchedule.length - len > 0){
+                    for(var j=1; j<daySchedule.length-len; j++){
+                        _view._onClickButtonAdd({target : day});
+                    }
+                }else{
+                    for(var k=0; k<daySchedule.length-len; k--){
+                        trs = day.find("tr");
+                        $(_.last(trs)).remove();
+                    }
+                }
+                
+                trs = day.find("tr");
                 _.each(daySchedule, function(data, idx){
                     var tr = $(trs[idx]);
                     _view._setScheduleType(data.type, tr);

@@ -34,8 +34,10 @@ define([
         },
         
         _onClickMenu: function(evt) {
-            if($(event.target).parents('.dropdown-menu').length > 0){
-                var name = $(event.target).attr("name");
+            var name = $(event.target).attr("name");
+            if(name != ""){
+            // if($(event.target).parents('.dropdown-menu').length > 0){
+                // var name = $(event.target).attr("name");    
                 switch(name){
                     case "new" :
                         window.location.href='/';

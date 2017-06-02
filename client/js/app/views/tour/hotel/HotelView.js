@@ -41,11 +41,22 @@ define([
         addRow : function(rowCount){
             var tpl = _.template(mealRowTpl);
             var _view = this;
-            this.$("#hotelTable tbody").empty();
             
-            _.each(_.range(rowCount), function(day){
-                _view.$("#hotelTable tbody").append(tpl({day:day+1}));
-            });
+            var trs = this.$("#hotelTable tbody tr");
+            
+            var len = trs.length;
+            rowCount -= len;
+            
+            if(rowCount > 0){
+                _.each(_.range(rowCount), function(day){
+                    _view.$("#hotelTable tbody").append(tpl({day:len+day+1}));
+                });    
+            }else{
+                for(var i=0; i > rowCount; i--){
+                    trs = this.$("#hotelTable tbody tr");
+                    $(_.last(trs)).remove();
+                }
+            }
         },
         
         setData : function(){

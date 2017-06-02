@@ -36,30 +36,12 @@ define([
 			return this;
 		},
 		onClickPrint: function(evt) {
-			// var $print = this.$('.print-tour');
-
-			// $("#appView").hide();
-			// $('#printArea').show().append($print);
 			this.$(".yes-print").remove();
-			// var _view = this;
 			var contracts = this.$(".contract");
+			
 			_.each(contracts, function(v){
-				// var id=$(v).attr("id");
-				// if(id == "notice"){
-				// 	var noticeArr = $(v).val().split("\n");
-				// 	_.each(noticeArr, function(line){
-				// 		var tr = $("<tr></tr").addClass("yes-print");
-				// 		var td = $("<td style='font-weight:normal;border:1px solid #000000 !important;padding:4px;' colspan='5'></td>");
-				// 		td.text(line);
-						
-				// 		tr.append(td);
-				// 		console.log(_view.$("table tbody"));
-				// 		_view.$("table").append(tr);
-				// 	});
-				// } else {
-					var td = $(v).parents("td").eq(0);
-					td.append("<div class='yes-print'>"+$(v).val().replace(/\n/g, '<br>')+"</div>");	
-				// }
+				var td = $(v).parent();
+				td.append("<div class='yes-print'>"+$(v).val().replace(/\n/g, '<br>')+"</div>");	
 			});
 			window.print();
 		},
@@ -74,8 +56,6 @@ define([
 				data[id] = val;
 			});
 			TourData.setData("contract", data);
-			
-			console.log(data);
 		},
 		getData: function() {
 			
@@ -104,7 +84,9 @@ define([
 			    	USD : Utils.numberWithCommas(data.price.exchangeRate.USD)
 			    },
 			    depositor : data.admin.depositor,
-			    bankName : data.admin.bankName
+			    bankName : data.admin.bankName,
+			    planner : data.info.planner,
+			    plannerInfo : data.info.plannerInfo
 			};
 			
 			if(data.member.adult != 0){

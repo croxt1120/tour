@@ -52,39 +52,54 @@ define([
         _addRow : function(rowCount){
             var tpl = _.template(mealRowTpl);
             var _view = this;
-            this.$("#scheduleTable > tbody").empty();
             
-            _.each(_.range(rowCount), function(day){
-                var dayRow = $(tpl({day : day + 1}));
-                _view._onClickButtonAdd({target : dayRow.find(".scheduleDayTable")});
-                _view.$("#scheduleTable > tbody").append(dayRow);
-                
-                dayRow.find('#fileupload').fileupload({
-                    dataType: 'json',
-                    disableImageResize: false,
-                    imageMaxWidth: 900,
-                    imageMaxHeight: 600,
-                    imageCrop: true, // Force cropped images,
-                    add: function(e, data) {
-                        var tr= $(e.target).parents(".scheduleRow");
-                        
-                        var uploadFile = data.files[0];
-                        if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
-                            alert('png, jpg, gif 만 가능합니다');
-                            return;
+            var trs = this.$(".scheduleDayTable > tbody > tr");
+            
+            var len = trs.length;
+            rowCount -= len;
+            
+            if(rowCount > 0){
+                _.each(_.range(rowCount), function(day){
+                    var dayRow = $(tpl({day : len + day + 1}));
+                    _view._onClickButtonAdd({target : dayRow.find(".scheduleDayTable")});
+                    _view.$("#scheduleTable > tbody").append(dayRow);
+                    
+                    dayRow.find('#fileupload').fileupload({
+                        dataType: 'json',
+                        disableImageResize: false,
+                        imageMaxWidth: 900,
+                        imageMaxHeight: 600,
+                        imageCrop: true, // Force cropped images,
+                        add: function(e, data) {
+                            var tr= $(e.target).parents(".scheduleRow");
+                            
+                            var uploadFile = data.files[0];
+                            if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
+                                alert('png, jpg, gif 만 가능합니다');
+                                return;
+                            }
+        
+                            if (uploadFile) {
+                                _view.addGallery(data.files, tr);
+                            }
+                            
+                        },
+                        fail: function(e, data) {
+                            alert('서버와 통신 중 문제가 발생했습니다');
                         }
-    
-                        if (uploadFile) {
-                            _view.addGallery(data.files, tr);
-                        }
-                        
-                    },
-                    fail: function(e, data) {
-                        alert('서버와 통신 중 문제가 발생했습니다');
-                    }
-                });
-                _view.files.push([]);
-            });
+                    });
+                    _view.files.push([]);
+                });   
+            }else{
+                for(var i=0; i > rowCount; i--){
+                    var imageRow = this.$("#scheduleTable .imageRow");
+                    var scheduleRow = this.$("#scheduleTable .scheduleRow");
+                    $(_.last(imageRow)).remove();
+                    $(_.last(scheduleRow)).remove();
+                }
+            }
+            
+            
         },
         
         addGallery: function(files, scheduleRow) {

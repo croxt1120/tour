@@ -58,12 +58,23 @@ define([
         _addRow : function(rowCount){
             var tpl = _.template(mealRowTpl);
             var _view = this;
-            this.$("#mealTable tbody").empty();
             
-            _.each(_.range(rowCount), function(day){
-                var row = $(tpl({day:day+1}));
-                _view.$("#mealTable tbody").append(_view._calculateDayTotal(row));
-            });
+            var trs = this.$("#mealTable tbody tr");
+            
+            var len = trs.length;
+            rowCount -= len;
+            
+            if(rowCount > 0){
+                _.each(_.range(rowCount), function(day){
+                    var row = $(tpl({day:len+day+1}));
+                    _view.$("#mealTable tbody").append(_view._calculateDayTotal(row));
+                });    
+            }else{
+                for(var i=0; i > rowCount; i--){
+                    trs = this.$("#mealTable tbody tr");
+                    $(_.last(trs)).remove();
+                }
+            }
             
             this._calculateTotal();
         },

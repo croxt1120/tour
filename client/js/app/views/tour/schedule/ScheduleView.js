@@ -189,20 +189,22 @@ define([
             var target = tr.find("button").eq(0);
             var inputGroup = target.parents(".input-group");
             if(type == "place"){
-                target.removeClass("btn-type-air");
-                target.find("span").removeClass("glyphicon-plane").addClass("glyphicon-chevron-right");
-                tr.find(".place").remove();
-                tr.find(".price").removeAttr("readonly");
-                inputGroup.append('<input class="place form-control" type="text" placeholder="장소">');
+                if(target.hasClass("btn-type-air")){
+                    target.removeClass("btn-type-air");
+                    target.find("span").removeClass("glyphicon-plane").addClass("glyphicon-chevron-right");
+                    tr.find(".place").remove();
+                    tr.find(".price").removeAttr("readonly");
+                    inputGroup.append('<input class="place form-control" type="text" placeholder="장소">');    
+                }
             }else{
-                target.addClass("btn-type-air");
-                target.find("span").removeClass("glyphicon-chevron-right").addClass("glyphicon-plane");
-                tr.find(".place").remove();
-                tr.find(".price").attr("readonly", true);
-                inputGroup.append('<select class="form-control place">');
-                
+                if(target.hasClass("btn-type-air") == false){
+                    target.addClass("btn-type-air");
+                    target.find("span").removeClass("glyphicon-chevron-right").addClass("glyphicon-plane");
+                    tr.find(".place").remove();
+                    tr.find(".price").attr("readonly", true);
+                    inputGroup.append('<select class="form-control place">');
+                }
                 var airlines = TourData.getData("airlines");
-                
                 var data = [];
                 _.each(airlines, function(airline, k){
                     if(!(k == 0 || k == airlines.length - 1)){
@@ -212,7 +214,6 @@ define([
                         });
                     }
                 });
-                
                 
                 inputGroup.find(".place").select2({
                     id : "flight",

@@ -55,7 +55,7 @@ define([
             
             var trs = this.$(".scheduleDayTable > tbody > tr");
             
-            var len = trs.length;
+            var len = trs.length / 2;
             rowCount -= len;
             
             if(rowCount > 0){

@@ -57,7 +57,7 @@ define([
 			};
 			
 			var makeAirlineSchedule = function(airline){
-				var schedules = [[],[]];
+				var schedules = [];
 				var info =TourData.getData("info");
 				var hour = 3;
 				
@@ -71,25 +71,23 @@ define([
 				
 				var timeIndex = 0;
 				
-				schedules[timeIndex].push({
+				schedules.push([{
 					place : airline.locale1 ,
 					transportation : airline.airline + "-" + airline.flight,
 					time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
 					summary : airline.locale1 + " 공항 도작 및 수속 ("+(info.domestic==true?"신분증":"여권")+" 필수 지참)",
-				});
-				
-				schedules[timeIndex].push({
+				}, {
 					place : "",
 					transportation : "",
 					time : moment(airline.date1 + " " +airline.time1, dateFormat).format(timeFormat),
 					summary : airline.locale1 + " 공항 출발",
-				});	
-					
-				if(moment(airline.date1 + " " +airline.time1, dateFormat).format(format) 
-					!= moment(airline.date2 + airline.time2, dateFormat).format(format)){
-						
-					timeIndex += 1;
+				}]);
+				
+				if( moment(airline.date2, format).diff(moment(airline.date1, format), "days") > 0){
+					timeIndex += moment(airline.date2, format).diff(moment(airline.date1, format), "days");
+					schedules[timeIndex] = [];
 				}
+				
 				
 				schedules[timeIndex].push({
 					place : airline.locale2,
@@ -98,6 +96,7 @@ define([
 					summary : airline.locale2 + " 공항 도착 (비행시간 : " +airline.flighttime + ")",
 				});		
 				
+				console.log(schedules);
 				if(timeIndex != 0){
 					return schedules;
 				}else{
@@ -121,10 +120,9 @@ define([
 					urls : _.isUndefined(urls[i])? [] : urls[i]
 				};
 				
-				console.log(urls);
-				if(prevSchedule.length > 0){
-					item.schedules = prevSchedule;
-					prevSchedule = [];
+				item.schedules = prevSchedule.shift();
+				if(_.isUndefined(item.schedules)){
+					item.schedules = [];
 				}
 				var mealPrefix = ["조", "중", "석"];
 				_.each(meals[i], function(meal, idx){
@@ -144,13 +142,18 @@ define([
 						}
 					}else{
 						var airlineSchedule = makeAirlineSchedule(airlines[schedule.place]);
-						if(airlineSchedule.length == 1){
-							item.schedules = item.schedules.concat(airlineSchedule[0]);	
-						}else{
-							item.schedules = item.schedules.concat(airlineSchedule[0]);	
-							prevSchedule = prevSchedule.concat(airlineSchedule[1]);
-						}
-						
+						_.each(airlineSchedule, function(v, i){
+							if(i==0){
+								item.schedules = item.schedules.concat(v);		
+							}else{
+								if(_.isUndefined(prevSchedule[i-1])){
+									prevSchedule[i-1] = [];
+								}
+								if(!_.isUndefined(v)){
+									prevSchedule[i-1] = prevSchedule[i-1].concat(v);
+								}
+							}
+						});
 					}
 				});
 				scheduleData.push(item);
@@ -159,19 +162,22 @@ define([
 			var first = makeAirlineSchedule(_.first(airlines));
 			var last = makeAirlineSchedule(_.last(airlines));
 			
-			var len = scheduleData.length;
-			if(first.length == 1){
-				scheduleData[0].schedules = first[0].concat(_.first(scheduleData).schedules);	
-			}else{
-				scheduleData[0].schedules = first[0].concat(scheduleData[0].schedules);	
-				scheduleData[1].schedules = first[1].concat(scheduleData[1].schedules);
+			for(var i=0; i< first.length; i++){
+				var v = first[i];
+				if(!_.isUndefined(v)){
+					scheduleData[i].schedules = v.concat(scheduleData[i].schedules);
+				}
 			}
-			
-			if(last.length == 1){
-				scheduleData[len-1].schedules = _.last(scheduleData).schedules.concat(last[0]);
-			}else{
-				scheduleData[len-2].schedules = scheduleData[len-2].schedules.concat(last[0]);
-				scheduleData[len-1].schedules = last[1].concat(scheduleData[len-1].schedules);
+			for(var j=0; j<last.length; j++){
+				var v = last[j];
+				var index = scheduleData.length - last.length + j;
+				if(!_.isUndefined(v)){
+					if(j == last.length - 1){
+						scheduleData[index].schedules = v.concat(scheduleData[index].schedules);
+					}else{
+						scheduleData[index].schedules = scheduleData[index].schedules.concat(v);
+					}
+				}
 			}
 			
 			return scheduleData;

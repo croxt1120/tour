@@ -83,6 +83,7 @@ define([
 			    	EUR : Utils.numberWithCommas(data.price.exchangeRate.EUR),
 			    	USD : Utils.numberWithCommas(data.price.exchangeRate.USD)
 			    },
+			    account : data.admin.accountNumber,
 			    depositor : data.admin.depositor,
 			    bankName : data.admin.bankName,
 			    planner : data.info.planner,

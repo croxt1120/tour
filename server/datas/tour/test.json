@@ -1,0 +1,263 @@
+{
+    "member": {
+        "adult": "2",
+        "child": "0",
+        "baby": "0"
+    },
+    "info": {
+        "client": "신동호님&전지현님",
+        "title": "하와이 자유허니문 [맞춤여행]",
+        "domestic": false,
+        "planner": "강순영",
+        "plannerInfo": "010-3290-4881",
+        "inclusion": "* 전구간 항공권 \n* 호텔4박숙박 \n* 여행자 보험",
+        "exclusion": "* 일정표상 표기되지 않은 모든것\n* 입국허가서 ESTA 등\n",
+        "specialty": "* 호텔 변경 추가요금 24만원 포함\n* ",
+        "extraCharge": 0,
+        "extraChargeInfo": "",
+        "car": "",
+        "driver": ""
+    },
+    "date": {
+        "start": "2017-08-26",
+        "end": "2017-08-31"
+    },
+    "airlines": [{
+        "airline": "HA",
+        "locale1": "인천",
+        "date1": "2017-08-26",
+        "time1": "22:00",
+        "flight": "460",
+        "locale2": "호놀룰루",
+        "date2": "2017-08-26",
+        "time2": "12:10",
+        "flighttime": "0"
+    }, {
+        "airline": "HA",
+        "locale1": "호놀룰루",
+        "date1": "2017-08-30",
+        "time1": "14:50",
+        "flight": "459",
+        "locale2": "인천",
+        "date2": "2017-08-31",
+        "time2": "20:00",
+        "flighttime": "0"
+    }],
+    "hotels": [{
+        "name": "힐튼 가든인 와이키키",
+        "phone": "스텐다드룸"
+    }, {
+        "name": "힐튼 가든인 와이키키",
+        "phone": "스텐다드룸"
+    }, {
+        "name": "힐튼 하와이안 빌리지",
+        "phone": "오션뷰"
+    }, {
+        "name": "힐튼 하와이안 빌리지",
+        "phone": "오션뷰"
+    }, {
+        "name": "",
+        "phone": ""
+    }],
+    "meals": [
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }],
+        [{
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }, {
+            "name": "",
+            "price": 0
+        }]
+    ],
+    "schedules": [
+        [{
+            "type": "place",
+            "place": "공항 도착후 개별이동하여 체크인"
+        }, {
+            "type": "place",
+            "place": "자유일정"
+        }],
+        [{
+            "type": "place",
+            "place": "예약번호 : RF1720892121"
+        }, {
+            "type": "place",
+            "place": " [호놀룰루 (HI) 출발][호놀룰루] 오아후섬 단독투어 "
+        }, {
+            "type": "place",
+            "place": " [10:00] 호텔 택시 승강장 미팅 "
+        }],
+        [{
+            "type": "place",
+            "place": "자유일정"
+        }],
+        [{
+            "type": "place",
+            "place": "예약번호 :RF1720892628"
+        }, {
+            "type": "place",
+            "place": " [호놀룰루 (HI) 출발]스타 디너크루즈 (Star of Honolulu) "
+        }, {
+            "type": "place",
+            "place": " [16:20] 호텔에서 크루즈업체 셔틀버스 탑승 "
+        }],
+        [{
+            "type": "place",
+            "place": ""
+        }],
+        [{
+            "type": "place",
+            "place": ""
+        }]
+    ],
+    "price": {
+        "exchangeRate": {
+            "USD": 1200,
+            "EUR": 0
+        },
+        "airfare": {
+            "adult": {
+                "summary": "",
+                "price": 1011700,
+                "currency": "KRW",
+                "person": 1011700,
+                "people": 2023400
+            },
+            "child": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "summary": "",
+                "price": 0,
+                "currency": "KRW",
+                "person": 0,
+                "people": 0
+            }
+        },
+        "hotel": [{
+            "summary": "힐튼하와이안빌리지 리조트뷰",
+            "price": 1008,
+            "currency": "USD",
+            "person": 604800,
+            "people": 1209600
+        }, {
+            "summary": "RF1720892628",
+            "price": 260080,
+            "currency": "KRW",
+            "person": 130040,
+            "people": 260080
+        }, {
+            "summary": "RF1720892121",
+            "price": 510840,
+            "currency": "KRW",
+            "person": 255420,
+            "people": 510840
+        }],
+        "tour": [{
+            "summary": "숙박추가",
+            "price": 0,
+            "currency": "KRW",
+            "person": 0,
+            "people": 0
+        }],
+        "result": {
+            "adult": {
+                "revenue": 203540,
+                "person": 2205500,
+                "people": 4411000
+            },
+            "child": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            },
+            "baby": {
+                "revenue": 0,
+                "person": 0,
+                "people": 0
+            }
+        },
+        "deposit": 2600000,
+        "balance": 1811000,
+        "dueDate": "2017-08-04"
+    },
+    "admin": {
+        "depositor": "보성블루투어(강순영)",
+        "bankName": "신한은행",
+        "accountNumber": "100-028-663472",
+        "packagePrintMsg": "* 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.\n* 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%\n* 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.\n"
+    },
+    "files": [],
+    "url": [],
+    "contract": {
+        "locale": "",
+        "name1Ko": "",
+        "name1En": "",
+        "phone": "",
+        "name2Ko": "",
+        "name2En": "",
+        "email": "",
+        "hotels": "",
+        "leader": "",
+        "guide": "",
+        "insurance": "",
+        "remarks": "",
+        "notice": "* 본 계약조건에 명시되지 않은 사항은 관광공사의 표준여행약관에 규정된 바에 준합니다.\n* 상기내용은 항공기의 사정이나 리조트 프로모션 종료 및 현지의 사정 등으로 인하여 변경될 수 있습니다.\n* 도착일 30일 이내 취소 시 총 호텔 요금의 100% 수수료 발생합니다.\n* 취소시점에 따른 항공 및 리조트 특약 사항에 따른 수수료는 별도 발생 되십니다.\n* 여권상의 영문명과 다를시 이름변경 수수료가 발생되십니다. [여권사본은 담당자에게 꼭 보내주세요]"
+    }
+}

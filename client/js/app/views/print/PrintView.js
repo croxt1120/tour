@@ -113,12 +113,17 @@ define([
 					date : moment(date.start).add(i, "day").format ("MM월 DD일"),
 					meals : [],
 					hotel : {
-						name : changeBlank(hotels[i].name),
-						phone : changeBlank(hotels[i].phone),
+						name : "",
+						phone : "",
 					},
 					schedules : [],
 					urls : _.isUndefined(urls[i])? [] : urls[i]
 				};
+				
+				if(!_.isUndefined(hotels[i])){
+					item.hotel.name = changeBlank(hotels[i].name);
+					item.hotel.phone = changeBlank(hotels[i].phone);
+				}
 				
 				item.schedules = prevSchedule.shift();
 				if(_.isUndefined(item.schedules)){

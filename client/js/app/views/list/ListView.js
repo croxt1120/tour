@@ -13,6 +13,7 @@ define([
 ) {
 	var ListView = Backbone.View.extend({
 		initialize: function() {
+			this.timer = null;
 			this.render();
 		},
 		render: function() {
@@ -23,7 +24,8 @@ define([
 		events: {
 			"click .btn-load": "_onClickLoad",
 			"click .btn-remove": "_onClickRemove",
-			"click .list-group-item": "_onClickItem"
+			"click .list-group-item": "_onClickItem",
+			"keyup .search" : "_onChangeText"
 		},
 		setData : function(){
 			var _this = this;
@@ -35,8 +37,22 @@ define([
 				if (data.isSuccess) {
 					var list = data.list;
 					_this.$('.count').text(list.length);
+					
+					// var string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					// for(var i=0; i<50; i++){
+					// 	var text = "";
+					// 	for(var j=0; j<4; j++){
+					// 		var index = Math.round(Math.random()*25);
+					// 		var item= string.charAt(index);
+					// 		text += item;
+					// 	}
+					// 	var tpl = '<a class="list-group-item">' + text + '</a>';
+					// 	$group.append(tpl);
+						
+					// }
 					_.each(list, function(item) {
 						var tpl = '<a class="list-group-item">' + item + '</a>';
+						
 						$group.append(tpl);
 					});
 				}
@@ -113,6 +129,25 @@ define([
 					alert("데이터를 선택해주시기 바랍니다.");
 				}
 			}
+		},
+		_onChangeText : function(evt){
+			var input = evt.currentTarget;
+			var _this = this;
+			clearTimeout(this.timer);
+			this.timer = setTimeout(function(){
+				var searchKey = $(input).val().toUpperCase();
+				var items = _this.$('.list-group a');
+				_.each(items, function(v, i){
+					var text = $(v).text().toUpperCase();
+					var search = text.search(searchKey);
+					if(search > -1){
+						$(v).show();
+					}else{
+						$(v).hide();
+					}
+				});
+				_this.timer = null;
+			}, 300);
 		}
 	});
 	return ListView;

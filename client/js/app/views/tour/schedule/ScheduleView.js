@@ -103,6 +103,7 @@ define([
         },
         
         addGallery: function(files, scheduleRow) {
+            debugger;
             var index = scheduleRow.index() / 2;
             var target = this.$(".imageRow").eq(index);
             
@@ -150,7 +151,7 @@ define([
                     
                 });
                 
-                this.files[index] = this.files[index].concat(files);
+                this.files = this.files.concat(files);
                 TourData.setData("files", this.files);
             }
         },

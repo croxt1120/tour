@@ -177,11 +177,11 @@ define([
 				var v = last[j];
 				var index = scheduleData.length - last.length + j;
 				if(!_.isUndefined(v)){
-					if(j == last.length - 1){
-						scheduleData[index].schedules = v.concat(scheduleData[index].schedules);
-					}else{
+					// if(j == last.length - 1){
+					// 	scheduleData[index].schedules = v.concat(scheduleData[index].schedules);
+					// }else{
 						scheduleData[index].schedules = scheduleData[index].schedules.concat(v);
-					}
+					// }
 				}
 			}
 			

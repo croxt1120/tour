@@ -96,7 +96,6 @@ define([
 					summary : airline.locale2 + " 공항 도착 (비행시간 : " +airline.flighttime + ")",
 				});		
 				
-				console.log(schedules);
 				if(timeIndex != 0){
 					return schedules;
 				}else{

@@ -70,24 +70,39 @@ define([
 				var format = "YYYY-MM-DD";
 				
 				var timeIndex = 0;
+				if(airline.date1 != moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(format)){
+					schedules.push([{
+						place : airline.locale1 ,
+						transportation : airline.airline + "-" + airline.flight,
+						time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
+						summary : airline.locale1 + " 공항 도작 및 수속 ("+(info.domestic==true?"신분증":"여권")+" 필수 지참)",
+						isBefore : true
+					}], [{
+						place : "",
+						transportation : "",
+						time : moment(airline.date1 + " " +airline.time1, dateFormat).format(timeFormat),
+						summary : airline.locale1 + " 공항 출발",
+					}]);
+					timeIndex = 1;
+				}else{
+					schedules.push([{
+						place : airline.locale1 ,
+						transportation : airline.airline + "-" + airline.flight,
+						time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
+						summary : airline.locale1 + " 공항 도작 및 수속 ("+(info.domestic==true?"신분증":"여권")+" 필수 지참)",
+					}, {
+						place : "",
+						transportation : "",
+						time : moment(airline.date1 + " " +airline.time1, dateFormat).format(timeFormat),
+						summary : airline.locale1 + " 공항 출발",
+					}]);	
+				}
 				
-				schedules.push([{
-					place : airline.locale1 ,
-					transportation : airline.airline + "-" + airline.flight,
-					time : moment(airline.date1 + " " +airline.time1, dateFormat).subtract(hour, 'hour').format(timeFormat),
-					summary : airline.locale1 + " 공항 도작 및 수속 ("+(info.domestic==true?"신분증":"여권")+" 필수 지참)",
-				}, {
-					place : "",
-					transportation : "",
-					time : moment(airline.date1 + " " +airline.time1, dateFormat).format(timeFormat),
-					summary : airline.locale1 + " 공항 출발",
-				}]);
 				
 				if( moment(airline.date2, format).diff(moment(airline.date1, format), "days") > 0){
 					timeIndex += moment(airline.date2, format).diff(moment(airline.date1, format), "days");
 					schedules[timeIndex] = [];
 				}
-				
 				
 				schedules[timeIndex].push({
 					place : airline.locale2,
@@ -145,16 +160,40 @@ define([
 							});
 						}
 					}else{
+						var isBefore = false;
 						var airlineSchedule = makeAirlineSchedule(airlines[schedule.place]);
 						_.each(airlineSchedule, function(v, i){
 							if(i==0){
-								item.schedules = item.schedules.concat(v);		
-							}else{
-								if(_.isUndefined(prevSchedule[i-1])){
-									prevSchedule[i-1] = [];
+								if(v[0].isBefore == true){
+									isBefore = true;
 								}
-								if(!_.isUndefined(v)){
-									prevSchedule[i-1] = prevSchedule[i-1].concat(v);
+							}
+							
+							if(isBefore == true){
+								if(i==0){
+									var las = _.last(scheduleData);
+									las.schedules = las.schedules.concat(v);
+								}else if(i==1){
+									item.schedules = item.schedules.concat(v);
+								}else{
+									var index = i - 2;
+									if(_.isUndefined(prevSchedule[index])){
+										prevSchedule[index] = [];
+									}
+									if(!_.isUndefined(v)){
+										prevSchedule[index] = prevSchedule[index].concat(v);
+									}
+								}
+							}else{
+								if(i==0){
+									item.schedules = item.schedules.concat(v);
+								}else{
+									if(_.isUndefined(prevSchedule[i-1])){
+										prevSchedule[i-1] = [];
+									}
+									if(!_.isUndefined(v)){
+										prevSchedule[i-1] = prevSchedule[i-1].concat(v);
+									}
 								}
 							}
 						});

@@ -1,0 +1,32 @@
+{
+    "member": { "adult": "2", "child": "0", "baby": "0" },
+    "info": { "client": "김경수&김선주", "title": "[김경수&김선주]칸쿤 허니문", "domestic": false, "planner": "강순영", "plannerInfo": "010-3290-4881", "inclusion": "* 전구간 항공권 \n* 칸쿤 왕복픽업 * 칸쿤 호텔은 올인크루시브로 진행됩니다. \n* 1억원 여행자 보험 * 스냅촬영포함", "exclusion": "* 일정표상 표기되지 않은 모든것\n* 입국허가서 ESTA 등\n* 스냅촬영팁 50불", "specialty": "* 잔금은 10월12일입니다.\n* 출발전 안내는 10월13일~17일사이가 될예정입니다.\n* 우편물 받으실 주소 알려주시기 바랍니다.", "extraCharge": 0, "extraChargeInfo": "", "car": "", "driver": "" },
+    "date": { "start": "2017-11-12", "end": "2017-11-19" },
+    "airlines": [{ "airline": "KE", "locale1": "인천", "date1": "2017-11-12", "time1": "09:35", "flight": "029", "locale2": "휴스톤", "date2": "2017-11-12", "time2": "07:35", "flighttime": "0" }, { "airline": "UA", "locale1": "휴스톤", "date1": "2017-11-12", "time1": "10:20", "flight": "1014", "locale2": "칸쿤", "date2": "2017-11-12", "time2": "13:36", "flighttime": "0" }, { "airline": "UA", "locale1": "칸쿤", "date1": "2017-11-04", "time1": "18:05", "flight": "1277", "locale2": "LA", "date2": "2017-11-04", "time2": "20:20", "flighttime": "0" }, { "airline": "KE", "locale1": "LA", "date1": "2017-11-17", "time1": "23:30", "flight": "012", "locale2": "인천", "date2": "2017-11-19", "time2": "06:00", "flighttime": "0" }],
+    "hotels": [{ "name": "Aloft", "phone": "Ocean View" }, { "name": "Hyatt Zilara", "phone": "Ocean View Junior Suite" }, { "name": "Hyatt Zilara", "phone": "Ocean View Junior Suite" }, { "name": "Hyatt Zilara", "phone": "Ocean View Junior Suite" }, { "name": "Hyatt Zilara", "phone": "Ocean View Junior Suite" }, { "name": "", "phone": "" }, { "name": "", "phone": "" }, { "name": "", "phone": "" }],
+    "meals": [
+        [{ "name": "", "price": 0 }, { "name": "", "price": 0 }, { "name": "", "price": 0 }],
+        [{ "name": "리조트식", "price": 0 }, { "name": "", "price": 0 }, { "name": "리조트식", "price": 0 }],
+        [{ "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }],
+        [{ "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }],
+        [{ "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }],
+        [{ "name": "리조트식", "price": 0 }, { "name": "리조트식", "price": 0 }, { "name": "", "price": 0 }],
+        [{ "name": "", "price": 0 }, { "name": "", "price": 0 }, { "name": "", "price": 0 }],
+        [{ "name": "", "price": 0 }, { "name": "", "price": 0 }, { "name": "", "price": 0 }]
+    ],
+    "schedules": [
+        [{ "type": "place", "place": "휴스턴에서 짐을 찾아 다시 수속하셔야합니다." }, { "type": "airline", "place": "1" }, { "type": "place", "place": "칸쿤 공항도착후 가이드미팅후 숙소로 이동" }],
+        [{ "type": "place", "place": "체크아웃후 하얏트지라라로 이동 [이동포함]" }, { "type": "place", "place": "체크인후 자유일정" }],
+        [{ "type": "place", "place": "자유일정" }],
+        [{ "type": "place", "place": "자유일정" }],
+        [{ "type": "place", "place": "스냅촬영 [10시] 예약 완료" }, { "type": "place", "place": "촬영업체와 꼭 재확인 부탁드립니다." }],
+        [{ "type": "airline", "place": "2" }],
+        [{ "type": "place", "place": "기내박" }],
+        [{ "type": "place", "place": "" }]
+    ],
+    "price": { "exchangeRate": { "USD": 1150, "EUR": 0 }, "airfare": { "adult": { "summary": "", "price": 1543600, "currency": "KRW", "person": 1543600, "people": 3087200 }, "child": { "summary": "", "price": 0, "currency": "KRW", "person": 0, "people": 0 }, "baby": { "summary": "", "price": 0, "currency": "KRW", "person": 0, "people": 0 } }, "hotel": [{ "summary": "", "price": 0, "currency": "KRW", "person": 0, "people": 0 }], "tour": [{ "summary": "픽업", "price": 952, "currency": "USD", "person": 1094800, "people": 2189600 }], "result": { "adult": { "revenue": 221600, "person": 2860000, "people": 5720000 }, "child": { "revenue": 0, "person": 0, "people": 0 }, "baby": { "revenue": 0, "person": 0, "people": 0 } }, "deposit": 3198000, "balance": 2522000, "dueDate": "2017-10-12" },
+    "admin": { "depositor": "보성블루투어(강순영)", "bankName": "신한은행", "accountNumber": "100-028-663472", "packagePrintMsg": "* 계약금은 예약일로 3일 이내입금하셔야 하며, 미입금시 예약은 통보없이 취소될수 있습니다.\n* 최소약관: 항공권 수수료 - 환불불가, 출발 7일전 -10%, 전일 -50%, 당일 -80%\n* 고객님의 요청으로 일정이 별결 될 경우 변경 수수료가 발생 할 수 있습니다.\n" },
+    "files": [],
+    "url": [],
+    "contract": { "locale": "", "name1Ko": "", "name1En": "", "phone": "", "name2Ko": "", "name2En": "", "email": "", "hotels": "", "leader": "", "guide": "", "insurance": "", "remarks": "", "notice": "* 본 계약조건에 명시되지 않은 사항은 관광공사의 표준여행약관에 규정된 바에 준합니다.\n* 상기내용은 항공기의 사정이나 리조트 프로모션 종료 및 현지의 사정 등으로 인하여 변경될 수 있습니다.\n* 도착일 30일 이내 취소 시 총 호텔 요금의 100% 수수료 발생합니다.\n* 취소시점에 따른 항공 및 리조트 특약 사항에 따른 수수료는 별도 발생 되십니다.\n* 여권상의 영문명과 다를시 이름변경 수수료가 발생되십니다. [여권사본은 담당자에게 꼭 보내주세요]" }
+}

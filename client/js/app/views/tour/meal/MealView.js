@@ -64,6 +64,7 @@ define([
             var len = trs.length;
             rowCount -= len;
             
+            
             if(rowCount > 0){
                 _.each(_.range(rowCount), function(day){
                     var row = $(tpl({day:len+day+1}));
@@ -75,6 +76,13 @@ define([
                     $(_.last(trs)).remove();
                 }
             }
+            var startDate = moment(TourData.getData("date").start, "YYYY-MM-DD");
+            var date = this.$(".meal .date");
+            
+            _.each(date, function(el, i){
+                $(el).text(startDate.format("MM/DD(ddd)"));
+                startDate = startDate.add("1", "days");
+            });
             
             this._calculateTotal();
         },

@@ -57,6 +57,14 @@ define([
                     $(_.last(trs)).remove();
                 }
             }
+            
+            var startDate = moment(TourData.getData("date").start, "YYYY-MM-DD");
+            var date = this.$(".hotel .date");
+            
+            _.each(date, function(el, i){
+                $(el).text(startDate.format("MM/DD(ddd)"));
+                startDate = startDate.add("1", "days");
+            });
         },
         
         setData : function(){

@@ -67,6 +67,7 @@ define([
 						var newFiles = [];
 						var fileNames = {};
 						
+						debugger;
 						_.each(data.files, function(file){
 							fileNames[file.originalName] = file.name;
 						});
@@ -80,6 +81,7 @@ define([
 								url[day].push(fileNames[file.name]);
 							});
 						});
+						
 						
 						console.log(url, newFiles);
 						TourData.setData("url", url);

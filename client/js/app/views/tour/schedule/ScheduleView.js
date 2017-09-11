@@ -45,6 +45,7 @@ define([
             "click .schedule-button" : "_onClickScheduleButton",
             "click .btn-add" : "_onClickButtonAdd",
             "click .btn-remove" : "_onClickButtonRemove",
+            "click .thumbnail.img" : "_removeGallery",
             "change #scheduleTable input" : "_changeInput",
             "change #scheduleTable select" : "_changeInput",
         },
@@ -109,7 +110,6 @@ define([
         },
         
         addGallery: function(files, scheduleRow) {
-            debugger;
             var index = scheduleRow.index() / 2;
             var target = this.$(".imageRow").eq(index);
             
@@ -157,15 +157,26 @@ define([
                     
                 });
                 
-                this.files = this.files.concat(files);
+                this.files[index] = this.files[index].concat(files);
                 TourData.setData("files", this.files);
             }
+        },
+        
+        _removeGallery : function(e){
+            var img = $(e.currentTarget);
+            var imgIndex = img.index();
+            var trIndex = (img.parents("tr").index() - 1 ) / 2;
+            console.log(TourData.getData("files"));
+            console.log(TourData.getData("url"));
         },
         
         _onChangeDate : function(){
             var date = TourData.getData("date");
             var days = moment(date.end).diff( moment(date.start), 'days') + 1;
             this.files = [];
+            for(var i=0; i<days; i++){
+                this.files.push([]);
+            }
             this._addRow(days);
         },
         

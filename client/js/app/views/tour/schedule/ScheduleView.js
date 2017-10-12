@@ -114,10 +114,10 @@ define([
             var target = this.$(".imageRow").eq(index);
             
             if (_.isArray(files)) {
-                _.each(files,function(file){
+                _.each(files,function(file, i){
                     var reader = new FileReader();  
                     reader.onload = function(e) {
-                        var gallery = $(galleryTpl);
+                        var gallery = $(galleryTpl).attr("id", "files_"+index+"_"+i);
                         var img = $("<img/>")[0];
                         img.onload = function(){
                             var canvas = gallery.find("canvas")[0];
@@ -163,11 +163,34 @@ define([
         },
         
         _removeGallery : function(e){
+            var flag = confirm("사진을 삭제하시겠습니까?");
+            if(flag == false){
+                return;
+            }
             var img = $(e.currentTarget);
-            var imgIndex = img.index();
-            var trIndex = (img.parents("tr").index() - 1 ) / 2;
-            console.log(TourData.getData("files"));
-            console.log(TourData.getData("url"));
+            
+            var row = img.parents(".imageRow");
+            
+            var id = img.attr("id");
+            var idArr = id.split("_");
+            var key = idArr[0];
+            
+            var data = TourData.getData(key);
+            data[idArr[1]].splice(idArr[2],1); 
+            
+            console.log(data);
+            TourData.setData(key, data);
+            img.remove();
+            
+            var imgs = row.find(".thumbnail.img");
+            var count = 0;
+            _.each(imgs, function(img, i){
+                var id = $(img).attr("id");
+                if(id.startsWith(key)){
+                    $(img).attr("id", key+"_"+idArr[1]+"_"+count);
+                    count++;
+                }
+            });
         },
         
         _onChangeDate : function(){
@@ -326,9 +349,12 @@ define([
             this.$(".thumbnail.img").remove();
             _.each(urls, function(urlArr,idx) {
                 var target = _view.$(".imageRow").eq(idx);
-                _.each(urlArr, function(url){
+                _.each(urlArr, function(url,i){
                     var gallery = $(galleryTpl);
+                    
+                    gallery.attr("id", "url_"+idx+"_"+i);
                     var img = $("<img>")[0];
+                    
                     img.onload = function(){
                         var canvas = gallery.find("canvas")[0];
                         var ctx = canvas.getContext("2d");

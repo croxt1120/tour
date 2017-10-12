@@ -67,7 +67,6 @@ define([
 						var newFiles = [];
 						var fileNames = {};
 						
-						debugger;
 						_.each(data.files, function(file){
 							fileNames[file.originalName] = file.name;
 						});
@@ -77,8 +76,10 @@ define([
 							if(_.isUndefined(url[day])){
 								url[day] = [];		
 							}
-							_.each(fileArr, function(file){
+							_.each(fileArr, function(file,i){
 								url[day].push(fileNames[file.name]);
+								var id = "url_"+day+"_"+(url[day].length - 1);
+								$("#files_"+day+"_"+i).attr("id", id);
 							});
 						});
 						
@@ -113,6 +114,7 @@ define([
 				url : "/file/upload",
 			};
 			var _view = this;
+			$('#fileupload').unbind('fileuploadprogress');
 			$('#fileupload').bind('fileuploadprogress', function (e, data) {
 			    // Log the current bitrate for this upload:
 			    console.log(data.loaded, "/", data.total);

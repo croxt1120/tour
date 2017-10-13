@@ -31,7 +31,7 @@ var config = {
     mailOptions : {
         host: 'smtp.cafe24.com',
         port: 587,
-        secure : true,
+        // secure : true,
         auth: {
             user: 'hanatour@solje00.cafe24.com',
             pass: 'bs34265115'

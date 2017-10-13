@@ -36,7 +36,7 @@ var config = {
             user: 'hanatour',
             pass: 'bs34265115'
         },
-        rejectUnauthorized: false,
+        // rejectUnauthorized: false,
         connectionTimeout:10000
     }
     

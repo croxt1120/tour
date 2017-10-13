@@ -29,20 +29,15 @@ var config = {
     },
 
     mailOptions : {
-        service : "Gmail",
-        auth: {
-            user: 'jeongkilahan@gmail.com',
-            pass: 'ajk405..'
-        }
-        // host: 'smtp.naver.com',
-        // port: 587,
+        host: 'smtp.cafe24.com',
+        port: 587,
         // secure : true,
-        // auth: {
-        //     user: 'jeongkilahan',
-        //     pass: 'ajk405..'
-        // },
-        // rejectUnauthorized: false,
-        // connectionTimeout:10000
+        auth: {
+            user: 'hanatour',
+            pass: 'bs34265115'
+        },
+        rejectUnauthorized: false,
+        connectionTimeout:10000
     }
     
 };

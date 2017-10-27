@@ -62,6 +62,7 @@ define([
         
         _onClickRemoveAirplane : function(evt){
             $(evt.target).parents("table.airline").remove();
+            this._onChangeAirLine();
         },
         
         _onChangeDate : function(evt){
